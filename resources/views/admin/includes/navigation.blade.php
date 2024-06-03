@@ -36,18 +36,21 @@
                     <a href="{{ route('dashboard') }}" class="nav-link "><span class="pcoded-micon"><i
                                 class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('patients.index') }}" class="nav-link "><span class="pcoded-micon"><i
-                                class="feather icon-user"></i></span><span class="pcoded-mtext">Patient</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('doctors.index') }}" class="nav-link "><span class="pcoded-micon"><i
-                                class="feather icon-activity"></i></span><span class="pcoded-mtext">Doctor</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('rooms.index') }}" class="nav-link "><span class="pcoded-micon"><i
-                                class="feather icon-box"></i></span><span class="pcoded-mtext">Room</span></a>
-                </li>
+                @if (Auth::user()->usertype == 'admin')
+                    <li class="nav-item">
+                        <a href="{{ route('patients.index') }}" class="nav-link "><span class="pcoded-micon"><i
+                                    class="feather icon-user"></i></span><span class="pcoded-mtext">Patient</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('doctors.index') }}" class="nav-link "><span class="pcoded-micon"><i
+                                    class="feather icon-activity"></i></span><span
+                                class="pcoded-mtext">Doctor</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('rooms.index') }}" class="nav-link "><span class="pcoded-micon"><i
+                                    class="feather icon-box"></i></span><span class="pcoded-mtext">Room</span></a>
+                    </li>
+                @endif
                 <li class="nav-item">
                     <a href="{{ route('appointments.index') }}" class="nav-link "><span class="pcoded-micon"><i
                                 class="feather icon-calendar"></i></span><span
@@ -70,6 +73,11 @@
                     <a href="{{ route('online_consultations.index') }}" class="nav-link "><span class="pcoded-micon"><i
                                 class="feather icon-message-square"></i></span><span class="pcoded-mtext">Online
                             Consultation</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('doctor_schedules.index') }}" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-clock"></i></span><span class="pcoded-mtext">Doctor
+                            Schedule</span></a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('health_informations.index') }}" class="nav-link "><span class="pcoded-micon"><i

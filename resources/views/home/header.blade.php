@@ -61,18 +61,42 @@
                         </ul>
                     </div>
                     <div class="quote_btn-container">
-                        <a href="{{ url('/login') }}">
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                            <span>
-                                Login
-                            </span>
-                        </a>
-                        <a href="{{ url('/register') }}">
-                            <i class="fa fa-vcard" aria-hidden="true"></i>
-                            <span>
-                                Sign Up
-                            </span>
-                        </a>
+                        @guest
+                            <a href="{{ url('/login') }}">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <span>
+                                    Login
+                                </span>
+                            </a>
+                            <a href="{{ url('/register') }}">
+                                <i class="fa fa-vcard" aria-hidden="true"></i>
+                                <span>
+                                    Sign Up
+                                </span>
+                            </a>
+                        @endguest
+                        @auth
+                            @if (Auth::user()->usertype == 'user')
+                                <a href="#">
+                                    <i class="fa fa-vcard" aria-hidden="true"></i>
+                                    <span>
+                                        {{ Auth::user()->name }}
+                                    </span>
+                                </a>
+                            @else
+                                <a href="{{ route('dashboard') }}">
+                                    <i class="fa fa-vcard" aria-hidden="true"></i>
+                                    <span>
+                                        Dashboard
+                                    </span>
+                                </a>
+                            @endif
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <button class="btn text-white btn-sm btn-danger" type="submit"><i
+                                        class="feather icon-log-out m-r-5"></i>Logout</button>
+                            </form>
+                        @endauth
                         <form class="form-inline">
                             <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
                                 <i class="fa fa-search" aria-hidden="true"></i>

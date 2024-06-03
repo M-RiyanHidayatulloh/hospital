@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PatientController extends Controller
 {
@@ -51,7 +52,7 @@ class PatientController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'user_id' => 'required|exists:users,id',
+            // 'user_id' => 'required|exists:users,id',
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'phone' => 'required|string|max:15',
@@ -59,6 +60,7 @@ class PatientController extends Controller
             'gender' => 'required|in:male,female',
         ]);
 
+        $validatedData['user_id'] = Auth::user()->id;
         Patient::create($validatedData);
 
         return redirect()->route('patients.index')->with('success', 'Patient added successfully.');
