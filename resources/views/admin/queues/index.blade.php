@@ -34,6 +34,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="pull-right">
+            {{ $queues->links() }}
+            </div>
         </div>
     </div>
 </div>

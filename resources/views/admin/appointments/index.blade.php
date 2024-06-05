@@ -41,4 +41,7 @@
             @endforeach
         </tbody>
     </table>
+    <div class="pull-right">
+    {{ $appointments->links() }}
+    </div>
 </div>

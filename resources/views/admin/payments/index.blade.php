@@ -36,4 +36,7 @@
             @endforeach
         </tbody>
     </table>
+    <div class="pull-right">
+    {{ $payments->links() }}
+    </div>
 </div>

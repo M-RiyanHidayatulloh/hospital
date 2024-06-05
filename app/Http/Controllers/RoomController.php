@@ -17,7 +17,7 @@ class RoomController extends Controller
             'breadcrumbs' => [
                 // 'Category' => "#",
             ],
-            'rooms' => Room::all(),
+            'rooms' => Room::paginate(10),
             'content' => 'admin.rooms.index',
         ];
 

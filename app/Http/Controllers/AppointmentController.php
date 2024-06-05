@@ -21,7 +21,7 @@ class AppointmentController extends Controller
             'breadcrumbs' => [
                 // 'Category' => "#",
             ],
-            'appointments' => Appointment::all(),
+            'appointments' => Appointment::paginate(5),
             'content' => 'admin.appointments.index',
         ];
 

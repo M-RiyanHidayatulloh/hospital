@@ -18,7 +18,7 @@ class DoctorController extends Controller
             'breadcrumbs' => [
                 // 'Category' => "#",
             ],
-            'doctors' => Doctor::all(),
+            'doctors' => Doctor::paginate(5),
             'content' => 'admin.doctors.index',
         ];
 

@@ -18,7 +18,7 @@ class QueueController extends Controller
             'breadcrumbs' => [
                 // 'Category' => "#",
             ],
-            'queues' => Queue::all(),
+            'queues' => Queue::paginate(3),
             'content' => 'admin.queues.index',
         ];
 

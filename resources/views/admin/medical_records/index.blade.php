@@ -38,4 +38,7 @@
             @endforeach
         </tbody>
     </table>
+    <div class="pull-right">
+    {{ $medical_records->links() }}
+    </div>
 </div>

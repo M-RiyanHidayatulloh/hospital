@@ -13,9 +13,9 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($rooms as $room)
+            @foreach ($rooms as $key => $room)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $rooms->firstItem() + $key }}</td>
                     <td>{{ $room->room_number }}</td>
                     <td>{{ $room->room_type }}</td>
                     <td>{{ $room->availability }}</td>
@@ -33,4 +33,7 @@
             @endforeach
         </tbody>
     </table>
+    <div class="pull-right">
+    {{ $rooms->links() }}
+    </div>
 </div>

@@ -28,4 +28,7 @@
             @endforeach
         </tbody>
     </table>
+    <div class="pull-right">
+    {{ $health_informations->links() }}
+    </div>
 </div>

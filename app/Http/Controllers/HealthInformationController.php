@@ -18,7 +18,7 @@ class HealthInformationController extends Controller
             'breadcrumbs' => [
                 // 'Category' => "#",
             ],
-            'health_informations' => HealthInformation::all(),
+            'health_informations' => HealthInformation::paginate(3),
             'content' => 'admin.health_informations.index',
         ];
 

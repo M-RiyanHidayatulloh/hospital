@@ -18,7 +18,7 @@ class PatientController extends Controller
             'breadcrumbs' => [
                 // 'Category' => "#",
             ],
-            'patients' => Patient::all(),
+            'patients' => Patient::paginate(5),
             'content' => 'admin.patients.index',
         ];
 

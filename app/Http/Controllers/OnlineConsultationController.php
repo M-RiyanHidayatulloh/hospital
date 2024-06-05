@@ -20,7 +20,7 @@ class OnlineConsultationController extends Controller
             'breadcrumbs' => [
                 'Online Consultations' => route('online_consultations.index')
             ],
-            'online_consultations' => OnlineConsultation::all(),
+            'online_consultations' => OnlineConsultation::paginate(3),
             'content' => 'admin.online_consultations.index',
 
         ];

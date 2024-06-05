@@ -43,4 +43,7 @@
             @endforeach
         </tbody>
     </table>
+    <div class="pull-right">
+    {{ $online_consultations->links() }}
+    </div>
 </div>

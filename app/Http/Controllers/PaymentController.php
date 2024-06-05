@@ -17,7 +17,7 @@ class PaymentController extends Controller
             'breadcrumbs' => [
                 // 'Category' => "#",
             ],
-            'payments' => Payment::all(),
+            'payments' => Payment::paginate(5),
             'content' => 'admin.payments.index',
         ];
 

@@ -19,7 +19,7 @@ class MedicalRecordController extends Controller
             'breadcrumbs' => [
                 // 'Category' => "#",
             ],
-            'medical_records' => MedicalRecord::all(),
+            'medical_records' => MedicalRecord::paginate(3),
             'content' => 'admin.medical_records.index',
         ];
 
