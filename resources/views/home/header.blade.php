@@ -5,7 +5,7 @@
                 <a href="">
                     <i class="fa fa-phone" aria-hidden="true"></i>
                     <span>
-                        Call : +01 123455678990
+                        Call : +01 8889999
                     </span>
                 </a>
                 <a href="">
@@ -56,23 +56,70 @@
                                 <a class="nav-link" href="testimonial.html">Rekam Medis</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="testimonial.html">Kosultasi Online</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="testimonial.html">Informasi Kesehatan</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="contact.html">Contact Us</a>
                             </li>
                         </ul>
                     </div>
                     <div class="quote_btn-container">
-                        <a href="{{ url('/login') }}">
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                            <span>
-                                Login
-                            </span>
-                        </a>
-                        <a href="{{ url('/register') }}">
-                            <i class="fa fa-vcard" aria-hidden="true"></i>
-                            <span>
-                                Sign Up
-                            </span>
-                        </a>
+                        @guest
+                            <a href="{{ url('/login') }}">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <span>
+                                    Login
+                                </span>
+                            </a>
+                            <a href="{{ url('/register') }}">
+                                <i class="fa fa-vcard" aria-hidden="true"></i>
+                                <span>
+                                    Sign Up
+                                </span>
+                            </a>
+                        @endguest
+                        @auth
+                            @if (Auth::user()->usertype == 'user')
+                                <a href="#">
+                                    <div class="position-relative">
+                                        <a href="#" id="userIcon" class="user-icon">
+                                            <i class="fas fa-user-circle" aria-hidden="true"></i>
+                                        </a>
+                                        <div class="user-card bg-light p-3 rounded position-absolute">
+                                            <a href="/user">Profile</a>
+                                            <form action="{{ route('logout') }}" method="post">
+                                                @csrf
+                                                <button class="btn text-white btn-sm btn-danger" type="submit"><i
+                                                        class="feather icon-log-out m-r-5"></i>Logout</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    {{-- <span>
+                                        {{ Auth::user()->name }}
+                                    </span> --}}
+                                </a>
+                            @else
+                                <a href="{{ route('dashboard') }}">
+                                    <div class="position-relative">
+                                        <a href="#" id="userIcon" class="user-icon">
+                                            <i class="fas fa-user-circle" aria-hidden="true"></i>
+                                        </a>
+                                        <div class="user-card bg-light p-3 rounded position-absolute">
+                                            <a href="/user">Profile</a>
+                                            <a href="/dashboard">Dashboard</a>
+                                            <form action="{{ route('logout') }}" method="post">
+                                                @csrf
+                                                <button class="btn text-white btn-sm btn-danger" type="submit"><i
+                                                        class="feather icon-log-out m-r-5"></i>Logout</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </a>
+                            @endif
+                        @endauth
                         <form class="form-inline">
                             <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
                                 <i class="fa fa-search" aria-hidden="true"></i>

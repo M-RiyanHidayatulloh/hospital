@@ -2,14 +2,14 @@
     <h1>Add New Patient</h1>
     <form action="{{ route('patients.store') }}" method="POST">
         @csrf
-        <div class="form-group">
+        {{-- <div class="form-group">
             <label for="user_id">User</label>
             <select name="user_id" class="form-control" required>
                 @foreach ($users as $user)
                     <option value="{{ $user->id }}">{{ $user->name }}</option>
                 @endforeach
             </select>
-        </div>
+        </div> --}}
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" name="name" class="form-control" required>
@@ -32,6 +32,10 @@
                 <option value="male">Male</option>
                 <option value="female">Female</option>
             </select>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Save</button>
     </form>

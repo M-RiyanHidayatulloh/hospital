@@ -16,9 +16,10 @@ class User
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user()->usertype != 'user') {
-            return redirect('home.index');
+        if (Auth::user() && Auth::user()->usertype == 'user') {
+            return $next($request);
         }
-        return $next($request);
+
+        return redirect('/');
     }
 }

@@ -16,7 +16,7 @@
                     <td>{{ $healthInformation->content }}</td> <!-- Display content -->
                     <td>
                         <a href="{{ route('health_informations.edit', $healthInformation->id) }}"
-                            class="btn btn-sm btn-primary">Edit</a>
+                            class="btn btn-sm btn-warning">Edit</a>
                         <form action="{{ route('health_informations.destroy', $healthInformation->id) }}" method="POST"
                             class="d-inline">
                             @csrf
