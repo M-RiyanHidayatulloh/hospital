@@ -12,6 +12,7 @@
                         <th>Phone</th>
                         <th>Birthdate</th>
                         <th>Gender</th>
+                        <th>Description</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -24,6 +25,7 @@
                             <td>{{ $patient->phone }}</td>
                             <td>{{ $patient->birthdate }}</td>
                             <td>{{ $patient->gender }}</td>
+                            <td>{{ $patient->description }}</td>
                             <td>
                                 <a href="{{ route('patients.edit', $patient->id) }}" class="btn btn-warning">Edit</a>
                                 <form action="{{ route('patients.destroy', $patient->id) }}" method="POST"

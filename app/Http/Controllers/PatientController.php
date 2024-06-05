@@ -58,6 +58,7 @@ class PatientController extends Controller
             'phone' => 'required|string|max:15',
             'birthdate' => 'required|date',
             'gender' => 'required|in:male,female',
+            'description' => 'nullable|string',
         ]);
 
         $validatedData['user_id'] = Auth::user()->id;
@@ -101,12 +102,12 @@ class PatientController extends Controller
     public function update(Request $request, Patient $patient)
     {
         $validatedData = $request->validate([
-            'user_id' => 'required|exists:users,id',
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'phone' => 'required|string|max:15',
             'birthdate' => 'required|date',
             'gender' => 'required|in:male,female',
+            'description' => 'nullable|string',
         ]);
 
         $patient->update($validatedData);

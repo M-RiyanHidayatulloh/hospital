@@ -33,6 +33,10 @@
                 <option value="female">Female</option>
             </select>
         </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description"></textarea>
+        </div>
         <button type="submit" class="btn btn-primary">Save</button>
     </form>
 </div>

@@ -3,7 +3,7 @@
     <form action="{{ route('patients.update', $patient->id) }}" method="POST">
         @csrf
         @method('PUT')
-        <div class="form-group">
+        {{-- <div class="form-group">
             <label for="user_id">User</label>
             <select name="user_id" class="form-control" required>
                 @foreach ($users as $user)
@@ -11,7 +11,7 @@
                         {{ $user->name }}</option>
                 @endforeach
             </select>
-        </div>
+        </div> --}}
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" name="name" class="form-control" value="{{ $patient->name }}" required>
@@ -34,6 +34,10 @@
                 <option value="male" {{ $patient->gender == 'male' ? 'selected' : '' }}>Male</option>
                 <option value="female" {{ $patient->gender == 'female' ? 'selected' : '' }}>Female</option>
             </select>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description">{{ $patient->description }}</textarea>
         </div>
         <button type="submit" class="btn btn-primary">Save</button>
     </form>
