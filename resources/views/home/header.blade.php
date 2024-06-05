@@ -5,7 +5,7 @@
                 <a href="">
                     <i class="fa fa-phone" aria-hidden="true"></i>
                     <span>
-                        Call : +01 123455678990
+                        Call : +01 8889999
                     </span>
                 </a>
                 <a href="">
@@ -54,6 +54,12 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="testimonial.html">Rekam Medis</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="testimonial.html">Kosultasi Online</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="testimonial.html">Informasi Kesehatan</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="contact.html">Contact Us</a>
