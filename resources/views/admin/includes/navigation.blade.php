@@ -7,8 +7,10 @@
                     <img class="img-radius" src="{{ asset('admin/dist/assets/images/user/avatar-2.jpg') }}"
                         alt="User-Profile-Image">
                     <div class="user-details">
-                        <span>John Doe</span>
-                        <div id="more-details">UX Designer<i class="fa fa-chevron-down m-l-5"></i></div>
+                        <span id="more-details" class="fa fa-chevron-down m-l-5">
+                            {{ Auth::user()->name }}
+                        </span>
+                        {{-- <div id="more-details"><i class="fa fa-chevron-down m-l-5"></i></div> --}}
                     </div>
                 </div>
                 <div class="collapse" id="nav-user-link">

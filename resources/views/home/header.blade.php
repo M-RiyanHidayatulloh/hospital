@@ -84,24 +84,41 @@
                         @auth
                             @if (Auth::user()->usertype == 'user')
                                 <a href="#">
-                                    <i class="fa fa-vcard" aria-hidden="true"></i>
-                                    <span>
+                                    <div class="position-relative">
+                                        <a href="#" id="userIcon" class="user-icon">
+                                            <i class="fas fa-user-circle" aria-hidden="true"></i>
+                                        </a>
+                                        <div class="user-card bg-light p-3 rounded position-absolute">
+                                            <a href="/user">Profile</a>
+                                            <form action="{{ route('logout') }}" method="post">
+                                                @csrf
+                                                <button class="btn text-white btn-sm btn-danger" type="submit"><i
+                                                        class="feather icon-log-out m-r-5"></i>Logout</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    {{-- <span>
                                         {{ Auth::user()->name }}
-                                    </span>
+                                    </span> --}}
                                 </a>
                             @else
                                 <a href="{{ route('dashboard') }}">
-                                    <i class="fa fa-vcard" aria-hidden="true"></i>
-                                    <span>
-                                        Dashboard
-                                    </span>
+                                    <div class="position-relative">
+                                        <a href="#" id="userIcon" class="user-icon">
+                                            <i class="fas fa-user-circle" aria-hidden="true"></i>
+                                        </a>
+                                        <div class="user-card bg-light p-3 rounded position-absolute">
+                                            <a href="/user">Profile</a>
+                                            <a href="/dashboard">Dashboard</a>
+                                            <form action="{{ route('logout') }}" method="post">
+                                                @csrf
+                                                <button class="btn text-white btn-sm btn-danger" type="submit"><i
+                                                        class="feather icon-log-out m-r-5"></i>Logout</button>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </a>
                             @endif
-                            <form action="{{ route('logout') }}" method="post">
-                                @csrf
-                                <button class="btn text-white btn-sm btn-danger" type="submit"><i
-                                        class="feather icon-log-out m-r-5"></i>Logout</button>
-                            </form>
                         @endauth
                         <form class="form-inline">
                             <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
