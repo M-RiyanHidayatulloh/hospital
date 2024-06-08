@@ -14,6 +14,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QueueController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -26,6 +27,9 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/bookappointment', [BookController::class, 'index'])->name('user/appointment');
+Route::get('/bookappointment/{id}/edit', [BookController::class, 'edit'])->name('user/editappointment');
+
 
 
 Route::group(['middleware' => ['auth']], function () {
@@ -56,9 +60,4 @@ Route::group(['middleware' => ['auth']], function () {
 
 });
 
-
-require __DIR__ . '/auth.php';
-
-
-
-
+require __DIR__.'/auth.php';

@@ -28,20 +28,14 @@
             @isset($content)
                 @include($content)
             @endisset
+            
             <!-- [ Main Content ] end -->
         </div>
     </div>
     <!-- [ Main Content ] end -->
     <!-- Required Js -->
-    <script src="{{ asset('admin/dist/assets/js/vendor-all.min.js') }}"></script>
-    <script src="{{ asset('admin/dist/assets/js/plugins/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('admin/dist/assets/js/pcoded.min.js') }}"></script>
-
-    <!-- Apex Chart -->
-
-
-    <!-- custom-chart js -->
-    <script src="{{ asset('admin/dist/assets/js/pages/dashboard-main.js  ') }}"></script>
+    @include('admin.includes.footer')
+    
 </body>
 
 </html>

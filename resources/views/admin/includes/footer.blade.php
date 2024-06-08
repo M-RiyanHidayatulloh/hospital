@@ -45,7 +45,15 @@
         </div>
     <![endif]-->
     <!-- Warning Section Ends -->
+    <script src="{{ asset('admin/dist/assets/js/vendor-all.min.js') }}"></script>
+    <script src="{{ asset('admin/dist/assets/js/plugins/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('admin/dist/assets/js/pcoded.min.js') }}"></script>
 
+    <!-- Apex Chart -->
+
+
+    <!-- custom-chart js -->
+    <script src="{{ asset('admin/dist/assets/js/pages/dashboard-main.js  ') }}"></script>
     <!-- Required Js -->
     <script src="assets/js/vendor-all.min.js"></script>
     <script src="assets/js/plugins/bootstrap.min.js"></script>
@@ -57,6 +65,39 @@
 
 <!-- custom-chart js -->
 <script src="assets/js/pages/dashboard-main.js"></script>
+<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
+
+<!-- <script>
+    $(document).ready(function() {
+        $('#datatables').DataTable();
+    });
+</script> -->
+<script>
+    $(function() {
+        $('#data-table').DataTable();
+    })
+</script>
+<script src="{{ asset('js/sweetalert.min.js') }}"></script>
+<script>
+    confirmDelete = function(button) {
+        var url = $(button).data('url');
+        swal({
+            'title': 'Konfirmasi Hapus',
+            'text': 'Apakah Kamu Yakin Ingin Menghapus Data Ini?',
+            'dangermode': true,
+            'buttons': true
+        }).then(function(value) {
+            if (value) {
+                window.location = url;
+            }
+        })
+    }
+</script>
+
 </body>
 
 </html>
