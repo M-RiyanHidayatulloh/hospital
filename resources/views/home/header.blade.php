@@ -29,8 +29,6 @@
                 <a class="navbar-brand" href="index.html">
                     <img src="images/logo1.png" alt="">
                 </a>
-
-
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -84,6 +82,7 @@
                                         </a>
                                         <div class="user-card bg-light p-3 rounded position-absolute">
                                             <a href="/user">Profile</a>
+                                            <a href="/user/appointments">Appointment</a>
                                             <form action="{{ route('logout') }}" method="post">
                                                 @csrf
                                                 <button class="btn text-white btn-sm btn-danger" type="submit"><i
