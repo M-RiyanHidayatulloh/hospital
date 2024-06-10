@@ -30,6 +30,7 @@
                     <img src="images/logo1.png" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
                     <span class=""> </span>
                 </button>
 
@@ -78,6 +79,7 @@
                         @endguest
                         @if(Route::has('login'))
                         @auth
+
                         @if (Auth::user()->usertype == 'user')
                         <div class="quote_btn-container dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -87,6 +89,28 @@
                             <div class="dropdown-menu" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="{{ route('profile.edit') }}" :active="request()->routeIs('profile.show')">
                                     <i class="fa fa-user-circle" aria-hidden="true"></i> Profile
+                           
+                                    {{-- <span>
+                                        {{ Auth::user()->name }}
+                                    </span> --}}
+                                </a>
+                            @else
+                                <a href="{{ route('dashboard') }}">
+                                    <div class="position-relative">
+                                        <a href="#" id="userIcon" class="user-icon">
+                                            <i class="fas fa-user-circle" aria-hidden="true"></i>
+                                        </a>
+                                        <div class="user-card bg-light p-3 rounded position-absolute">
+                                            <a href="/user">Profile</a>
+                                            <a href="/dashboard">Dashboard</a>
+                                            <form action="{{ route('logout') }}" method="post">
+                                                @csrf
+                                                <button class="btn text-white btn-sm btn-danger" type="submit"><i
+                                                        class="feather icon-log-out m-r-5"></i>Logout</button>
+                                            </form>
+                                        </div>
+                                    </div>
+
                                 </a>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf

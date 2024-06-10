@@ -19,6 +19,8 @@ return new class extends Migration {
             $table->string('address')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('profile_image')->nullable();
+            $table->date('date_of_birth')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -38,6 +40,7 @@ return new class extends Migration {
             $table->integer('last_activity')->index();
         });
     }
+
 
     /**
      * Reverse the migrations.

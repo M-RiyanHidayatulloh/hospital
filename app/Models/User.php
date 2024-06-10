@@ -22,6 +22,7 @@ class User extends Authenticatable
         'phone',
         'address',
         'password',
+        'profile_image'
     ];
 
     /**
@@ -43,7 +44,7 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'password' => 'hashed'
         ];
     }
 }
