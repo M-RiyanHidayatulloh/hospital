@@ -69,7 +69,6 @@
                                 </div>
                             </div>
                             <hr>
-                            <!-- Diagnosa Section -->
                             <div class="row">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Diagnosa</h6>
@@ -79,7 +78,6 @@
                                 </div>
                             </div>
                             <hr>
-                            <!-- Room Section -->
                             <div class="row">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Room</h6>
@@ -93,7 +91,7 @@
                                 <div class="col-sm-12">
                                     <button class="btn btn-primary btn-block" data-toggle="modal"
                                         data-target="#editProfileModal">Ubah
-                                        profile</button>
+                                        </button>
                                 </div>
                             </div>
                         </div>
@@ -152,7 +150,7 @@
                                             <textarea name="address" id="address" rows="3" class="form-control">{{ $profile->address }}</textarea>
                                         </div>
 
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label for="diagnosa">Diagnosa:</label>
                                             <textarea name="diagnosa" id="diagnosa" rows="3" class="form-control">{{ $profile->diagnosa }}</textarea>
 
@@ -162,7 +160,7 @@
                                             <label for="room">Room:</label>
                                             <input type="text" id="room" name="room" class="form-control"
                                                 value="{{ $profile->room }}">
-                                        </div>
+                                        </div> --}}
 
                                         <div class="form-group">
                                             <label for="password">Password:</label>

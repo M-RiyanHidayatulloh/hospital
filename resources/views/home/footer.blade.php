@@ -22,39 +22,7 @@
 <!-- custom js -->
 <script src="{{ asset('js/custom.js') }}"></script>
 
-<!-- Bootstrap JS and dependencies -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script>
-    // Toggle user card display
-    document.getElementById('userIcon').addEventListener('click', function() {
-        var userCard = document.querySelector('.user-card');
-        userCard.classList.toggle('show');
-    });
-
-    // Simulate a login status check
-    var isLoggedIn = false; // Change to true to simulate logged-in state
-    var userImageUrl = 'path/to/user/image.jpg'; // Replace with actual image URL
-
-    // Function to update the icon based on login status
-    function updateIcon() {
-        var userIcon = document.getElementById('userIcon');
-        var userImage = document.getElementById('userImage');
-        if (isLoggedIn) {
-            userIcon.querySelector('.user-icon').classList.add('d-none');
-            userImage.src = userImageUrl;
-            userImage.classList.remove('d-none');
-        } else {
-            userIcon.querySelector('.user-icon').classList.remove('d-none');
-            userImage.classList.add('d-none');
-        }
-    }
-
-    // Call the function on page load
-    document.addEventListener('DOMContentLoaded', updateIcon);
-</script>
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
