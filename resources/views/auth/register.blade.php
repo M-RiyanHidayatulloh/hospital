@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <meta name="description" content="" />
+    <meta name="description" content=""/>
     <meta name="keywords" content="">
     <meta name="author" content="Phoenixcoded" />
     <link rel="icon" href="{{asset('style/assets/images/favicon.ico')}}" type="image/x-icon">
@@ -35,7 +35,7 @@
     <!-- [ auth-signup ] start -->
     <div class="auth-wrapper animate__animated animate__fadeIn">
         <div class="auth-content text-center">
-            <img src="{{asset('images/logo.png')}}" alt="logo" class="img-fluid mb-4 mx-auto">
+        <img src="{{asset('images/logo.png')}}" alt="logo" class="img-fluid mb-4 mx-auto">
             <div class="card bg-white p-8 rounded-lg shadow-lg w-96">
                 <div class="row align-items-center text-center">
                     <div class="col-md-12">
@@ -208,3 +208,4 @@
 </body>
 
 </html>
+

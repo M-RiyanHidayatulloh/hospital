@@ -93,7 +93,7 @@
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="userDropdown">
                                             <a class="dropdown-item" href="{{ route('profile.edit') }}"
-                                                :active="request() - > routeIs('profile.show')">
+                                                :active="request()->routeIs('profile.show')">
                                                 <i class="fa fa-user-circle" aria-hidden="true"></i> Profile
 
                                                 {{-- <span>
