@@ -80,3 +80,96 @@
         border-top: 1px solid #f0f0f0;
     }
 </style>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            margin - top: 20 px;
+            color: #1a202c;
+                text-align: left;
+                background-color: # e2e8f0;
+        }
+        .main - body {
+                padding: 15 px;
+            }
+            .card {
+                box - shadow: 0 1 px 3 px 0 rgba(0, 0, 0, .1), 0 1 px 2 px 0 rgba(0, 0, 0, .06);
+            }
+
+            .card {
+                position: relative;
+                display: flex;
+                flex - direction: column;
+                min - width: 0;
+                word - wrap: break -word;
+                background - color: #fff;
+                background - clip: border - box;
+                border: 0 solid rgba(0, 0, 0, .125);
+                border - radius: .25 rem;
+            }
+
+            .card - body {
+                flex: 1 1 auto;
+                min - height: 1 px;
+                padding: 1 rem;
+            }
+
+            .gutters - sm {
+                margin - right: -8 px;
+                margin - left: -8 px;
+            }
+
+            .gutters - sm > .col, .gutters - sm > [class *= col - ] {
+                padding - right: 8 px;
+                padding - left: 8 px;
+            }
+            .mb - 3, .my - 3 {
+                margin - bottom: 1 rem!important;
+            }
+
+            .bg - gray - 300 {
+                background - color: #e2e8f0;
+            }
+            .h - 100 {
+                height: 100 % !important;
+            }
+            .shadow - none {
+                box - shadow: none!important;
+            }
+    </style>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+    // Toggle user card display
+    document.getElementById('userIcon').addEventListener('click', function() {
+        var userCard = document.querySelector('.user-card');
+        userCard.classList.toggle('show');
+    });
+
+    // Simulate a login status check
+    var isLoggedIn = false; // Change to true to simulate logged-in state
+    var userImageUrl = 'path/to/user/image.jpg'; // Replace with actual image URL
+
+    // Function to update the icon based on login status
+    function updateIcon() {
+        var userIcon = document.getElementById('userIcon');
+        var userImage = document.getElementById('userImage');
+        if (isLoggedIn) {
+            userIcon.querySelector('.user-icon').classList.add('d-none');
+            userImage.src = userImageUrl;
+            userImage.classList.remove('d-none');
+        } else {
+            userIcon.querySelector('.user-icon').classList.remove('d-none');
+            userImage.classList.add('d-none');
+        }
+    }
+
+    // Call the function on page load
+    document.addEventListener('DOMContentLoaded', updateIcon);
+</script>

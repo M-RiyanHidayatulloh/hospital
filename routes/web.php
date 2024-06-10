@@ -15,6 +15,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QueueController;
 use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserDashboardController;
+use App\Http\Controllers\UserAppointmentsController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -30,7 +32,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    // Route::post('/updateProfile', [ProfileController::class, 'updateProfile'])->name('profile.update');
+    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::group(['middleware' => ['auth', 'doctor']], function () {
@@ -60,5 +64,7 @@ Route::group(['middleware' => ['auth']], function () {
 require __DIR__ . '/auth.php';
 
 
+Route::get('/user', [UserDashboardController::class, 'index'])->name('user.dashboard.index');
+Route::get('user/appointments', [UserAppointmentsController::class, 'index'])->name('user.appointments.index');
 
 
