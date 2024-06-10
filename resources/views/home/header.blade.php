@@ -29,9 +29,7 @@
                 <a class="navbar-brand" href="index.html">
                     <img src="images/logo1.png" alt="">
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 
                     <span class=""> </span>
                 </button>
@@ -44,13 +42,9 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Janji Temu</a>
-                            </li>
+                            </li>                         
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="healthInfoDropdown"
-                                    role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" id="healthInfoDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Menu
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="healthInfoDropdown">
@@ -58,8 +52,11 @@
                                     <a class="dropdown-item" href="{{ route('user/appointment') }}"><span>Rekam
                                             Medis</span></a>
                                     <a class="dropdown-item" href="#"><span>Konsultasi Online</span></a>
-                                    <a class="dropdown-item" href="#"><span>Informasi Kesehatan</span></a>
+                                    <a class="dropdown-item" href="#"><span>Janji Temu</span></a>
                                 </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Informasi Kesehatan</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Contact Us</a>
@@ -68,93 +65,69 @@
                     </div>
                     <div class="quote_btn-container">
                         @guest
-                            <a href="{{ url('/login') }}">
-                                <i class="fa fa-user" aria-hidden="true"></i>
-                                <span>
-                                    Login
-                                </span>
-                            </a>
-                            <a href="{{ url('/register') }}">
-                                <i class="fa fa-vcard" aria-hidden="true"></i>
-                                <span>
-                                    Sign Up
-                                </span>
-                            </a>
+                        <a href="{{ url('/login') }}">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span>
+                                Login
+                            </span>
+                        </a>
+                        <a href="{{ url('/register') }}">
+                            <i class="fa fa-vcard" aria-hidden="true"></i>
+                            <span>
+                                Sign Up
+                            </span>
+                        </a>
                         @endguest
                         @if (Route::has('login'))
-                            @auth
+                        @auth
 
-                                @if (Auth::user()->usertype == 'user')
-                                    <div class="quote_btn-container dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fa fa-user-secret" aria-hidden="true"></i>
-                                            <span>{{ Auth::user()->name }}</span>
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="userDropdown">
-                                            <a class="dropdown-item" href="{{ route('profile.edit') }}"
-                                                :active="request()->routeIs('profile.show')">
-                                                <i class="fa fa-user-circle" aria-hidden="true"></i> Profile
-
-                                                {{-- <span>
-                                        {{ Auth::user()->name }}
-                                    </span> --}}
-                                            </a>
-                                        @else
-                                            <a href="{{ route('dashboard') }}">
-                                                <div class="position-relative">
-                                                    <a href="#" id="userIcon" class="user-icon">
-                                                        <i class="fas fa-user-circle" aria-hidden="true"></i>
-                                                    </a>
-                                                    <div class="user-card bg-light p-3 rounded position-absolute">
-                                                        <a href="/user">Profile</a>
-                                                        <a href="/dashboard">Dashboard</a>
-                                                        <form action="{{ route('logout') }}" method="post">
-                                                            @csrf
-                                                            <button class="btn text-white btn-sm btn-danger"
-                                                                type="submit"><i
-                                                                    class="feather icon-log-out m-r-5"></i>Logout</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-
-                                            </a>
-                                            <form method="POST" action="{{ route('logout') }}">
-                                                @csrf
-                                                <a class="dropdown-item" href="route('logout')"
-                                                    onclick="event.preventDefault(); this.closest('form').submit();">
-                                                    <i class="fa fa-sign-out" aria-hidden="true"></i> Log Out
-                                                </a>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    {{-- @else --}}
-                                    <div class="position-relative">
-                                        <a href="#" id="userIcon" class="user-icon">
-                                            <i class="fas fa-user-circle" aria-hidden="true"></i>
-                                        </a>
-                                        <div class="user-card bg-light p-3 rounded position-absolute">
-                                            <a href="/user">Profile</a>
-                                            <a href="/dashboard">Dashboard</a>
-                                            <form action="{{ route('logout') }}" method="post">
-                                                @csrf
-                                                <button class="btn text-white btn-sm btn-danger" type="submit">
-                                                    <i class="feather icon-log-out m-r-5"></i>Logout
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                @endif
-                            @endauth
-                        @endif
-                        <form class="form-inline">
-                            <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                                <i class="fa fa-search" aria-hidden="true"></i>
+                        @if (Auth::user()->usertype == 'user')
+                        <div class="quote_btn-container dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-user-secret" aria-hidden="true"></i>
+                                <span>{{ Auth::user()->name }}</span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="{{ route('profile.edit') }}" :active="request()->routeIs('profile.show')">
+                                    <i class="fa fa-user-circle" aria-hidden="true"></i> Profile
+                                </a>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <a class="dropdown-item" href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                                        <i class="fa fa-sign-out" aria-hidden="true"></i> Log Out
+                                    </a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @else
+                <div class="position-relative">
+                    <a href="#" id="userIcon" class="user-icon">
+                        <i class="fas fa-user-circle" aria-hidden="true"></i>
+                    </a>
+                    <div class="user-card bg-light p-3 rounded position-absolute">
+                        <a href="/user">Profile</a>
+                        <a href="/dashboard">Dashboard</a>
+                        <form action="{{ route('logout') }}" method="post">
+                            @csrf
+                            <button class="btn text-white btn-sm btn-danger" type="submit">
+                                <i class="feather icon-log-out m-r-5"></i>Logout
                             </button>
                         </form>
                     </div>
                 </div>
-            </nav>
+                @endif
+                @endauth
+                @endif
+                <form class="form-inline">
+                    <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                </form>
         </div>
+    </div>
+    </nav>
+    </div>
     </div>
 </header>
