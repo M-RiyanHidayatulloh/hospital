@@ -9,12 +9,12 @@ class UserOnlineConsultationController extends Controller
 {
     public function index()
     {
-        $doctors = Doctor::all();
-        return view('user.OnlineConsultation.index', compact('doctors'));
+        $doctor = Doctor::all();
+        return view('user.OnlineConsultation.index', compact('doctor'));
     }
 
     public function chat(Doctor $doctor)
-{
-    return view('consultation.chat', compact('doctor'));
-}
+    {
+        return view('consultation.chat', compact('doctor'));
+    }
 }
