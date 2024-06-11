@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\DoctorScheduleController;
+use App\Http\Controllers\DoctorScheduleeController;
 use App\Http\Controllers\HealthInformationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MedicalRecordController;
@@ -41,6 +42,7 @@ Route::group(['middleware' => ['auth']], function () {
     // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+
     Route::group(['middleware' => ['auth', 'doctor']], function () {
         Route::resource('my_schedule', DoctorScheduleController::class);
     });
@@ -65,11 +67,13 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
 
 Route::get('/user', [UserDashboardController::class, 'index'])->name('user.dashboard.index');
+Route::get('/about', [UserDashboardController::class, 'about'])->name('about2');
+Route::get('/doctor_schedule', [DoctorScheduleeController::class, 'index'])->name('doctor_schedule');
 Route::get('user/appointments', [UserAppointmentsController::class, 'index'])->name('user.appointments.index');
 
 

@@ -40,10 +40,11 @@
                     <div class="d-flex mr-auto flex-column flex-lg-row align-items-center">
                         <ul class="navbar-nav">
                             <li class="nav-item active">
-                                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="{{ route('home') }}">Home <span
+                                        class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">About</a>
+                                <a class="nav-link" href="{{ route('about2') }}">About</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="healthInfoDropdown"
@@ -51,15 +52,16 @@
                                     Menu
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="healthInfoDropdown">
-                                    <a class="dropdown-item" href="#"><span>Jadwal Dokter</span></a>
-                                    <a class="dropdown-item" href="{{ route('user/appointment') }}"><span>Janji
-                                            Temu</span></a>
-                                    <a class="dropdown-item" href="#"><span>Konsultasi Online</span></a>
-                                    <a class="dropdown-item" href="#"><span>Rekam Medis</span></a>
+                                    <a class="dropdown-item" href="{{ route('doctor_schedule') }}"><span>Doctor
+                                            Schedule</span></a>
+                                    <a class="dropdown-item"
+                                        href="{{ route('user/appointment') }}"><span>Appointment</span></a>
+                                    <a class="dropdown-item" href="#"><span>Online Consultation</span></a>
+                                    <a class="dropdown-item" href="#"><span>Medical Record</span></a>
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Informasi Kesehatan</a>
+                                <a class="nav-link" href="#">Health Information</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Contact Us</a>
@@ -92,21 +94,23 @@
                                             <span>{{ Auth::user()->name }}</span>
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="userDropdown">
-                                            <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                            <a class="dropdown-item" href="{{ route('user.dashboard.index') }}">
                                                 <i class="fa fa-user-circle" aria-hidden="true"></i> Profile
                                             </a>
                                             <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                                                 @csrf
-                                                <button type="submit" class="dropdown-item"
+                                                <a Href="route('logout')"
+                                                    onclick="event.preventDefault(); this.closest('form').submit();"
+                                                    class="dropdown-item"
                                                     style="border: none; background: none; padding: 0; margin: 0; cursor: pointer;">
                                                     <i class="fa fa-sign-out" aria-hidden="true"></i> Log Out
-                                                </button>
+                                                </a>
                                             </form>
                                         </div>
                                     </div>
                         </div>
                     @else
-                        <div class="position-relative">
+                        {{-- <div class="position-relative">
                             <a href="#" id="userIcon" class="user-icon">
                                 <i class="fas fa-user-circle" aria-hidden="true"></i>
                             </a>
@@ -120,7 +124,7 @@
                                     </button>
                                 </form>
                             </div>
-                        </div>
+                        </div> --}}
                         @endif
                     @endauth
                     @endif
