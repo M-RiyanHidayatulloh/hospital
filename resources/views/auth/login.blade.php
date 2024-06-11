@@ -9,13 +9,13 @@
     <meta name="description" content="" />
     <meta name="keywords" content="">
     <meta name="author" content="Phoenixcoded" />
-    <link rel="icon" href="{{asset('style/assets/images/favicon.ico')}}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('style/assets/images/favicon.ico') }}" type="image/x-icon">
 
     <!-- Tailwind CSS -->
-    <link href="{{asset('sign/assets/css/tailwind.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('sign/assets/css/tailwind.min.css') }}" rel="stylesheet">
 
     <!-- Animate.css -->
-    <link rel="stylesheet" href="{{asset('sign/assets/css/animate.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('sign/assets/css/animate.min.css') }}">
 
     <!-- Custom CSS for particles.js -->
     <style>
@@ -26,6 +26,7 @@
             background-color: #0e7d75;
             z-index: -1;
         }
+
         .auth-wrapper {
             display: flex;
             flex-direction: column;
@@ -44,7 +45,7 @@
     <!-- [ auth-signin ] start -->
     <div class="auth-wrapper animate__animated animate__fadeIn">
         <div class="auth-content text-center">
-            <img src="{{asset('images/logo.png')}}" alt="logo" class="img-fluid mb-4 mx-auto">
+            <img src="{{ asset('images/logo.png') }}" alt="logo" class="img-fluid mb-4 mx-auto">
             <div class="bg-white p-8 rounded-lg shadow-lg w-96">
                 <h4 class="text-2xl font-bold mb-5">Sign In</h4>
                 <hr class="mb-4">
@@ -53,37 +54,46 @@
 
                     <!-- Email Address -->
                     <div class="mb-4" for="email">
-                        <input type="email" id="email" name="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" value="{{ old('email') }}" required autofocus autocomplete="username">
+                        <input type="email" id="email" name="email"
+                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            value="{{ old('email') }}" required autofocus autocomplete="username">
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
 
                     <!-- Password -->
                     <div class="mb-4" for="password">
-                        <input type="password" id="password" name="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" required autocomplete="current-password">
+                        <input type="password" id="password" name="password"
+                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            required autocomplete="current-password">
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
 
                     <!-- Remember Me -->
                     <div class="flex items-center mb-4">
-                        <input id="remember_me" type="checkbox" class="mr-2 rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
+                        <input id="remember_me" type="checkbox"
+                            class="mr-2 rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500"
+                            name="remember">
                         <label for="remember_me" class="text-sm text-gray-600">{{ __('Remember me') }}</label>
                     </div>
 
                     <!-- Forgot Password -->
                     <div class="mt-4 items-center justify-content-center mb-4">
                         @if (Route::has('password.request'))
-                        <a class="text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                            {{ __('Forgot your password?') }}
-                        </a>
+                            <a class="text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                href="{{ route('password.request') }}">
+                                {{ __('Forgot your password?') }}
+                            </a>
                         @endif
                     </div>
                     <!-- Login Button -->
-                    <button type="submit" class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-700 transition duration-200">
+                    <button type="submit"
+                        class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-700 transition duration-200">
                         {{ __('Log in') }}
                     </button>
 
                     <!-- Signup Link -->
-                    <p class="mt-4 text-center text-gray-600">Don’t have an account? <a href="{{ route('register') }}" class="text-green-600 hover:underline">Signup</a></p>
+                    <p class="mt-4 text-center text-gray-600">Don’t have an account? <a href="{{ route('register') }}"
+                            class="text-green-600 hover:underline">Signup</a></p>
                 </form>
             </div>
         </div>
@@ -91,15 +101,15 @@
     <!-- [ auth-signin ] end -->
 
     <!-- Required Js -->
-    <script src="{{asset('sign/assets/js/popper.min.js')}}"></script>
-    <script src="{{asset('sign/assets/js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('sign/assets/js/popper.min.js') }}"></script>
+    <script src="{{ asset('sign/assets/js/bootstrap.min.js') }}"></script>
 
     <!-- Toastr JS -->
-    <script src="{{asset('sign/assets/js/jquery.min.js')}}"></script>
-    <script src="{{asset('sign/assets/js/toastr.min.js')}}"></script>
+    <script src="{{ asset('sign/assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('sign/assets/js/toastr.min.js') }}"></script>
 
     <!-- particles.js -->
-    <script src="{{asset('sign/assets/js/particles.min.js')}}"></script>
+    <script src="{{ asset('sign/assets/js/particles.min.js') }}"></script>
     <script>
         particlesJS("particles-js", {
             "particles": {
@@ -212,25 +222,25 @@
             "retina_detect": true
         });
     </script>
-@if(Session::has('success'))
-<script>
-    toastr.options = {
-        "progressBar" : true,
-        "closeButton" : true,
+    @if (Session::has('success'))
+        <script>
+            toastr.options = {
+                "progressBar": true,
+                "closeButton": true,
 
-    }
-    // toastr.success("{{ Session::get('success')}}",'Selamat Datang Admin!',{timeOut:12000});
-    // toastr.info("{{ Session::get('message')}}");
-    // toastr.warning("{{ Session::get('message')}}");
-    // toastr.warning("{{ Session::get('message')}}",'error!',{timeOut:12000});
+            }
+            // toastr.success("{{ Session::get('success') }}",'Selamat Datang Admin!',{timeOut:12000});
+            // toastr.info("{{ Session::get('message') }}");
+            // toastr.warning("{{ Session::get('message') }}");
+            // toastr.warning("{{ Session::get('message') }}",'error!',{timeOut:12000});
             toastr.success("{{ Session::get('success') }}");
-</script>
-@endif
-@if(Session::has('error'))
-<script>
-    toastr.error("{{ Session::get('error') }}");
-</script>
-@endif
+        </script>
+    @endif
+    @if (Session::has('error'))
+        <script>
+            toastr.error("{{ Session::get('error') }}");
+        </script>
+    @endif
 </body>
 
 </html>
