@@ -1,4 +1,43 @@
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+  
+    @yield('csstable')
+    @include('admin.includes.css')
+</head>
+
+<body class="">
+
+    <!-- [ Pre-loader ] start -->
+    <div class="loader-bg">
+		<div class="loader-track">
+			<div class="loader-fill"></div>
+		</div>
+	</div>
+    
+
+    <!-- [ Pre-loader ] End -->
+    <!-- [ navigation menu ] start -->
+ 
+    @include('admin.includes.navbar')
+    @include('admin.includes.sidebar')
+    <!-- [ Main Content ] start -->
+    <div class="pcoded-main-container">
+        <div class="pcoded-content">
+            <!-- [ breadcrumb ] start -->
+            <!-- @include('admin.includes.breadcrumb') -->
+            <!-- [ breadcrumb ] end -->
+            <!-- [ Body Content ] start -->
+            @yield('content')
+            @include('admin.includes.script')
+            <!-- [ Body Content ] end -->
+        </div>
+    </div>
+    <!-- [ Main Content ] end -->
     <!-- Warning Section start -->
     <!-- Older IE warning message -->
     <!--[if lt IE 11]>
@@ -45,59 +84,9 @@
         </div>
     <![endif]-->
     <!-- Warning Section Ends -->
-    <script src="{{ asset('admin/dist/assets/js/vendor-all.min.js') }}"></script>
-    <script src="{{ asset('admin/dist/assets/js/plugins/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('admin/dist/assets/js/pcoded.min.js') }}"></script>
-
-    <!-- Apex Chart -->
-
-
-    <!-- custom-chart js -->
-    <script src="{{ asset('admin/dist/assets/js/pages/dashboard-main.js  ') }}"></script>
-    <!-- Required Js -->
-    <script src="assets/js/vendor-all.min.js"></script>
-    <script src="assets/js/plugins/bootstrap.min.js"></script>
-    <script src="assets/js/pcoded.min.js"></script>
-
-<!-- Apex Chart -->
-<script src="assets/js/plugins/apexcharts.min.js"></script>
-
-
-<!-- custom-chart js -->
-<script src="assets/js/pages/dashboard-main.js"></script>
-<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
-
-<!-- <script>
-    $(document).ready(function() {
-        $('#datatables').DataTable();
-    });
-</script> -->
-<script>
-    $(function() {
-        $('#data-table').DataTable();
-    })
-</script>
-<script src="{{ asset('js/sweetalert.min.js') }}"></script>
-<script>
-    confirmDelete = function(button) {
-        var url = $(button).data('url');
-        swal({
-            'title': 'Konfirmasi Hapus',
-            'text': 'Apakah Kamu Yakin Ingin Menghapus Data Ini?',
-            'dangermode': true,
-            'buttons': true
-        }).then(function(value) {
-            if (value) {
-                window.location = url;
-            }
-        })
-    }
-</script>
-
+    @include('admin.includes.script')
+    @yield('jstable')
+    @include ('sweetalert::alert')
+  
 </body>
-
 </html>

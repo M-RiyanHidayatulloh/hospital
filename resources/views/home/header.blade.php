@@ -52,8 +52,10 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="healthInfoDropdown">
                                     <a class="dropdown-item" href="#"><span>Jadwal Dokter</span></a>
+
                                     <a class="dropdown-item" href="{{ route('user/appointment') }}"><span>Janji
                                             Temu</span></a>
+
                                     <a class="dropdown-item" href="#"><span>Konsultasi Online</span></a>
                                     <a class="dropdown-item" href="#"><span>Rekam Medis</span></a>
                                 </div>

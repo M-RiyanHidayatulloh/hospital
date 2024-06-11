@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Payment;
+use App\Models\Patient;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -12,16 +14,8 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        $data = [
-            'title' => 'admin.Payments',
-            'breadcrumbs' => [
-                // 'Category' => "#",
-            ],
-            'payments' => Payment::paginate(5),
-            'content' => 'admin.payments.index',
-        ];
-
-        return view("admin.wrapper", $data);
+        $payments = Payment::latest()->paginate(5);
+        return view('admin.payments.index', compact('payments'));
     }
 
     /**
@@ -29,16 +23,13 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        $data = [
-            'title' => 'admin.Create Payment',
-            'breadcrumbs' => [
-                'Payment' => route('payments.index'),
-                'Create' => "#",
-            ],
-            'content' => 'admin.payments.create',
-        ];
+        $patients = Patient::all();
+        $appointments = Appointment::all();
+        if ($patients->isEmpty() || $appointments->isEmpty()) {
+            return redirect()->route('admin/payments')->with('error', 'No patients or appointments available.');
+        }
 
-        return view("admin.wrapper", $data);
+        return view('admin.payments.create', compact('patients', 'appointments'));
     }
 
     /**
@@ -47,13 +38,14 @@ class PaymentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'appointment_id' => 'required|exists:appointments,id',
             'patient_id' => 'required|exists:patients,id',
             'amount' => 'required|numeric',
             'payment_date' => 'required|date',
             'status' => 'required'
         ]);
         Payment::create($request->all());
-        return redirect()->route('payments.index')->with('success', 'Payment created successfully.');
+        return redirect()->route('admin/payments')->with('success', 'Payment created successfully.');
     }
 
     /**
@@ -61,48 +53,50 @@ class PaymentController extends Controller
      */
     public function show(Payment $payment)
     {
-        return view('payments.show', compact('payment'));
+        return view('admin.payments.show', compact('payment'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Payment $payment)
+    public function edit(string $id)
     {
-        $data = [
-            'title' => 'admin.Patients',
-            'breadcrumbs' => [
-                'Payments' => route('admin.payments.index'),
-                'Edit' => "#",
-            ],
-            'payment' => $payment,
-            'content' => 'admin.payments.edit',
-        ];
-
-        return view("admin.wrapper", $data);
+        $appointments = Appointment::all();
+        $patients = Patient::all();
+        $payment = Payment::findOrFail($id);
+        if ($patients->isEmpty() || $appointments->isEmpty()) {
+            return redirect()->route('admin.payments.index')->with('error', 'No patients or appointments available.');
+        }
+        return view('admin.payments.update', compact('payment', 'patients', 'appointments'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Payment $payment)
+    public function update(Request $request, string $id)
     {
         $request->validate([
+            'appointment_id' => 'required|exists:appointments,id',
             'patient_id' => 'required|exists:patients,id',
             'amount' => 'required|numeric',
             'payment_date' => 'required|date',
             'status' => 'required'
         ]);
+
+        $payment = Payment::findOrFail($id);
         $payment->update($request->all());
-        return redirect()->route('payments.index')->with('success', 'Payment updated successfully.');
+
+        return redirect()->route('admin/payments')->with('success', 'Payment updated successfully.');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Payment $payment)
+    public function delete($id)
     {
-        $payment->delete();
-        return redirect()->route('payments.index')->with('success', 'Payment deleted successfully.');
+        $payments = Payment::findOrFail($id)->delete();
+        if($payments) {
+            return redirect()->route('admin/payments')->with('success', 'Queue Data Was Deleted');
+        } else {
+            return redirect()->route('admin/payments')->with('error', 'Queue Delete Fail');
+        }
     }
 }

@@ -1,90 +1,94 @@
-<head>
-    <!-- DataTables CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- DataTables JS -->
-    <!-- <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script> -->
-    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
-</head>
-<!-- File index.blade.php -->
-<div class="container mt-5">
-            <h1>Queues</h1>
-            <a href="{{ route('queues.create') }}" class="btn btn-primary mb-3">Add New Queue</a>
-            @if ($message = Session::get('success'))
-        <div class="alert alert-success mt-2">
-            {{ $message }}
+@extends('admin.includes.home')
+
+@section('csstable')
+<link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap4.min.css') }}">
+@endsection
+
+@section('jstable')
+<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
+<script>
+    $(function() {
+        $('#data-table').DataTable();
+    })
+</script>
+<script src="{{ asset('js/sweetalert.min.js') }}"></script>
+<script>
+    confirmDelete = function(button) {
+        var url = $(button).data('url');
+        swal({
+            'title': 'Konfirmasi Hapus',
+            'text': 'Apakah Kamu Yakin Ingin Menghapus Data Ini?',
+            'dangermode': true,
+            'buttons': true
+        }).then(function(value) {
+            if (value) {
+                window.location = url;
+            }
+        })
+    }
+</script>
+@endsection
+
+@section('content')
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">Dashboard Antrian</h5>
+                </div>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="#!">Dashboard Antrian</a></li>
+                </ul>
+            </div>
         </div>
-    @endif
+    </div>
 </div>
 <div class="container mt-5">
+    <a href="{{ route('admin/queues/create') }}" class="btn btn-primary rounded-pill">Add New Queue</a>
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success mt-2">
+        {{ $message }}
+    </div>
+    @endif
+</div>
+<div class="container mt-4">
     <div class="card">
-        <div class="col-lg-12">
+        <div class="col-md-12">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table-hover table-bordered" id="datatables">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Appointment ID</th>
-                        <th>Queue Number</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($queues as $queue)
-                        <tr>
-                            <td>{{ $queue->id }}</td>
-                            <td>{{ $queue->appointment_id }}</td>
-                            <td>{{ $queue->queue_number }}</td>
-                            <td>{{ $queue->status }}</td>
-                            <td>
-                                <a href="{{ route('queues.edit', $queue->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <form action="{{ route('queues.destroy', $queue->id) }}" method="POST"
-                                    style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm"
-                                        onclick="return confirm('Are you sure?')">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-                </table> 
+                    <table class="table table-hover table-bordered" id="data-table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">Appointment ID</th>
+                                <th class="text-center">Queue Number</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($queues as $queue)
+                            <tr>
+                                <td class="text-center">{{ $loop->iteration }}</td>
+                                <td class="text-center">{{ $queue->appointment_id }}</td>
+                                <td class="text-center">{{ $queue->queue_number }}</td>
+                                <td class="text-center">{{ $queue->status }}</td>
+                                <td class="text-center">
+                                    <a href="{{ route('admin/queues/edit', $queue->id) }}" class="btn btn-warning rounded-pill">Edit</a>
+                                    <a onclick="confirmDelete(this)" data-url="{{ route('admin/queues/delete', ['id' => $queue->id]) }}" class="btn btn-danger rounded-pill" role="button">Delete</a>
+                                </td>
+                            </tr>
+                            @empty
+                            <div class="alert alert-danger">Data Antrian belum tersedia</div>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function() {
-        $('#datatables').DataTable({
-            "lengthChange": false,
-            "paging": true,
-            "searching": true,
-            "ordering": true,
-            "info": false,
-            "autoWidth": false,
-            "responsive": true
-        });
-    });
-</script>
-
-<script src="{{ asset('js/sweetalert.min.js') }}"></script>
-<script>
-    function confirmDelete(button) {
-        var url = $(button).data('url');
-        swal({
-            title: 'Konfirmasi Hapus',
-            text: 'Apakah Kamu Yakin Ingin Menghapus Data Ini?',
-            dangerMode: true,
-            buttons: true
-        }).then(function(value) {
-            if (value) {
-                window.location = url;
-            }
-        });
-    }
-</script>
+@endsection
