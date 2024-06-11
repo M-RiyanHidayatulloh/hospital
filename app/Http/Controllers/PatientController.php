@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Patient;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,57 +13,46 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $data = [
-            'title' => 'Patients',
-            'breadcrumbs' => [
-                // 'Category' => "#",
-            ],
-            'patients' => Patient::paginate(5),
-            'content' => 'admin.patients.index',
-        ];
-
-        return view("admin.wrapper", $data);
+        // Mengambil pasien dengan usertype 'user'
+        $patients = Patient::whereHas('user', function($query) {
+            $query->where('usertype', 'user');
+        })->get();
+        
+        return view('admin.patients.index', compact('patients'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        $users = User::all();
-        $data = [
-            'title' => 'Create Patient',
-            'breadcrumbs' => [
-                // 'Category' => "#",
-                'Patients' => route('patients.index'),
-                'Create' => "#",
-            ],
-            'users' => $users,
-            'content' => 'admin.patients.create',
-        ];
-
-        return view("admin.wrapper", $data);
-    }
+{
+    // Ambil semua user yang memiliki usertype 'user'
+    $users = \App\Models\User::where('usertype', 'user')->get();
+    
+    // Kirim data users ke view create
+    return view('admin.patients.create', compact('users'));
+}
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            // 'user_id' => 'required|exists:users,id',
+        $validation = $request->validate([
+            'user_id' => 'required|string|exists:users,id',
             'name' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-            'phone' => 'required|string|max:15',
-            'birthdate' => 'required|date',
-            'gender' => 'required|in:male,female',
+            'address' => 'required|min:2',
+            'phone' => 'required|min:5', 
+            'birthdate' => 'required|string|min:5',      
+            'gender' => 'required',
             'description' => 'nullable|string',
         ]);
-
-        $validatedData['user_id'] = Auth::user()->id;
-        Patient::create($validatedData);
-
-        return redirect()->route('patients.index')->with('success', 'Patient added successfully.');
+        $data = Patient::create($validation);
+        if($data) {
+            return redirect()->route('admin/patients')->with('success', 'Patient Data Was Added');
+        } else {
+            return redirect()->route('admin/patients/create')->with('error', 'Some Problem Secure');
+        }
     }
 
     /**
@@ -72,55 +60,63 @@ class PatientController extends Controller
      */
     public function show(Patient $patient)
     {
-        return view('patients.show', compact('patient'));
+        // return view('patients.show', compact('patient'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Patient $patient)
-    {
-        $users = User::all();
-        $data = [
-            'title' => 'Patients',
-            'breadcrumbs' => [
-                // 'Category' => "#",
-                'Patients' => route('patients.index'),
-                'Edit' => "#",
-            ],
-            'patient' => $patient,
-            'users' => $users,
-            'content' => 'admin.patients.edit',
-        ];
+    public function edit(string $id)
+{
+    // Ambil pasien berdasarkan ID
+    $patient = Patient::findOrFail($id);
 
-        return view("admin.wrapper", $data);
-    }
+    // Ambil semua user yang memiliki usertype 'user'
+    $users = \App\Models\User::where('usertype', 'user')->get();
+
+    return view('admin.patients.update', compact('patient', 'users'));
+}
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Patient $patient)
+    public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-            'phone' => 'required|string|max:15',
-            'birthdate' => 'required|date',
-            'gender' => 'required|in:male,female',
-            'description' => 'nullable|string',
-        ]);
+        $patients = Patient::findOrFail($id);
+        $user_id = $request->user_id;
+        $name = $request->name;
+       $address = $request->address;
+       $phone = $request->phone;
+       $birthdate = $request->birthdate;
+       $gender = $request->gender;
+       $description = $request->description;
 
-        $patient->update($validatedData);
-
-        return redirect()->route('patients.index')->with('success', 'Patient updated successfully.');
+        $patients -> user_id = $user_id;
+        $patients -> name = $name;
+        $patients -> address = $address;
+        $patients -> phone = $phone;
+        $patients -> birthdate = $birthdate;
+        $patients -> gender = $gender;
+        $patients -> description = $description;
+        $data = $patients->save();
+        if($data) {
+            return redirect()->route('admin/patients')->with('success', 'Patient Data Was Changed');
+        } else {
+            return redirect()->route('admin/patients/update')->with('error', 'Some Problem Secure');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Patient $patient)
+    public function delete($id)
     {
-        $patient->delete();
-        return redirect()->route('patients.index')->with('success', 'Patient deleted successfully.');
+        $patients = Patient::findOrFail($id)->delete();
+        if($patients) {
+            return redirect()->route('admin/patients')->with('success', 'Patient Data Was Deleted');
+        } else {
+            return redirect()->route('admin/patients')->with('error', 'Patient Delete Fail');
+        }
     }
 }

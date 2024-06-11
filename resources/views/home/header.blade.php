@@ -42,14 +42,14 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">About</a>
-                            </li>                         
+                            </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="healthInfoDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Menu
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="healthInfoDropdown">
                                     <a class="dropdown-item" href="#"><span>Jadwal Dokter</span></a>
-                                    <a class="dropdown-item" href="{{ route('user/appointment') }}"><span>Rekam
+                                    <a class="dropdown-item" href="{{ route('user.dashboard.index') }}"><span>Rekam
                                             Medis</span></a>
                                     <a class="dropdown-item" href="#"><span>Konsultasi Online</span></a>
                                     <a class="dropdown-item" href="#"><span>Janji Temu</span></a>

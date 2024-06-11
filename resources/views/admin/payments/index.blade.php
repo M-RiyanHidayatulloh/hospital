@@ -1,79 +1,20 @@
-<head>
-    <!-- DataTables CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- DataTables JS -->
-    <!-- <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script> -->
-    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
-</head>
-<!-- File index.blade.php -->
-<div class="container mt-5">
-    <h1>Payments</h1>
-    <a href="{{ route('payments.create') }}" class="btn btn-primary">Add New Payment</a>
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success mt-2">
-            {{ $message }}
-        </div>
-    @endif
-</div>
-<div class="container mt-5">
-    <div class="card">
-        <div class="col-lg-12">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table-hover table-bordered" id="datatables">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Appointment</th>
-                <th>Amount</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($payments as $payment)
-                <tr>
-                    <td>{{ $payment->id }}</td>
-                    <td>{{ $payment->appointment->id }}</td>
-                    <td>{{ $payment->amount }}</td>
-                    <td>{{ $payment->status }}</td>
-                    <td>
-                        <a href="{{ route('payments.edit', $payment->id) }}" class="btn btn-warning">Edit</a>
-                        <form action="{{ route('payments.destroy', $payment->id) }}" method="POST"
-                            style="display:inline-block;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-        </table> 
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+@extends('admin.includes.home')
+
+@section('csstable')
+<link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap4.min.css') }}">
+@endsection
+
+@section('jstable')
+<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
 <script>
-    $(document).ready(function() {
-        $('#datatables').DataTable({
-            "lengthChange": false,
-            "paging": true,
-            "searching": true,
-            "ordering": true,
-            "info": false,
-            "autoWidth": false,
-            "responsive": true
-        });
+    $(function() {
+        $('#data-table').DataTable();
     });
 </script>
-
 <script src="{{ asset('js/sweetalert.min.js') }}"></script>
 <script>
-    function confirmDelete(button) {
+    confirmDelete = function(button) {
         var url = $(button).data('url');
         swal({
             title: 'Konfirmasi Hapus',
@@ -87,3 +28,71 @@
         });
     }
 </script>
+@endsection
+
+@section('content')
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">Dashboard Payment</h5>
+                </div>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="#!">Dashboard Payment</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-5">
+    <a href="{{ route('admin/payments/create') }}" class="btn btn-primary rounded-pill">Add New Payment</a>
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success mt-2">
+        {{ $message }}
+    </div>
+    @endif
+</div>
+<div class="container mt-4">
+    <div class="card">
+        <div class="col-md-12">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered" id="data-table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">Appointment No</th>
+                                <th class="text-center">Patient</th>
+                                <th class="text-center">Payment Day</th>
+                                <th class="text-center">Amount</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($payments as $payment)
+                            <tr>
+                                <td class="text-center">{{ $loop->iteration }}</td>
+                                <td class="text-center">{{ optional($payment->appointment)->id ?? 'No Appointment' }}</td>
+                                <td class="text-center">{{ optional($payment->patient)->name ?? 'No Patient' }}</td>
+                                <td class="text-center">{{ $payment->payment_date }}</td>
+                                <td class="text-center">{{ $payment->amount }}</td>
+                                <td class="text-center">{{ $payment->status }}</td>
+                                <td class="text-center">
+                                    <a href="{{ route('admin/payments/edit', ['id' => $payment->id]) }}" class="btn btn-warning rounded-pill">Edit</a>
+                                    <a onclick="confirmDelete(this)" data-url="{{ route('admin/payments/delete', ['id' => $payment->id]) }}" class="btn btn-danger rounded-pill" role="button">Delete</a>
+                                </td>
+                            </tr>
+                            @empty
+                            <div class="alert alert-danger">Data Payment belum tersedia</div>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Appointment;
 use App\Models\Queue;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 
 class QueueController extends Controller
@@ -13,17 +13,12 @@ class QueueController extends Controller
      */
     public function index()
     {
-        $data = [
-            'title' => 'Queues',
-            'breadcrumbs' => [
-                // 'Category' => "#",
-            ],
-            'queues' => Queue::paginate(3),
-            'content' => 'admin.queues.index',
-        ];
-
-        return view("admin.wrapper", $data);
+        $queues = Queue::latest()->paginate(5);
+        return view('admin.queues.index', compact('queues'));
     }
+
+    
+    
 
     /**
      * Show the form for creating a new resource.
@@ -31,17 +26,7 @@ class QueueController extends Controller
     public function create()
     {
         $appointments = Appointment::all();
-        $data = [
-            'title' => 'Create Queue',
-            'breadcrumbs' => [
-                'Queues' => route('queues.index'),
-                'Create' => "#",
-            ],
-            'appointments' => $appointments,
-            'content' => 'admin.queues.create',
-        ];
-
-        return view("admin.wrapper", $data);
+        return view('admin.queues.create', compact('appointments'));
     }
 
     /**
@@ -57,8 +42,10 @@ class QueueController extends Controller
 
         Queue::create($request->all());
 
-        return redirect()->route('queues.index')->with('success', 'Queue created successfully.');
+        return redirect()->route('admin/queues')->with('success', 'Queue created successfully.');
     }
+
+
 
     /**
      * Display the specified resource.
@@ -71,27 +58,20 @@ class QueueController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Queue $queue)
+    public function edit(string $id)
     {
         $appointments = Appointment::all();
-        $data = [
-            'title' => 'Edit Queue',
-            'breadcrumbs' => [
-                'Queues' => route('queues.index'),
-                'Edit' => "#",
-            ],
-            'queue' => $queue,
-            'appointments' => $appointments,
-            'content' => 'admin.queues.edit',
-        ];
-
-        return view("admin.wrapper", $data);
+        $queue = Queue::findOrFail($id);
+        return view('admin.queues.update', compact('queue', 'appointments'));
     }
+
+    
+    
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Queue $queue)
+    public function update(Request $request, string $id)
     {
         $request->validate([
             'appointment_id' => 'required|exists:appointments,id',
@@ -99,19 +79,23 @@ class QueueController extends Controller
             'status' => 'required|in:pending,confirmed,completed,cancelled',
         ]);
 
+        $queue = Queue::findOrFail($id);
         $queue->update($request->all());
 
-        return redirect()->route('queues.index')
-            ->with('success', 'Queue updated successfully.');
+        return redirect()->route('admin/queues')->with('success', 'Queue updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Queue $queue)
-    {
-        $queue->delete();
 
-        return redirect()->route('queues.index')->with('success', 'Queue deleted successfully.');
+    public function delete($id)
+    {
+        $queues = Queue::findOrFail($id)->delete();
+        if($queues) {
+            return redirect()->route('admin/queues')->with('success', 'Queue Data Was Deleted');
+        } else {
+            return redirect()->route('admin/queues')->with('error', 'Queue Delete Fail');
+        }
     }
 }
