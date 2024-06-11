@@ -18,6 +18,7 @@ use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\UserAppointmentsController;
+use App\Http\Controllers\UserOnlineConsultationController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -71,6 +72,4 @@ require __DIR__.'/auth.php';
 
 Route::get('/user', [UserDashboardController::class, 'index'])->name('user.dashboard.index');
 Route::get('user/appointments', [UserAppointmentsController::class, 'index'])->name('user.appointments.index');
-
-
-
+Route::get('/online', [UserOnlineConsultationController::class, 'index'])->name('user.OnlineConsultation.index');
