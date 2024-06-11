@@ -6,15 +6,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <meta name="description" content=""/>
+    <meta name="description" content="" />
     <meta name="keywords" content="">
     <meta name="author" content="Phoenixcoded" />
-    <link rel="icon" href="{{asset('style/assets/images/favicon.ico')}}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('style/assets/images/favicon.ico') }}" type="image/x-icon">
     <!-- Tailwind CSS -->
-    <link href="{{asset('sign/assets/css/tailwind.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('sign/assets/css/tailwind.min.css') }}" rel="stylesheet">
 
     <!-- Animate.css -->
-    <link rel="stylesheet" href="{{asset('sign/assets/css/animate.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('sign/assets/css/animate.min.css') }}">
 
     <!-- Custom CSS for particles.js -->
     <style>
@@ -35,7 +35,7 @@
     <!-- [ auth-signup ] start -->
     <div class="auth-wrapper animate__animated animate__fadeIn">
         <div class="auth-content text-center">
-        <img src="{{asset('images/logo.png')}}" alt="logo" class="img-fluid mb-4 mx-auto">
+            <img src="{{ asset('images/lg2.png') }}" alt="logo" class="img-fluid mb-1 mx-auto">
             <div class="card bg-white p-8 rounded-lg shadow-lg w-96">
                 <div class="row align-items-center text-center">
                     <div class="col-md-12">
@@ -46,41 +46,55 @@
                                 @csrf
                                 <div class="form-group mb-3">
                                     <label for="name" class="sr-only">Name</label>
-                                    <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name" placeholder="Username" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+                                    <input id="name" type="text" name="name" value="{{ old('name') }}"
+                                        required autofocus autocomplete="name" placeholder="Username"
+                                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
                                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="email" class="sr-only">Email</label>
-                                    <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="username" placeholder="Email address" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+                                    <input id="email" type="email" name="email" value="{{ old('email') }}"
+                                        required autocomplete="username" placeholder="Email address"
+                                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
                                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                 </div>
                                 <div class="form-group mb-3">
-                                <label for="phone" class="sr-only">Phone</label>
-                                    <input id="phone" type="text" name="phone" value="{{ old('phone') }}" required autofocus autocomplete="phone" placeholder="Phone Number" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+                                    <label for="phone" class="sr-only">Phone</label>
+                                    <input id="phone" type="text" name="phone" value="{{ old('phone') }}"
+                                        required autofocus autocomplete="phone" placeholder="Phone Number"
+                                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
                                     <x-input-error :messages="$errors->get('phone')" class="mt-2" />
                                 </div>
 
                                 <!-- address -->
                                 <div class="form-group mb-3">
-                                <label for="address" class="sr-only">Address</label>
-                                    <input id="address" type="text" name="address" value="{{ old('address') }}" required autofocus autocomplete="address" placeholder="Your Adress" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+                                    <label for="address" class="sr-only">Address</label>
+                                    <input id="address" type="text" name="address" value="{{ old('address') }}"
+                                        required autofocus autocomplete="address" placeholder="Your Adress"
+                                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
                                     <x-input-error :messages="$errors->get('address')" class="mt-2" />
                                 </div>
                                 <div class="form-group mb-4">
                                     <label for="password" class="sr-only">Password</label>
-                                    <input id="password" type="password" name="password" required autocomplete="new-password" placeholder="Password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+                                    <input id="password" type="password" name="password" required
+                                        autocomplete="new-password" placeholder="Password"
+                                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
                                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                 </div>
                                 <div class="form-group mb-4">
                                     <label for="password_confirmation" class="sr-only">Confirm Password</label>
-                                    <input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+                                    <input id="password_confirmation" type="password" name="password_confirmation"
+                                        required autocomplete="new-password" placeholder="Confirm Password"
+                                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
                                     <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                                 </div>
-                                <button type="submit" class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-700 transition duration-200">
+                                <button type="submit"
+                                    class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-700 transition duration-200">
                                     Register
                                 </button>
                                 <hr class="my-4">
-                                <p class="mb-2">Already have an account? <a href="{{ route('login') }}" class="text-green-600 hover:underline">Signin</a></p>
+                                <p class="mb-2">Already have an account? <a href="{{ route('login') }}"
+                                        class="text-green-600 hover:underline">Signin</a></p>
                             </form>
                         </div>
                     </div>
@@ -92,7 +106,7 @@
     <!-- [ auth-signup ] end -->
 
     <!-- Required Js -->
-    <script src="{{asset('sign/assets/js/particles.min.js')}}"></script>
+    <script src="{{ asset('sign/assets/js/particles.min.js') }}"></script>
     <script>
         particlesJS("particles-js", {
             "particles": {
@@ -208,4 +222,3 @@
 </body>
 
 </html>
-

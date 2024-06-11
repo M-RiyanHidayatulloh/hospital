@@ -45,7 +45,7 @@
     <!-- [ auth-signin ] start -->
     <div class="auth-wrapper animate__animated animate__fadeIn">
         <div class="auth-content text-center">
-            <img src="{{ asset('images/logo.png') }}" alt="logo" class="img-fluid mb-4 mx-auto">
+            <img src="{{ asset('images/lg2.png') }}" alt="logo" class="img-fluid mb-1 mx-auto">
             <div class="bg-white p-8 rounded-lg shadow-lg w-96">
                 <h4 class="text-2xl font-bold mb-5">Sign In</h4>
                 <hr class="mb-4">

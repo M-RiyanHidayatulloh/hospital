@@ -34,7 +34,7 @@
 
     <!-- treatment section -->
 
-    @include('home.treatment')
+    {{-- @include('home.treatment') --}}
 
     <!-- end treatment section -->
 

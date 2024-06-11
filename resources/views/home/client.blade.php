@@ -2,7 +2,7 @@
     <div class="container">
         <div class="heading_container">
             <h2>
-                <span>Testimonial</span>
+                <span>Testimonial Pasien</span>
             </h2>
         </div>
     </div>
@@ -13,22 +13,14 @@
                     <div class="box">
                         <div class="client_info">
                             <div class="client_name">
-                                <h5>
-                                    Morijorch
-                                </h5>
-                                <h6>
-                                    Default model text
-                                </h6>
+                                <h5>Budi</h5>
+                                <h6>Pelayanan Cepat dan Ramah</h6>
                             </div>
                             <i class="fa fa-quote-left" aria-hidden="true"></i>
                         </div>
                         <p>
-                            editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum'
-                            will uncover many web sites still in their infancy. Variouseditors now use Lorem Ipsum
-                            as their default model text, and a search for 'lorem ipsum' will uncover many web sites
-                            still in their infancy. Variouseditors now use Lorem Ipsum as their default model text,
-                            and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
-                            Various
+                            "Rumah Sehat memberikan pelayanan yang cepat dan ramah. Saya sangat puas dengan kunjungan
+                            saya."
                         </p>
                     </div>
                 </div>
@@ -36,21 +28,14 @@
                     <div class="box">
                         <div class="client_info">
                             <div class="client_name">
-                                <h5>
-                                    Rochak
-                                </h5>
-                                <h6>
-                                    Default model text
-                                </h6>
+                                <h5>Siti</h5>
+                                <h6>Konsultasi Online Mudah</h6>
                             </div>
                             <i class="fa fa-quote-left" aria-hidden="true"></i>
                         </div>
                         <p>
-                            Variouseditors now use Lorem Ipsum as their default model text, and a search for 'lorem
-                            ipsum' will uncover many web sites still in their infancy. Variouseditors now use Lorem
-                            Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web
-                            sites still in their infancy. editors now use Lorem Ipsum as their default model text,
-                            and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
+                            "Layanan konsultasi online sangat membantu, terutama di masa pandemi ini. Dokternya sangat
+                            profesional."
                         </p>
                     </div>
                 </div>
@@ -58,22 +43,43 @@
                     <div class="box">
                         <div class="client_info">
                             <div class="client_name">
-                                <h5>
-                                    Brad Johns
-                                </h5>
-                                <h6>
-                                    Default model text
-                                </h6>
+                                <h5>Rina</h5>
+                                <h6>Fasilitas Modern</h6>
                             </div>
                             <i class="fa fa-quote-left" aria-hidden="true"></i>
                         </div>
                         <p>
-                            Variouseditors now use Lorem Ipsum as their default model text, and a search for 'lorem
-                            ipsum' will uncover many web sites still in their infancy, editors now use Lorem Ipsum
-                            as their default model text, and a search for 'lorem ipsum' will uncover many web sites
-                            still in their infancy. Variouseditors now use Lorem Ipsum as their default model text,
-                            and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
-                            Various
+                            "Fasilitas di Rumah Sehat sangat modern dan lengkap. Saya merasa nyaman selama perawatan."
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="box">
+                        <div class="client_info">
+                            <div class="client_name">
+                                <h5>Andi</h5>
+                                <h6>Staf yang Peduli</h6>
+                            </div>
+                            <i class="fa fa-quote-left" aria-hidden="true"></i>
+                        </div>
+                        <p>
+                            "Staf di Rumah Sehat sangat peduli dan selalu siap membantu. Terima kasih atas pelayanan
+                            yang luar biasa."
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="box">
+                        <div class="client_info">
+                            <div class="client_name">
+                                <h5>Ani</h5>
+                                <h6>Informasi Kesehatan Bermanfaat</h6>
+                            </div>
+                            <i class="fa fa-quote-left" aria-hidden="true"></i>
+                        </div>
+                        <p>
+                            "Artikel kesehatan yang disediakan sangat bermanfaat. Banyak tips hidup sehat yang bisa saya
+                            terapkan sehari-hari."
                         </p>
                     </div>
                 </div>
