@@ -69,7 +69,7 @@
                                 </div>
                             </div>
                             <hr>
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Diagnosa</h6>
                                 </div>
@@ -85,13 +85,13 @@
                                 <div class="col-sm-9 text-secondary">
                                     {{ Auth::user()->room }}
                                 </div>
-                            </div>
+                            </div> --}}
                             <hr>
                             <div class="row">
                                 <div class="col-sm-12">
                                     <button class="btn btn-primary btn-block" data-toggle="modal"
                                         data-target="#editProfileModal">Ubah
-                                        </button>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -164,8 +164,8 @@
 
                                         <div class="form-group">
                                             <label for="password">Password:</label>
-                                            <input type="password" id="password" name="password"
-                                                class="form-control" value="">
+                                            <input type="password" id="password" name="password" class="form-control"
+                                                value="">
                                         </div>
 
                                         <div class="form-group">
@@ -185,7 +185,10 @@
 
         </div>
     </div>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/profileupdate.js') }}"></script>
 </body>
 
 
