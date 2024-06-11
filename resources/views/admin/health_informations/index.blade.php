@@ -1,84 +1,90 @@
-<head>
-    <!-- DataTables CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- DataTables JS -->
-    <!-- <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script> -->
-    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
-</head>
-<!-- File index.blade.php -->
+@extends('admin.includes.home')
+@section('csstable')
+<link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap4.min.css') }}">
+@endsection
+
+@section('jstable')
+<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
+<script>
+    $(function() {
+        $('#data-table').DataTable();
+    })
+</script>
+<script src="{{ asset('js/sweetalert.min.js') }}"></script>
+<script>
+    confirmDelete = function(button) {
+        var url = $(button).data('url');
+        swal({
+            'title': 'Konfirmasi Hapus',
+            'text': 'Apakah Kamu Yakin Ingin Menghapus Data Ini?',
+            'dangermode': true,
+            'buttons': true
+        }).then(function(value) {
+            if (value) {
+                window.location = url;
+            }
+        })
+    }
+</script>
+@endsection
+@section('content')
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">Dashboard Health Information</h5>
+                </div>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="#!">Dashboard Health Information</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container mt-5">
-    <h1>Health Information</h1>
-    <a href="{{ route('health_informations.create') }}" class="btn btn-primary mb-3">Add New</a>
+    <a href="{{ route('admin/health_informations/create') }}" class="btn btn-primary mb-3 rounded-pill">Add New Information</a>
     @if ($message = Session::get('success'))
     <div class="alert alert-success mt-2">
         {{ $message }}
     </div>
     @endif
 </div>
-<div class="container mt-5">
-    <div class="card">
-        <div class="col-lg-12">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table-hover table-bordered" id="datatables">
+<div class="container mt-4">
+        <div class="card">
+            <div class="col-md-12">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered" id="data-table">
                         <thead>
                             <tr>
-                                <th>Title</th>
-                                <th>Content</th> <!-- Added Content Header -->
-                                <th>Actions</th>
+                            <th class="text-center">ID</th>
+                                <th class="text-center">Title</th>
+                                <th class="text-center">Content</th> <!-- Added Content Header -->
+                                <th class="text-center">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($health_informations as $healthInformation)
+                            @forelse ($health_informations as $healthInformation)
                             <tr>
-                                <td>{{ $healthInformation->title }}</td>
-                                <td>{{ $healthInformation->content }}</td> <!-- Display content -->
-                                <td>
-                                    <a href="{{ route('health_informations.edit', $healthInformation->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                                    <form action="{{ route('health_informations.destroy', $healthInformation->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                    </form>
+                            <td class="text-center">{{ $loop->iteration }}</td>
+                                <td class="text-center">{{ $healthInformation->title }}</td>
+                                <td class="text-center">{!! $healthInformation->content !!}</td> <!-- Display content -->
+                                <td class="text-center">
+                                    <a href="{{ route('admin/health_informations/edit', ['id' => $healthInformation->id]) }}" class="btn btn-warning rounded-pill">Edit</a>
+                                    <a onclick="confirmDelete(this)" data-url="{{ route('admin/health_informations/delete', ['id' => $healthInformation->id]) }}" class="btn btn-danger rounded-pill" role="button">Delete</a>
                                 </td>
                             </tr>
-                            @endforeach
+                            @empty
+                            <div class="alert alert-danger">Data Health Information belum tersedia</div>
+                            @endforelse
                         </tbody>
-                    </table>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<script>
-    $(document).ready(function() {
-        $('#datatables').DataTable({
-            "lengthChange": false,
-            "paging": true,
-            "searching": true,
-            "ordering": true,
-            "info": false,
-            "autoWidth": false,
-            "responsive": true
-        });
-    });
-</script>
-
-<script src="{{ asset('js/sweetalert.min.js') }}"></script>
-<script>
-    function confirmDelete(button) {
-        var url = $(button).data('url');
-        swal({
-            title: 'Konfirmasi Hapus',
-            text: 'Apakah Kamu Yakin Ingin Menghapus Data Ini?',
-            dangerMode: true,
-            buttons: true
-        }).then(function(value) {
-            if (value) {
-                window.location = url;
-            }
-        });
-    }
-</script>
+    @endsection

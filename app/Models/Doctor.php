@@ -4,17 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class Doctor extends Model
 {
+    use SoftDeletes;
     use HasFactory;
+    protected $table = 'doctors';
 
+    protected $hidden = ['created_at', 'updated_at'];
     protected $fillable = [
         'user_id',
-        'name',
+        'doctor_name',
+        'image',
         'specialization',
         'phone',
-        'available_times'
+        'available_times',
     ];
 
     public function user()

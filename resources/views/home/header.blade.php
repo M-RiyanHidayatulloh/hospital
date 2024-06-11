@@ -52,13 +52,14 @@
                                     Menu
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="healthInfoDropdown">
+
                                     <a class="dropdown-item" href="{{ route('doctor_schedule') }}"><span>Doctor
                                             Schedule</span></a>
                                     <a class="dropdown-item"
                                         href="{{ route('user/appointment') }}"><span>Appointment</span></a>
                                     <a class="dropdown-item" href="#"><span>Online Consultation</span></a>
                                     <a class="dropdown-item" href="#"><span>Medical Record</span></a>
-                                </div>
+              </div>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Health Information</a>

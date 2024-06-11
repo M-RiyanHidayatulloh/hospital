@@ -16,9 +16,9 @@ class DashboardController extends Controller
             ],
             // 'defaultCategories' => $defaultCategories,
             // 'customCategories' => $customCategories,
-            'content' => 'dashboard.index',
+            'content' => 'index',
         ];
 
-        return view("admin.wrapper", $data);
+        return view("home.index", $data);
     }
 }

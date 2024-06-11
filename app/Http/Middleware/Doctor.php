@@ -16,10 +16,23 @@ class Doctor
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user() && Auth::user()->usertype == 'doctor') {
-            return $next($request);
+       
+        if(!Auth::check()) {
+            return redirect()->route('login');
         }
 
-        return redirect('/');
+        $userType = Auth::user()->usertype;
+
+        if($userType == 'admin') {
+            return redirect()->route('admin/dashboard');
+        }
+
+        if($userType == 'doctor') {
+            return $next($request);
+        }
+     
+        elseif($userType == 'user') {
+            return redirect()->route('dashboard');
+        }
     }
 }
