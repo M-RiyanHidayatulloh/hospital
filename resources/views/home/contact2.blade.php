@@ -1,11 +1,13 @@
+@include('home.css')
+@include('home.header')
 <section class="book_section layout_padding">
     <div class="container">
         <div class="row">
             <div class="col">
                 <form>
-                    <h4>
+                    <h2>
                         Kontak <span>Kami</span>
-                    </h4>
+                    </h2>
                     <div class="form-row">
                         <div class="form-group col-lg-4">
                             <div class="contact-item">
@@ -34,3 +36,6 @@
         </div>
     </div>
 </section>
+
+@include('home.info')
+@include('home.footer')

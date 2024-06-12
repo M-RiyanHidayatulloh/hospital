@@ -164,6 +164,7 @@ require __DIR__ . '/auth.php';
 
 Route::get('/user', [UserDashboardController::class, 'index'])->name('user.dashboard.index');
 Route::get('/about', [UserDashboardController::class, 'about'])->name('about2');
+Route::get('/contact', [UserDashboardController::class, 'contact'])->name('contact2');
 Route::get('/doctor_schedule', [UserScheduleController::class, 'index'])->name('doctor_schedule');
 Route::get('user/appointments', [UserAppointmentsController::class, 'index'])->name('user.appointments.index');
 Route::get('/online', [UserOnlineConsultationController::class, 'index'])->name('user.OnlineConsultation.index');
