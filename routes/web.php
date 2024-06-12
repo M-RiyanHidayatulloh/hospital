@@ -18,6 +18,7 @@ use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\UserAppointmentsController;
+use App\Http\Controllers\UserMedicalRecordController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -71,6 +72,5 @@ require __DIR__.'/auth.php';
 
 Route::get('/user', [UserDashboardController::class, 'index'])->name('user.dashboard.index');
 Route::get('user/appointments', [UserAppointmentsController::class, 'index'])->name('user.appointments.index');
-
-
+Route::get('user/medicalrecord', [UserMedicalRecordController::class, 'index'])->name('user.medicalrecord.index');
 
