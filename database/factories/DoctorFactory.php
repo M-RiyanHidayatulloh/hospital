@@ -18,7 +18,8 @@ class DoctorFactory extends Factory
     {
         return [
             'user_id' => 3,
-            'name' => fake()->name(),
+            'doctor_name' => fake()->name(),
+            'image' => fake()->imageUrl(),
             'specialization' => fake()->sentence(10),
             'phone' => fake()->phoneNumber(),
             'available_times' => fake()->dateTime(),

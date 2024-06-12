@@ -12,16 +12,8 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $data = [
-            'title' => 'Room',
-            'breadcrumbs' => [
-                // 'Category' => "#",
-            ],
-            'rooms' => Room::paginate(10),
-            'content' => 'admin.rooms.index',
-        ];
-
-        return view("admin.wrapper", $data);
+        $rooms = Room::latest()->paginate(5);
+        return view('admin.rooms.index', compact('rooms'));
     }
 
     /**
@@ -29,16 +21,7 @@ class RoomController extends Controller
      */
     public function create()
     {
-        $data = [
-            'title' => 'Create room',
-            'breadcrumbs' => [
-                'rooms' => route('rooms.index'),
-                'Create' => "#",
-            ],
-            'content' => 'admin.rooms.create',
-        ];
-
-        return view("admin.wrapper", $data);
+        return view('admin.rooms.create');
     }
 
     /**
@@ -53,7 +36,7 @@ class RoomController extends Controller
             'capacity' => 'required|integer'
         ]);
         Room::create($request->all());
-        return redirect()->route('rooms.index')->with('success', 'Room created successfully.');
+        return redirect()->route('admin/rooms')->with('success', 'Room created successfully.');
     }
 
     /**
@@ -67,42 +50,48 @@ class RoomController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Room $room)
+    public function edit($id)
     {
-        $data = [
-            'title' => 'Rooms',
-            'breadcrumbs' => [
-                'Rooms' => route('admin.rooms.index'),
-                'Edit' => "#",
-            ],
-            'room' => $room,
-            'content' => 'admin.rooms.edit',
-        ];
+        $room = Room::findOrFail($id);
 
-        return view("admin.wrapper", $data);
+        return view('admin.rooms.update', compact('room'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Room $room)
+    public function update(Request $request, $id)
     {
         $request->validate([
-            'room_number' => 'required|unique:rooms,room_number,' . $room->id,
+            'room_number' => 'required',
             'room_type' => 'required',
             'availability' => 'required',
             'capacity' => 'required|integer'
         ]);
-        $room->update($request->all());
-        return redirect()->route('rooms.index')->with('success', 'Room updated successfully.');
+    
+        $room = Room::findOrFail($id);
+    
+        $room->update([
+            'room_number' => $request->room_number,
+            'room_type' => $request->room_type,
+            'availability' => $request->availability,
+            'capacity' => $request->capacity,
+        ]);
+    
+        return redirect()->route('admin/rooms')->with('success', 'Room updated successfully.');
     }
+    
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Room $room)
+    public function delete($id)
     {
-        $room->delete();
-        return redirect()->route('rooms.index')->with('success', 'Room deleted successfully.');
+        $rooms = Room::findOrFail($id)->delete();
+        if($rooms) {
+            return redirect()->route('admin/rooms')->with('success', 'Room Data Was Deleted');
+        } else {
+            return redirect()->route('admin/rooms')->with('error', 'Room Delete Fail');
+        }
     }
 }

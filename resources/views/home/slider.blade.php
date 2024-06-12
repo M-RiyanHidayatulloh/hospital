@@ -15,23 +15,27 @@
                                     </button>
                                 </div>
                                 <h1>
-                                    Mico <br>
+                                    Rumah
                                     <span>
-                                        Hospital
+                                        Sehat
                                     </span>
                                 </h1>
-                                <p>
-                                    when looking at its layout. The point of using Lorem Ipsum is that it has a
-                                    more-or-less normal distribution of letters, as opposed to
-                                </p>
-                                <a href="">
-                                    Contact Us
-                                </a>
+                                <div class="slider_content">
+                                    <h2>Selamat Datang Di Rumah Sehat</h2>
+                                    <p><strong>"Tempat di mana kesehatan Anda menjadi prioritas
+                                            kami"</strong> </p>
+                                    <p>"Rumah Sehat menawarkan layanan janji temu yang cepat, konsultasi online dengan
+                                        dokter ahli kapan saja, serta artikel kesehatan terbaru dan tips hidup sehat
+                                        setiap hari."</p>
+
+                                    <a href="contact.html" class="btn btn-primary">Contact Us</a>
+                                </div>
+
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="img-box">
-                                <img src="images/slider-img.jpg" alt="">
+                                <img src="images/slide2.jpg" alt="">
                             </div>
                         </div>
                     </div>
@@ -48,23 +52,26 @@
                                     </button>
                                 </div>
                                 <h1>
-                                    Mico <br>
+                                    Visi Misi Rumah
                                     <span>
-                                        Hospital
+                                        Sehat
                                     </span>
                                 </h1>
+                                <h4>Visi</h4>
+                                <p>"Menjadi pusat layanan kesehatan terpercaya yang meningkatkan kualitas hidup
+                                    masyarakat."</p>
+                                <h4>Misi</h4>
                                 <p>
-                                    when looking at its layout. The point of using Lorem Ipsum is that it has a
-                                    more-or-less normal distribution of letters, as opposed to
+                                    <li>Memberikan layanan kesehatan berkualitas dan profesional.</li>
                                 </p>
-                                <a href="">
-                                    Contact Us
-                                </a>
+                                <li>Menyediakan akses mudah dan cepat untuk janji temu dan konsultasi online.</li>
+                                <li>Menyebarkan informasi kesehatan terbaru dan tips hidup sehat.</li>
+
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="img-box">
-                                <img src="images/slider-img.jpg" alt="">
+                                <img src="images/slide4.jpg" alt="">
                             </div>
                         </div>
                     </div>
@@ -81,23 +88,26 @@
                                     </button>
                                 </div>
                                 <h1>
-                                    Mico <br>
+                                    Layanan
                                     <span>
-                                        Hospital
+                                        Kami
                                     </span>
                                 </h1>
                                 <p>
-                                    when looking at its layout. The point of using Lorem Ipsum is that it has a
-                                    more-or-less normal distribution of letters, as opposed to
+                                    Dalam Rumah Sehat, kami memprioritaskan kebutuhan kesehatan Anda. Kami menawarkan
+                                    layanan medis yang komprehensif dan responsif, termasuk konsultasi langsung dan
+                                    online dengan dokter ahli, layanan darurat yang tersedia 24/7, serta layanan
+                                    laboratorium dan diagnostik dengan teknologi terkini untuk diagnosis yang akurat.
+                                    Selain itu, kami juga menyediakan berbagai program kesehatan dan edukasi untuk
+                                    membantu Anda menjaga kesehatan secara proaktif. Dengan dedikasi dan komitmen
+                                    tinggi, kami berusaha memberikan pelayanan terbaik agar setiap pasien merasa aman
+                                    dan nyaman.
                                 </p>
-                                <a href="">
-                                    Contact Us
-                                </a>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="img-box">
-                                <img src="images/slider-img.jpg" alt="">
+                                <img src="images/slide3.jpg" alt="">
                             </div>
                         </div>
                     </div>

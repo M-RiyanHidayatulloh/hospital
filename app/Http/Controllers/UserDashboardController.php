@@ -12,7 +12,7 @@ class UserDashboardController extends Controller
     {
         $profile = Auth::user();
         $data = [
-            'profile'   => $profile
+            'profile' => $profile
         ];
         return view('user.dashboard.index2', $data);
     }
@@ -22,6 +22,14 @@ class UserDashboardController extends Controller
         dd($id);
     }
 
+    public function about()
+    {
+        // $profile = Auth::user();
+        // $data = [
+        //     'profile'   => $profile
+        // ];
+        return view('home.about2');
+    }
 }
 
 
