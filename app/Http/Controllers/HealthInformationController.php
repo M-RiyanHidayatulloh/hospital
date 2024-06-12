@@ -17,14 +17,34 @@ class HealthInformationController extends Controller
         return view('admin.health_informations.create');
     }
 
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'title' => 'required|string|max:255',
+    //         'content' => 'required',
+    //     ]);
+
+    //     HealthInformation::create($request->all());
+
+    //     return redirect()->route('admin/health_informations')->with('success', 'Health Information created successfully.');
+    // }
+
     public function store(Request $request)
     {
-        $request->validate([
+        $validation = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required',
+            'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
         ]);
 
-        HealthInformation::create($request->all());
+        $image = $request->file('image');
+        $image->storeAs('public/informations', $image->hashName());
+
+        $health_information = HealthInformation::create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'image' => $image->hashName(),
+        ]);
 
         return redirect()->route('admin/health_informations')->with('success', 'Health Information created successfully.');
     }
@@ -38,12 +58,28 @@ class HealthInformationController extends Controller
 
     public function update(Request $request, string $id)
     {
+              $healthInformation = HealthInformation::findOrFail($id);
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required',
+            'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
         ]);
-        $healthInformation = HealthInformation::findOrFail($id);
-        $healthInformation->update($request->all());
+
+
+        // $healthInformation->update($request->all());
+
+        $HealthInformation->update([
+            'title' => $request->title,
+            'content' => $request->content,
+            'image' => $request->image,
+        ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $image->storeAs('public/informations', $image->hashName());
+            $HealthInformation->update(['image' => $image->hashName()]);
+        }
+
 
         return redirect()->route('admin/health_informations')->with('success', 'Health Information updated successfully.');
     }
