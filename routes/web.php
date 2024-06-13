@@ -51,7 +51,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::middleware(['auth', 'verified', 'doctor'])->group(function () {
         Route::get('doctors/dashboard', [HomeController::class, 'doctor'])->name('doctor/dashboard');
-        });
+    });
 
     // Route::group(['middleware' => ['auth', 'doctor']], function () {
     //     Route::resource('my_schedule', DoctorScheduleController::class);
@@ -203,8 +203,8 @@ Route::get('user/medicalrecord', [UserMedicalRecordController::class, 'index'])-
 Route::get('/online', [UserOnlineConsultationController::class, 'index'])->name('user.OnlineConsultation.index');
 
 
-Route::get('/Information', [UserInformationController::class, 'index'])->name('Information.index');
-Route::get('/information/{id}', [UserInformationController::class, 'show'])->name('information.show');
+Route::get('/Information', [UserInformationController::class, 'index'])->name('user.Information.index');
+Route::get('/information/{id}', [UserInformationController::class, 'show'])->name('user.information.show');
 Route::get('/search', [HealthInformationController::class, 'search'])->name('search');
 Route::put('set-appointment', [UserAppointmentsController::class, 'update'])->name('set-appointment');
 

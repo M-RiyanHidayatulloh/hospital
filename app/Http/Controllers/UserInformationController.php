@@ -10,7 +10,7 @@ class UserInformationController extends Controller
     public function index()
     {
         $health_informations = HealthInformation::all();
-        return view('Information.index',compact('health_informations'));
+        return view('user.Information.index', compact('health_informations'));
     }
 
     public function show(string $id)
@@ -23,6 +23,6 @@ class UserInformationController extends Controller
         //     dd($tibrut->category);
         // }
 
-        return view('Information.show', compact('health_information', 'health_informations'));
+        return view('user.Information.show', compact('health_information', 'health_informations'));
     }
 }
