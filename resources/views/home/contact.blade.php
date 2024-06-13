@@ -4,7 +4,7 @@
             <div class="col">
                 <form>
                     <h4>
-                        Kontak <span>Kami</span>
+                        CONTACT<span> US</span>
                     </h4>
                     <div class="form-row">
                         <div class="form-group col-lg-4">

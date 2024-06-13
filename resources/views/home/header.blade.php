@@ -27,7 +27,7 @@
         <div class="container-fluid">
             <nav class="navbar navbar-expand-lg custom_nav-container ">
                 <a class="navbar-brand" href="index.html">
-                    <img src="images/logo1.png" alt="">
+                    <img src="{{ asset('images/logo1.png') }}" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -57,8 +57,12 @@
                                             Schedule</span></a>
                                     <a class="dropdown-item"
                                         href="{{ route('user.appointments.index') }}"><span>Appointment</span></a>
-                                    <a class="dropdown-item" href="#"><span>Online Consultation</span></a>
-                                    <a class="dropdown-item" href="#"><span>Medical Record</span></a>
+                                    <a class="dropdown-item"
+                                        href="{{ route('user.OnlineConsultation.index') }}"><span>Online
+                                            Consultation</span></a>
+                                    <a class="dropdown-item"
+                                        href="{{ route('user.medicalrecord.index') }}"><span>Medical
+                                            Record</span></a>
                                 </div>
                             </li>
                             <li class="nav-item">

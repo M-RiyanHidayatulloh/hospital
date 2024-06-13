@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\MedicalRecord;
 use App\Models\Doctor;
 use App\Models\Patient;
+use App\Models\Room;
 use Illuminate\Http\Request;
 
 class MedicalRecordController extends Controller
@@ -25,7 +26,8 @@ class MedicalRecordController extends Controller
     {
         $doctors = Doctor::all();
         $patients = Patient::all();
-        return view('admin.medical_records.create', compact('doctors', 'patients'));
+        $rooms = Room::all();
+        return view('admin.medical_records.create', compact('rooms', 'doctors', 'patients'));
     }
 
     /**
@@ -36,6 +38,7 @@ class MedicalRecordController extends Controller
         $request->validate([
             'patient_id' => 'required|exists:patients,id',
             'doctor_id' => 'required|exists:doctors,id',
+            'room_id' => 'required|exists:rooms,id',
             'diagnosis' => 'required',
             'treatment' => 'required'
         ]);
@@ -58,8 +61,9 @@ class MedicalRecordController extends Controller
     {
         $doctors = Doctor::all();
         $patients = Patient::all();
+        $rooms = Room::all();
         $record = MedicalRecord::findOrFail($id);
-        return view('admin.medical_records.update', compact('record', 'doctors', 'patients'));
+        return view('admin.medical_records.update', compact('record', 'rooms', 'doctors', 'patients'));
     }
 
 
@@ -84,7 +88,7 @@ class MedicalRecordController extends Controller
     public function delete($id)
     {
         $medical_records = MedicalRecord::findOrFail($id)->delete();
-        if($medical_records) {
+        if ($medical_records) {
             return redirect()->route('admin/medical_records')->with('success', 'Medical record Data Was Deleted');
         } else {
             return redirect()->route('admin/medical_records')->with('error', 'Medical record Delete Fail');

@@ -18,21 +18,19 @@
                                 <th>End Time</th>
                             </tr>
                             </thead>
-                            {{-- <tbody id="doctorScheduleTable">
-                                @foreach ($doctor_schedules as $doctor_schedule)
-                                    <td class="card-title">{{ $doctor_schedule->id }}</td>
-                                    <td class="card-title">{{ $doctor_schedule->doctor->name }}</td>
-                                    <td class="card-title">{{ $doctor_schedule->working_days }}</td>
-                                    <td class="card-title">{{ $doctor_schedule->start_time }}</td>
-                                    <td class="card-title">{{ $doctor_schedule->end_time }}</td>
-                                @endforeach --}}
+                            @foreach ($doctor_schedules as $doctor_schedule)
+                                <td class="card-title">{{ $doctor_schedule->id }}</td>
+                                <td class="card-title">{{ $doctor_schedule->doctor->name }}</td>
+                                <td class="card-title">{{ $doctor_schedule->working_days }}</td>
+                                <td class="card-title">{{ $doctor_schedule->start_time }}</td>
+                                <td class="card-title">{{ $doctor_schedule->end_time }}</td>
+                            @endforeach
                             </tbody>
                     </table>
             </div>
         </div>
     </div>
 </section>
-
 
 @include('home.info')
 @include('home.footer')

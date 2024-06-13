@@ -3,7 +3,7 @@
         <div class="info_top">
             <div class="info_logo">
                 <a href="">
-                    <img src="images/logo1.png" alt="">
+                    <img src="{{ asset('images/logo1.png') }}" alt="">
                 </a>
             </div>
         </div>
@@ -54,7 +54,7 @@
                         </div>
                     </div>
                 </div>
-                <!--
+
                 <div class="col-md-6 col-lg-3">
                     <div class="info_post">
                         <h5>LATEST POSTS</h5>
@@ -89,7 +89,7 @@
                         </div>
                     </div>
                 </div>
-                -->
+
             </div>
         </div>
     </div>
