@@ -1,11 +1,13 @@
+@include('home.css')
+@include('home.header')
 <section class="book_section layout_padding">
     <div class="container">
         <div class="row">
             <div class="col">
                 <form>
-                    <h4>
+                    <h2>
                         Kontak <span>Kami</span>
-                    </h4>
+                    </h2>
                     <div class="form-row">
                         <div class="form-group col-lg-4">
                             <div class="contact-item">
@@ -25,19 +27,15 @@
                                     Name, City, Country</a>
                             </div>
                         </div>
-                        <div class="btn_box">
-                            <button>
-                                SEND
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="col-md-5">
-                <div class="img-box">
-                    <img src="{{asset('images/contact-img.jpg')}}" alt="">
-                </div>
+                    </div>
+                    <div class="btn-box">
+                        <button type="submit" class="btn">Submit Now</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </section>
+
+@include('home.info')
+@include('home.footer')

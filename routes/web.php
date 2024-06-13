@@ -15,11 +15,12 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QueueController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\UserScheduleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\UserAppointmentsController;
+use App\Http\Controllers\UserMedicalRecordController;
 use App\Http\Controllers\UserOnlineConsultationController;
-use App\Http\Controllers\UserScheduleController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -50,8 +51,13 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('doctors/dashboard', [HomeController::class, 'doctor'])->name('doctor/dashboard');
         });
 
-    //     Route::group(['middleware' => ['auth', 'doctor']], function () {
-//         Route::resource('my_schedule', DoctorScheduleController::class);
+    // Route::group(['middleware' => ['auth', 'doctor']], function () {
+    //     Route::resource('my_schedule', DoctorScheduleController::class);
+    // });
+
+    Route::middleware(['auth', 'verified', 'doctor'])->group(function () {
+        Route::get('doctors/dashboard', [HomeController::class, 'doctor'])->name('doctor/dashboard');
+    });
 
     // Route::group(['middleware' => ['auth', 'doctor']], function () {
     //     Route::resource('my_schedule', DoctorScheduleController::class);
@@ -188,6 +194,8 @@ require __DIR__ . '/auth.php';
 
 Route::get('/user', [UserDashboardController::class, 'index'])->name('user.dashboard.index');
 Route::get('/about', [UserDashboardController::class, 'about'])->name('about2');
+Route::get('/contact', [UserDashboardController::class, 'contact'])->name('contact2');
 Route::get('/doctor_schedule', [UserScheduleController::class, 'index'])->name('doctor_schedule');
 Route::get('user/appointments', [UserAppointmentsController::class, 'index'])->name('user.appointments.index');
+Route::get('user/medicalrecord', [UserMedicalRecordController::class, 'index'])->name('user.medicalrecord.index');
 Route::get('/online', [UserOnlineConsultationController::class, 'index'])->name('user.OnlineConsultation.index');
