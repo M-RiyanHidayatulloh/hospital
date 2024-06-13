@@ -38,7 +38,8 @@
                 </div>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
-                    <li class="breadcrumb-item"><a href="#!">Dashboard Doctor Trash</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin/doctors') }}">Dashboard Doctor</a></li>
+                    <li class="breadcrumb-item"><a href="#!">Trash</a></li>
                 </ul>
             </div>
         </div>

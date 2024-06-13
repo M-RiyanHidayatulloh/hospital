@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DoctorSchedule;
 use Illuminate\Http\Request;
+use App\Models\DoctorSchedule;
 
 class UserScheduleController extends Controller
 {
     public function index()
     {
-        // $schedule = DoctorSchedule::all();
-        return view('home.doctor_schedule.index', compact('doctor_schedules'));
+        $schedule = DoctorSchedule::all();
+        return view('user.doctor_schedule.index', compact('schedule'));
     }
 }

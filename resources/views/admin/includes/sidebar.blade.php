@@ -44,13 +44,13 @@
                     <label>Other</label>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin/schedules') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-calendar"></i></span><span class="pcoded-mtext">Dokter's Schedule</span></a>
+                    <a href="{{ route('admin/appointments') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-clipboard"></i></span><span class="pcoded-mtext">Appointment</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin/schedules') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-calendar"></i></span><span class="pcoded-mtext">Doctor's Schedule</span></a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('admin/queues') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Queue</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin/appointments') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-clipboard"></i></span><span class="pcoded-mtext">Appointment</span></a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('admin/medical_records') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Medical

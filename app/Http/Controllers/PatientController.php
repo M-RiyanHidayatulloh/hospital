@@ -119,4 +119,32 @@ class PatientController extends Controller
             return redirect()->route('admin/patients')->with('error', 'Patient Delete Fail');
         }
     }
-}
+
+    public function trash() {
+        $patients = Patient::onlyTrashed()->get();
+         return view('admin.patients.trash', compact('patients'));
+     }
+ 
+     public function restore($id = null) {
+         if($id != null) {
+             $patients = Patient::onlyTrashed()
+             ->where('id', $id)
+             ->restore();
+         } else {
+             $patients = Patient::onlyTrashed()->restore();
+         }
+         return redirect()->route('admin/patients/trash')->with('success', 'Patient Was Restore');
+     }
+ 
+     public function destroy($id = null) {
+         if($id != null) {
+             $patients = Patient::onlyTrashed()
+             ->where('id', $id)
+             ->forceDelete();
+         } else {
+             $patients = Patient::onlyTrashed()->forceDelete();
+         }
+         return redirect()->route('admin/patients/trash')->with('success', 'Patient Was Delete Permanently');
+     }
+ }
+ 

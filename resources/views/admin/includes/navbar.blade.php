@@ -5,7 +5,7 @@
 			<a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
 			<a href="#!" class="b-brand">
 				<!-- ========   change your logo hear   ============ -->
-				<img src="{{asset('adminn/dist/assets/images/logo-old.png')}}" alt="" class="logo">
+				<img src="{{ asset('images/lg2.png') }}" alt="" class="w-50 mx-auto">
 			</a>
 			<a href="#!" class="mob-toggler">
 				<i class="feather icon-more-vertical"></i>

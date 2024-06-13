@@ -34,19 +34,21 @@
         <div class="row align-items-center">
             <div class="col-md-12">
                 <div class="page-header-title">
-                    <h5 class="m-b-10">Dashboard Health Information</h5>
+                    <h5 class="m-b-10">Dashboard Trash</h5>
                 </div>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
-                    <li class="breadcrumb-item"><a href="#!">Dashboard Health Information</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin/health_informations') }}">Dashboard Health Information</a></li>
+                    <li class="breadcrumb-item"><a href="#!">Trash</a></li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
 <div class="container mt-5">
-    <a href="{{ route('admin/health_informations/create') }}" class="btn btn-primary rounded-pill">Add New Information</a>
-    <a href="{{ route('admin/health_informations/trash') }}" class="btn btn-danger rounded-pill">Trash</a>
+    <a href="{{ route('admin/health_informations/restore') }}" class="btn btn-warning rounded-pill">Restore All</a>
+    <a href="{{ route('admin/health_informations/destroy') }}" class="btn btn-danger rounded-pill">Delete All</a>
+    <a href="{{ route('admin/health_informations') }}" class="btn btn-secondary rounded-pill">Back</a>
     @if ($message = Session::get('success'))
     <div class="alert alert-success mt-2">
         {{ $message }}
@@ -74,8 +76,8 @@
                                 <td class="text-center">{{ $healthInformation->title }}</td>
                                 <td class="text-center">{!! $healthInformation->content !!}</td> <!-- Display content -->
                                 <td class="text-center">
-                                    <a href="{{ route('admin/health_informations/edit', ['id' => $healthInformation->id]) }}" class="btn btn-warning rounded-pill">Edit</a>
-                                    <a onclick="confirmDelete(this)" data-url="{{ route('admin/health_informations/delete', ['id' => $healthInformation->id]) }}" class="btn btn-danger rounded-pill" role="button">Delete</a>
+                                    <a href="{{route('admin/health_informations/restore', ['id'=>$healthInformation->id])}}" class="btn btn-warning rounded-pill">Restore</a>
+                                    <a onclick="confirmDelete(this)" data-url="{{ route('admin/health_informations/destroy', ['id'=>$healthInformation->id]) }}" class="btn btn-danger rounded-pill">Delete Permanently</a>
                                 </td>
                             </tr>
                             @empty

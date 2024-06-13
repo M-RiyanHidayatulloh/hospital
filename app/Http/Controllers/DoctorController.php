@@ -31,7 +31,7 @@ class DoctorController extends Controller
             'user_id' => 'required|string|exists:users,id',
             'doctor_name' => 'required|min:5',
             'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
-            'specialization' => 'required|min:5', 
+            'specialization' => 'required|min:2', 
             'phone' => 'required|string|min:5',      
             'available_times' => 'required|string|min:5',         
         ]);
@@ -68,7 +68,7 @@ class DoctorController extends Controller
 
     $request->validate([
         'doctor_name' => 'required|min:5',
-        'specialization' => 'required|min:5',
+        'specialization' => 'required|min:2',
         'phone' => 'required|string|min:5',
         'available_times' => 'required|string|min:5',
         'image' => 'nullable|image|mimes:jpeg,jpg,png|max:2048',
@@ -88,6 +88,13 @@ class DoctorController extends Controller
     }
 
     return redirect()->route('admin/doctors')->with('success', 'Doctor Data Was Changed');
+}
+
+public function show($id)
+{
+    $doctor = Doctor::findOrFail($id);
+    $users = User::where('usertype', 'doctor')->get();
+    return view('admin.doctors.update', compact('doctor', 'users'));
 }
 
 

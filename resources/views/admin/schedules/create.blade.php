@@ -25,6 +25,15 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label for="doctor_id">Specialization</label>
+                            <select name="doctor_id" id="doctor_id" class="form-control" required="required">
+                            <option value="">Select Specialization</option>
+                                @foreach ($doctors as $doctor)
+                                <option value="{{ $doctor->id }}">{{ $doctor->specialization }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="day_of_week">Day Of Week</label>
                             <select name="day_of_week" id="day_of_week" class="form-control" required>
                                 <option value="">Select Day</option>
