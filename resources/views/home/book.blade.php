@@ -1,4 +1,4 @@
-<section class="book_section layout_padding">
+{{-- <section class="book_section layout_padding">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -54,4 +54,4 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
