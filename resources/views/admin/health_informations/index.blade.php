@@ -63,7 +63,9 @@
                             <tr>
                                 <th class="text-center">ID</th>
                                 <th class="text-center">Title</th>
-                                <th class="text-center">Content</th> <!-- Added Content Header -->
+                                <th class="text-center">Content</th>
+                                <th class="text-center">image</th>
+                                <th class="text-center">category</th>
                                 <th class="text-center">Actions</th>
                             </tr>
                         </thead>
@@ -72,7 +74,9 @@
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
                                 <td class="text-center">{{ $healthInformation->title }}</td>
-                                <td class="text-center">{!! $healthInformation->content !!}</td> <!-- Display content -->
+                                <td class="text-center">{!! $healthInformation->content !!}</td>
+                                <td class="text-center">{{ $healthInformation->image }}</td>
+                                <td class="text-center">{{ $healthInformation->category }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('admin/health_informations/edit', ['id' => $healthInformation->id]) }}" class="btn btn-warning rounded-pill">Edit</a>
                                     <a onclick="confirmDelete(this)" data-url="{{ route('admin/health_informations/delete', ['id' => $healthInformation->id]) }}" class="btn btn-danger rounded-pill" role="button">Delete</a>
@@ -89,3 +93,4 @@
     </div>
 </div>
 @endsection
+

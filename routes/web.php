@@ -21,6 +21,8 @@ use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\UserAppointmentsController;
 use App\Http\Controllers\UserMedicalRecordController;
 use App\Http\Controllers\UserOnlineConsultationController;
+use App\Http\Controllers\UserInformationController;
+
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -200,4 +202,9 @@ Route::get('user/appointments', [UserAppointmentsController::class, 'index'])->n
 Route::get('user/medicalrecord', [UserMedicalRecordController::class, 'index'])->name('user.medicalrecord.index');
 Route::get('/online', [UserOnlineConsultationController::class, 'index'])->name('user.OnlineConsultation.index');
 
+
+Route::get('/Information', [UserInformationController::class, 'index'])->name('Information.index');
+Route::get('/information/{id}', [UserInformationController::class, 'show'])->name('information.show');
+Route::get('/search', [HealthInformationController::class, 'search'])->name('search');
 Route::put('set-appointment', [UserAppointmentsController::class, 'update'])->name('set-appointment');
+

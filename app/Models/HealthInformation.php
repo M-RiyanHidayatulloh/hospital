@@ -14,5 +14,7 @@ class HealthInformation extends Model
     protected $fillable = [
         'title',
         'content',
+        'image',
+        'category',
     ];
 }
