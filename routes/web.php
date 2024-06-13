@@ -199,3 +199,5 @@ Route::get('/doctor_schedule', [UserScheduleController::class, 'index'])->name('
 Route::get('user/appointments', [UserAppointmentsController::class, 'index'])->name('user.appointments.index');
 Route::get('user/medicalrecord', [UserMedicalRecordController::class, 'index'])->name('user.medicalrecord.index');
 Route::get('/online', [UserOnlineConsultationController::class, 'index'])->name('user.OnlineConsultation.index');
+
+Route::put('set-appointment', [UserAppointmentsController::class, 'update'])->name('set-appointment');

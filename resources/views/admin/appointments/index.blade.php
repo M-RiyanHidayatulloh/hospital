@@ -74,7 +74,7 @@
                                 @forelse ($appointments as $appointment)
                                 <tr>
                                     <td class="text-center">{{ $loop->iteration }}</td>
-                                    <td class="text-center">{{ $appointment->patient->name}}</td>
+                                    {{-- <td class="text-center">{{ $appointment->patient->name}}</td> --}}
                                     <td class="text-center">{{ $appointment->doctor->doctor_name}}</td>
                                     <td class="text-center">{{ $appointment->room ? $appointment->room->room_number : 'None' }}</td>
                                     <td class="text-center">{{ $appointment->date }}</td>
