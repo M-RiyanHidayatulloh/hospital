@@ -31,7 +31,7 @@
             </div>
             <div class="col-md-5">
                 <div class="img-box">
-                    <img src="images/contact-img.jpg" alt="">
+                    <img src="{{asset('images/contact-img.jpg')}}" alt="">
                 </div>
             </div>
         </div>

@@ -46,6 +46,7 @@
 </div>
 <div class="container mt-5">
     <a href="{{ route('admin/medical_records/create') }}" class="btn btn-primary rounded-pill">Add New Medical Record</a>
+    <a href="{{ route('admin/medical_records/trash') }}" class="btn btn-danger rounded-pill">Trash</a>
     @if ($message = Session::get('success'))
     <div class="alert alert-success mt-2">
         {{ $message }}
@@ -61,6 +62,7 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">ID</th>
+                                    <th class="text-center">Room Number</th>
                                     <th class="text-center">Patient</th>
                                     <th class="text-center">Doctor</th>
                                     <th class="text-center">Diagnosis</th>
@@ -72,6 +74,7 @@
                                 @forelse ($medical_records as $record)
                                 <tr>
                                     <td class="text-center">{{ $loop->iteration }}</td>
+                                    <td class="text-center">{{ $record->room->room_number }}</td>
                                     <td class="text-center">{{ $record->patient->name }}</td>
                                     <td class="text-center">{{ $record->doctor->doctor_name }}</td>
                                     <td class="text-center">{{ $record->diagnosis }}</td>

@@ -34,19 +34,21 @@
         <div class="row align-items-center">
             <div class="col-md-12">
                 <div class="page-header-title">
-                    <h5 class="m-b-10">Dashboard Health Information</h5>
+                    <h5 class="m-b-10">Dashboard Trash</h5>
                 </div>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
-                    <li class="breadcrumb-item"><a href="#!">Dashboard Health Information</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin/queues') }}">Dashboard Queue</a></li>
+                    <li class="breadcrumb-item"><a href="#!">Trash</a></li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
 <div class="container mt-5">
-    <a href="{{ route('admin/health_informations/create') }}" class="btn btn-primary rounded-pill">Add New Information</a>
-    <a href="{{ route('admin/health_informations/trash') }}" class="btn btn-danger rounded-pill">Trash</a>
+<a href="{{ route('admin/queues/restore') }}" class="btn btn-warning rounded-pill">Restore All</a>
+<a href="{{ route('admin/queues/destroy') }}" class="btn btn-danger rounded-pill">Delete All</a>
+    <a href="{{ route('admin/queues') }}" class="btn btn-secondary rounded-pill">Back</a>
     @if ($message = Session::get('success'))
     <div class="alert alert-success mt-2">
         {{ $message }}
@@ -59,27 +61,29 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered" id="data-table">
-                        <thead>
+                    <thead>
                             <tr>
                                 <th class="text-center">ID</th>
-                                <th class="text-center">Title</th>
-                                <th class="text-center">Content</th> <!-- Added Content Header -->
+                                <th class="text-center">Appointment ID</th>
+                                <th class="text-center">Queue Number</th>
+                                <th class="text-center">Status</th>
                                 <th class="text-center">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($health_informations as $healthInformation)
+                            @forelse ($queues as $queue)
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
-                                <td class="text-center">{{ $healthInformation->title }}</td>
-                                <td class="text-center">{!! $healthInformation->content !!}</td> <!-- Display content -->
+                                <td class="text-center">{{ $queue->appointment_id }}</td>
+                                <td class="text-center">{{ $queue->queue_number }}</td>
+                                <td class="text-center">{{ $queue->status }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('admin/health_informations/edit', ['id' => $healthInformation->id]) }}" class="btn btn-warning rounded-pill">Edit</a>
-                                    <a onclick="confirmDelete(this)" data-url="{{ route('admin/health_informations/delete', ['id' => $healthInformation->id]) }}" class="btn btn-danger rounded-pill" role="button">Delete</a>
+                                    <a href="{{route('admin/queues/restore', ['id'=>$queue->id])}}" class="btn btn-warning rounded-pill">Restore</a>
+                                    <a onclick="confirmDelete(this)" data-url="{{ route('admin/queues/destroy', ['id'=>$queue->id]) }}" class="btn btn-danger rounded-pill">Delete Permanently</a>
                                 </td>
                             </tr>
                             @empty
-                            <div class="alert alert-danger">Data Health Information belum tersedia</div>
+                            <div class="alert alert-danger">Data Antrian belum tersedia</div>
                             @endforelse
                         </tbody>
                     </table>

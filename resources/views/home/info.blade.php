@@ -3,7 +3,7 @@
         <div class="info_top">
             <div class="info_logo">
                 <a href="">
-                    <img src="images/logo1.png" alt="">
+                    <img src="{{asset('images/logo1.png')}}" alt="">
                 </a>
             </div>
             <div class="info_form">
@@ -90,7 +90,7 @@
                         </h5>
                         <div class="post_box">
                             <div class="img-box">
-                                <img src="images/post1.jpg" alt="">
+                                <img src="{{asset('images/post1.jpg')}}" alt="">
                             </div>
                             <p>
                                 Normal
@@ -99,7 +99,7 @@
                         </div>
                         <div class="post_box">
                             <div class="img-box">
-                                <img src="images/post2.jpg" alt="">
+                                <img src="{{asset('images/post2.jpg')}}" alt="">
                             </div>
                             <p>
                                 Normal
@@ -115,7 +115,7 @@
                         </h5>
                         <div class="post_box">
                             <div class="img-box">
-                                <img src="images/post3.jpg" alt="">
+                                <img src="{{asset('images/post3.jpg')}}" alt="">
                             </div>
                             <p>
                                 Normal
@@ -124,7 +124,7 @@
                         </div>
                         <div class="post_box">
                             <div class="img-box">
-                                <img src="images/post4.png" alt="">
+                                <img src="{{asset('images/post4.png')}}" alt="">
                             </div>
                             <p>
                                 Normal

@@ -17,6 +17,14 @@
                     <form action="{{ route('admin/medical_records/store') }}" method="POST">
                         @csrf
                         <div class="form-group">
+                        <div class="form-group">
+                                <label for="room_id">Room Number</label>
+                                <select name="room_id" class="form-control" required>
+                                    @foreach ($rooms as $room)
+                                    <option value="{{ $room->id }}">{{ $room->room_number }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label for="patient_id">Patient</label>
                                 <select name="patient_id" class="form-control" required>

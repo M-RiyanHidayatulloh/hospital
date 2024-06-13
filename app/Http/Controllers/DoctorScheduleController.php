@@ -14,7 +14,7 @@ class DoctorScheduleController extends Controller
         $schedules = DoctorSchedule::orderBy('id', 'desc')->get();
         $schedules = DoctorSchedule::count();
         $schedules = DoctorSchedule::all();
-        return view('admin.schedules.index', compact('doctor_schedules'));
+        return view('admin.schedules.index', compact('schedules'));
     }
 
     public function create()
@@ -80,4 +80,31 @@ class DoctorScheduleController extends Controller
             return redirect()->route('admin/schedules')->with('error', 'Schedule Delete Fail');
         }
     }
+
+    public function trash() {
+        $schedules = DoctorSchedule::onlyTrashed()->get();
+         return view('admin.schedules.trash', compact('schedules'));
+     }
+ 
+     public function restore($id = null) {
+         if($id != null) {
+             $schedules = DoctorSchedule::onlyTrashed()
+             ->where('id', $id)
+             ->restore();
+         } else {
+             $schedules = DoctorSchedule::onlyTrashed()->restore();
+         }
+         return redirect()->route('admin/schedules/trash')->with('success', 'Doctor Schedule Was Restore');
+     }
+ 
+     public function destroy($id = null) {
+         if($id != null) {
+             $schedules = DoctorSchedule::onlyTrashed()
+             ->where('id', $id)
+             ->forceDelete();
+         } else {
+             $schedules = DoctorSchedule::onlyTrashed()->forceDelete();
+         }
+         return redirect()->route('admin/schedules/trash')->with('success', 'Doctor Schedule Was Delete Permanently');
+     }
 }
