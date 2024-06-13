@@ -5,14 +5,14 @@
         <div class="row align-items-center">
             <div class="col-md-6">
                 <div class="img-box">
-                    <img src="{{asset('images/slide2.jpg')}}" alt="About Rumah Sehat">
+                    <img src="{{ asset('images/slide2.jpg') }}" alt="About Rumah Sehat">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="detail-box">
                     <div class="heading_container">
                         <h2>
-                            Tentang Rumah <span>Sehat</span>
+                            ABOUT RUMAH <span>SEHAT</span>
                         </h2>
                     </div>
                     <p>
@@ -44,37 +44,37 @@
 <section class="facility_section">
     <div class="container">
         <div class="heading_container">
-            <h2>Fasilitas <span>Kami</span></h2>
+            <h2>FASILITAS RUMAH<span> SEHAT</span></h2>
         </div>
         <div class="row">
             <div class="col-sm-4">
                 <div class="img-box">
-                    <img src="{{asset('images/fas1.jpg')}}" alt="Fasilitas Rumah Sehat 1">
+                    <img src="{{ asset('images/fas1.jpg') }}" alt="Fasilitas Rumah Sehat 1">
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="img-box">
-                    <img src="{{asset('images/fas2.jpg')}}" alt="Fasilitas Rumah Sehat 2">
+                    <img src="{{ asset('images/fas2.jpg') }}" alt="Fasilitas Rumah Sehat 2">
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="img-box">
-                    <img src="{{asset('images/fas3.jpg')}}" alt="Fasilitas Rumah Sehat 3">
+                    <img src="{{ asset('images/fas3.jpg') }}" alt="Fasilitas Rumah Sehat 3">
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="img-box">
-                    <img src="{{asset('images/fas4.jpg')}}" alt="Fasilitas Rumah Sehat 4">
+                    <img src="{{ asset('images/fas4.jpg') }}" alt="Fasilitas Rumah Sehat 4">
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="img-box">
-                    <img src="{{asset('images/fas5.jpg')}}" alt="Fasilitas Rumah Sehat 5">
+                    <img src="{{ asset('images/fas5.jpg') }}" alt="Fasilitas Rumah Sehat 5">
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="img-box">
-                    <img src="{{asset('images/fas6.jpg')}}" alt="Fasilitas Rumah Sehat 6">
+                    <img src="{{ asset('images/fas6.jpg') }}" alt="Fasilitas Rumah Sehat 6">
                 </div>
             </div>
         </div>

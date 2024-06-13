@@ -30,14 +30,14 @@
                                 SEND
                             </button>
                         </div>
-                    </form>
-                </div>
-            </div>
-            <div class="col-md-5">
-                <div class="img-box">
-                    <img src="{{asset('images/contact-img.jpg')}}" alt="">
-                </div>
+                </form>
             </div>
         </div>
+        <div class="col-md-5">
+            <div class="img-box">
+                <img src="{{ asset('images/contact-img.jpg') }}" alt="">
+            </div>
+        </div>
+    </div>
     </div>
 </section>
