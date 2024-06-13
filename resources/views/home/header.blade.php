@@ -21,22 +21,26 @@
         <div class="container-fluid">
             <nav class="navbar navbar-expand-lg custom_nav-container">
                 <a class="navbar-brand" href="index.html">
-                    <img src="{{asset('images/logo1.png')}}" alt="">
+                    <img src="{{ asset('images/logo1.png') }}" alt="">
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
                     <span class=""> </span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{ route('home') }}">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{ route('home') }}">Home <span
+                                    class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('about2') }}">About</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="healthInfoDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="healthInfoDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Menu
                             </a>
                             <div class="dropdown-menu" aria-labelledby="healthInfoDropdown">
@@ -53,39 +57,41 @@
                             <a class="nav-link" href="#">Contact Us</a>
                         </li>
                         @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/login') }}">
-                                <i class="fa fa-user" aria-hidden="true"></i>
-                                <span>Login</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/register') }}">
-                                <i class="fa fa-vcard" aria-hidden="true"></i>
-                                <span>Sign Up</span>
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/login') }}">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    <span>Login</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/register') }}">
+                                    <i class="fa fa-vcard" aria-hidden="true"></i>
+                                    <span>Sign Up</span>
+                                </a>
+                            </li>
                         @endguest
                         @auth
-                        @if (Auth::user()->usertype == 'user')
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-user-secret" aria-hidden="true"></i>
-                                <span>{{ Auth::user()->name }}</span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="{{ route('user.dashboard.index') }}">
-                                    <i class="fa fa-user-circle" aria-hidden="true"></i> Profile
-                                </a>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <a class="dropdown-item" href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
-                                        <i class="fa fa-sign-out" aria-hidden="true"></i> Log Out
+                            @if (Auth::user()->usertype == 'user')
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-user-secret" aria-hidden="true"></i>
+                                        <span>{{ Auth::user()->name }}</span>
                                     </a>
-                                </form>
-                            </div>
-                        </li>
-                        @endif
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                                        <a class="dropdown-item" href="{{ route('user.dashboard.index') }}">
+                                            <i class="fa fa-user-circle" aria-hidden="true"></i> Profile
+                                        </a>
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <a class="dropdown-item" href="route('logout')"
+                                                onclick="event.preventDefault(); this.closest('form').submit();">
+                                                <i class="fa fa-sign-out" aria-hidden="true"></i> Log Out
+                                            </a>
+                                        </form>
+                                    </div>
+                                </li>
+                            @endif
                         @endauth
                     </ul>
                     <form class="form-inline mx-auto">

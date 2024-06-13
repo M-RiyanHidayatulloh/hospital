@@ -3,7 +3,7 @@
         <div class="info_top">
             <div class="info_logo">
                 <a href="">
-                    <img src="{{asset('images/logo1.png')}}" alt="">
+                    <img src="{{ asset('images/logo1.png') }}" alt="">
                 </a>
             </div>
         </div>
@@ -54,19 +54,19 @@
                         </div>
                     </div>
                 </div>
-                <!--
+
                 <div class="col-md-6 col-lg-3">
                     <div class="info_post">
                         <h5>LATEST POSTS</h5>
                         <div class="post_box">
                             <div class="img-box">
-                                <img src="{{asset('images/post1.jpg')}}" alt="">
+                                <img src="{{ asset('images/post1.jpg') }}" alt="">
                             </div>
                             <p>Normal distribution</p>
                         </div>
                         <div class="post_box">
                             <div class="img-box">
-                                <img src="{{asset('images/post2.jpg')}}" alt="">
+                                <img src="{{ asset('images/post2.jpg') }}" alt="">
                             </div>
                             <p>Normal distribution</p>
                         </div>
@@ -77,19 +77,19 @@
                         <h5>News</h5>
                         <div class="post_box">
                             <div class="img-box">
-                                <img src="{{asset('images/post3.jpg')}}" alt="">
+                                <img src="{{ asset('images/post3.jpg') }}" alt="">
                             </div>
                             <p>Normal distribution</p>
                         </div>
                         <div class="post_box">
                             <div class="img-box">
-                                <img src="{{asset('images/post4.png')}}" alt="">
+                                <img src="{{ asset('images/post4.png') }}" alt="">
                             </div>
                             <p>Normal distribution</p>
                         </div>
                     </div>
                 </div>
-                -->
+
             </div>
         </div>
     </div>

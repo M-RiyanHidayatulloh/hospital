@@ -14,6 +14,7 @@ class MedicalRecord extends Model
         'room_id',
         'patient_id',
         'doctor_id',
+        'room_id',
         'diagnosis',
         'treatment'
     ];

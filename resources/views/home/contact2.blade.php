@@ -5,9 +5,9 @@
         <div class="row">
             <div class="col">
                 <form>
-                    <h2>
-                        Kontak <span>Kami</span>
-                    </h2>
+                    <h4>
+                        CONTACT<span> US</span>
+                    </h4>
                     <div class="form-row">
                         <div class="form-group col-lg-4">
                             <div class="contact-item">
