@@ -34,11 +34,11 @@
         <div class="row align-items-center">
             <div class="col-md-12">
                 <div class="page-header-title">
-                    <h5 class="m-b-10">Dashboard Pasien</h5>
+                    <h5 class="m-b-10">Dashboard Patient</h5>
                 </div>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
-                    <li class="breadcrumb-item"><a href="#!">Dashboard Pasien</a></li>
+                    <li class="breadcrumb-item"><a href="#!">Dashboard Patient</a></li>
                 </ul>
             </div>
         </div>
@@ -46,6 +46,7 @@
 </div>
 <div class="container mt-5">
     <a href="{{ route('admin/patients/create') }}" class="btn btn-primary rounded-pill">Add New Patient</a>
+    <a href="{{ route('admin/patients/trash') }}" class="btn btn-danger rounded-pill">Trash</a>
     @if ($message = Session::get('success'))
     <div class="alert alert-success mt-2">
         {{ $message }}

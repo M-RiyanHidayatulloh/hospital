@@ -34,11 +34,11 @@
         <div class="row align-items-center">
             <div class="col-md-12">
                 <div class="page-header-title">
-                    <h5 class="m-b-10 weight-bold">Dashboard Jadwal Doctor</h5>
+                    <h5 class="m-b-10 weight-bold">Dashboard Doctor's Schedule</h5>
                 </div>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
-                    <li class="breadcrumb-item"><a href="#!">Dashboard Jadwal Doctor</a></li>
+                    <li class="breadcrumb-item"><a href="#!">Dashboard Doctor's Schedule</a></li>
                 </ul>
             </div>
         </div>
@@ -46,6 +46,7 @@
 </div>
 <div class="container mt-5">
     <a href="{{ route('admin/schedules/create') }}" class="btn btn-primary rounded-pill">Add New Schedule</a>
+    <a href="{{ route('admin/schedules/trash') }}" class="btn btn-danger rounded-pill">Trash</a>
     @if (Session::has('success'))
     <div class="alert alert-success mt-2">
         {{ Session::get('success') }}
@@ -62,6 +63,7 @@
                             <tr>
                                 <th class="text-center">ID</th>
                                 <th class="text-center">Nama Doctor</th>
+                                <th class="text-center">Specialization</th>
                                 <th class="text-center">Day Of Week</th>
                                 <th class="text-center">Start Time</th>
                                 <th class="text-center">End Time</th>
@@ -73,6 +75,7 @@
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
                                 <td class="text-center">{{ $schedule->doctor->doctor_name }}</td>
+                                <td class="text-center">{{ $schedule->doctor->specialization }}</td>
                                 <td class="text-center">{{ $schedule->day_of_week}}</td>
                                 <td class="text-center">{{ $schedule->start_time}}</td>
                                 <td class="text-center">{{ $schedule->end_time}}</td>

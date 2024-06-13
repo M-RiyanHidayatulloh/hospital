@@ -46,6 +46,7 @@
 </div>
 <div class="container mt-5">
     <a href="{{ route('admin/rooms/create') }}" class="btn btn-primary rounded-pill">Add New Room</a>
+    <a href="{{ route('admin/rooms/trash') }}" class="btn btn-danger rounded-pill">Trash</a>
     @if ($message = Session::get('success'))
     <div class="alert alert-success mt-2">
         {{ $message }}
@@ -63,8 +64,8 @@
                                     <th class="text-center">ID</th>
                                     <th class="text-center">Room Number</th>
                                     <th class="text-center">Type</th>
-                                    <th class="text-center">Capacity</th>
                                     <th class="text-center">Status</th>
+                                    <th class="text-center">Capacity</th> 
                                     <th class="text-center">Actions</th>
                                 </tr>
                             </thead>

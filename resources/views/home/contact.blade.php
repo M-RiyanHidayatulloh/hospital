@@ -25,11 +25,18 @@
                                     Name, City, Country</a>
                             </div>
                         </div>
-                    </div>
-                    <div class="btn-box">
-                        <button type="submit" class="btn">Submit Now</button>
-                    </div>
-                </form>
+                        <div class="btn_box">
+                            <button>
+                                SEND
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="img-box">
+                    <img src="{{asset('images/contact-img.jpg')}}" alt="">
+                </div>
             </div>
         </div>
     </div>

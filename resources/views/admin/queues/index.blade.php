@@ -36,11 +36,11 @@
         <div class="row align-items-center">
             <div class="col-md-12">
                 <div class="page-header-title">
-                    <h5 class="m-b-10">Dashboard Antrian</h5>
+                    <h5 class="m-b-10">Dashboard Queue</h5>
                 </div>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
-                    <li class="breadcrumb-item"><a href="#!">Dashboard Antrian</a></li>
+                    <li class="breadcrumb-item"><a href="#!">Dashboard Queue</a></li>
                 </ul>
             </div>
         </div>
@@ -48,6 +48,7 @@
 </div>
 <div class="container mt-5">
     <a href="{{ route('admin/queues/create') }}" class="btn btn-primary rounded-pill">Add New Queue</a>
+    <a href="{{ route('admin/queues/trash') }}" class="btn btn-danger rounded-pill">Trash</a>
     @if ($message = Session::get('success'))
     <div class="alert alert-success mt-2">
         {{ $message }}

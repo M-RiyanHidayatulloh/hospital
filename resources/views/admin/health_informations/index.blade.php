@@ -45,7 +45,8 @@
     </div>
 </div>
 <div class="container mt-5">
-    <a href="{{ route('admin/health_informations/create') }}" class="btn btn-primary mb-3 rounded-pill">Add New Information</a>
+    <a href="{{ route('admin/health_informations/create') }}" class="btn btn-primary rounded-pill">Add New Information</a>
+    <a href="{{ route('admin/health_informations/trash') }}" class="btn btn-danger rounded-pill">Trash</a>
     @if ($message = Session::get('success'))
     <div class="alert alert-success mt-2">
         {{ $message }}
@@ -53,14 +54,14 @@
     @endif
 </div>
 <div class="container mt-4">
-        <div class="card">
-            <div class="col-md-12">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-hover table-bordered" id="data-table">
+    <div class="card">
+        <div class="col-md-12">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered" id="data-table">
                         <thead>
                             <tr>
-                            <th class="text-center">ID</th>
+                                <th class="text-center">ID</th>
                                 <th class="text-center">Title</th>
                                 <th class="text-center">Content</th> <!-- Added Content Header -->
                                 <th class="text-center">Actions</th>
@@ -69,7 +70,7 @@
                         <tbody>
                             @forelse ($health_informations as $healthInformation)
                             <tr>
-                            <td class="text-center">{{ $loop->iteration }}</td>
+                                <td class="text-center">{{ $loop->iteration }}</td>
                                 <td class="text-center">{{ $healthInformation->title }}</td>
                                 <td class="text-center">{!! $healthInformation->content !!}</td> <!-- Display content -->
                                 <td class="text-center">
@@ -81,10 +82,10 @@
                             <div class="alert alert-danger">Data Health Information belum tersedia</div>
                             @endforelse
                         </tbody>
-                        </table>
-                    </div>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
-    @endsection
+</div>
+@endsection

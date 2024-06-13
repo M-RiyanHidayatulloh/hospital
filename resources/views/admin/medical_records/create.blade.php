@@ -18,6 +18,14 @@
                             @csrf
                             <div class="form-group">
                                 <div class="form-group">
+                                    <label for="room_id">Room Number</label>
+                                    <select name="room_id" class="form-control" required>
+                                        @foreach ($rooms as $room)
+                                            <option value="{{ $room->id }}">{{ $room->room_number }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="patient_id">Patient</label>
                                     <select name="patient_id" class="form-control" required>
                                         @foreach ($patients as $patient)
@@ -32,25 +40,18 @@
                                             <option value="{{ $doctor->id }}">{{ $doctor->doctor_name }}</option>
                                         @endforeach
                                     </select>
-                                    <div class="form-group">
-                                        <label for="room_id">Room</label>
-                                        <select name="room_id" class="form-control" required>
-                                            @foreach ($rooms as $room)
-                                                <option value="{{ $room->id }}">{{ $room->room_number }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="diagnosis">Diagnosis</label>
-                                        <textarea name="diagnosis" class="form-control" required></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="treatment">Treatment</label>
-                                        <textarea name="treatment" class="form-control" required></textarea>
-                                    </div>
-                                    <a href="{{ route('admin/medical_records') }}" class="btn btn-danger mr-2 rounded-pill"
-                                        role="button">Batal</a>
-                                    <button type="submit" class="btn btn-primary rounded-pill">Save</button>
+                                </div>
+                                <div class="form-group">
+                                    <label for="diagnosis">Diagnosis</label>
+                                    <textarea name="diagnosis" class="form-control" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="treatment">Treatment</label>
+                                    <textarea name="treatment" class="form-control" required></textarea>
+                                </div>
+                                <a href="{{ route('admin/medical_records') }}" class="btn btn-danger mr-2 rounded-pill"
+                                    role="button">Batal</a>
+                                <button type="submit" class="btn btn-primary rounded-pill">Save</button>
                         </form>
                     </div>
                 </div>
