@@ -13,6 +13,9 @@ class RoomController extends Controller
     public function index()
     {
         $rooms = Room::latest()->paginate(5);
+        $rooms = Room::orderBy('id', 'desc')->get();
+        $rooms = Room::count();
+        $rooms = Room::all();
         return view('admin.rooms.index', compact('rooms'));
     }
 
@@ -94,4 +97,33 @@ class RoomController extends Controller
             return redirect()->route('admin/rooms')->with('error', 'Room Delete Fail');
         }
     }
-}
+
+    public function trash() {
+        $rooms = Room::onlyTrashed()->get();
+         return view('admin.rooms.trash', compact('rooms'));
+     }
+ 
+     public function restore($id = null) {
+         if($id != null) {
+             $rooms = Room::onlyTrashed()
+             ->where('id', $id)
+             ->restore();
+         } else {
+             $rooms = Room::onlyTrashed()->restore();
+         }
+         return redirect()->route('admin/rooms/trash')->with('success', 'Room Data Was Restore');
+     }
+ 
+     public function destroy($id = null) {
+         if($id != null) {
+             $rooms = Room::onlyTrashed()
+             ->where('id', $id)
+             ->forceDelete();
+         } else {
+             $rooms = Room::onlyTrashed()->forceDelete();
+         }
+         return redirect()->route('admin/rooms/trash')->with('success', 'Room Data Was Delete Permanently');
+     }
+ }
+ 
+

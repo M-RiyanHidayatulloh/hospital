@@ -241,12 +241,9 @@ a:focus {
 }
 
 .quote_btn-container {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
+    z-index: 1050; /* Tambahkan z-index yang cukup tinggi */
 }
 
 .quote_btn-container a {
@@ -262,6 +259,17 @@ a:focus {
 .quote_btn-container a:hover {
     color: #252525;
 }
+
+.navbar-nav .dropdown-menu {
+    right: 0; /* Menambahkan posisi dropdown agar tidak keluar dari navbar */
+    z-index: 1050; /* Pastikan dropdown berada di atas elemen lain */
+}
+
+.dropdown-menu-right {
+    right: 0; /* Menjaga dropdown di dalam batas navbar */
+    left: auto; /* Pastikan dropdown tidak tumpang tindih ke kiri */
+}
+
 
 /*end header section*/
 /* slider section */

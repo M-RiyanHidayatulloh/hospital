@@ -30,6 +30,15 @@ class UserDashboardController extends Controller
         // ];
         return view('home.about2');
     }
+
+    public function contact()
+    {
+        // $profile = Auth::user();
+        // $data = [
+        //     'profile'   => $profile
+        // ];
+        return view('home.contact2');
+    }
 }
 
 

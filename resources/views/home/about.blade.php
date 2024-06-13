@@ -3,14 +3,14 @@
         <div class="row align-items-center">
             <div class="col-md-6">
                 <div class="img-box">
-                    <img src="images/slide2.jpg" alt="About Rumah Sehat">
+                    <img src="{{ asset('images/slide2.jpg') }}" alt="About Rumah Sehat">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="detail-box">
                     <div class="heading_container">
                         <h2>
-                            Tentang Rumah <span>Sehat</span>
+                            ABOUT RUMAH <span>SEHAT</span>
                         </h2>
                     </div>
                     <p>

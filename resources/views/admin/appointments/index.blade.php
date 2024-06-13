@@ -46,6 +46,7 @@
 </div>
 <div class="container mt-5">
     <a href="{{ route('admin/appointments/create') }}" class="btn btn-primary rounded-pill">Add New Appointment</a>
+    <a href="{{ route('admin/appointments/trash') }}" class="btn btn-danger rounded-pill">Trash</a>
     @if ($message = Session::get('success'))
     <div class="alert alert-success mt-2">
         {{ $message }}
@@ -73,7 +74,7 @@
                                 @forelse ($appointments as $appointment)
                                 <tr>
                                     <td class="text-center">{{ $loop->iteration }}</td>
-                                    <td class="text-center">{{ $appointment->patient->name}}</td>
+                                    {{-- <td class="text-center">{{ $appointment->patient->name}}</td> --}}
                                     <td class="text-center">{{ $appointment->doctor->doctor_name}}</td>
                                     <td class="text-center">{{ $appointment->room ? $appointment->room->room_number : 'None' }}</td>
                                     <td class="text-center">{{ $appointment->date }}</td>

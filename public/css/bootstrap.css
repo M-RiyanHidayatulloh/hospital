@@ -2475,7 +2475,16 @@ textarea.form-control.is-invalid {
     flex-flow: row wrap;
     -ms-flex-align: center;
     align-items: center;
+    justify-content: center; /* Menambahkan ini untuk memastikan tombol berada di tengah */
 }
+
+@media (max-width: 575.98px) {
+    .form-inline {
+        width: 100%;
+        justify-content: center; /* Menambahkan ini untuk tampilan mobile */
+    }
+}
+
 
 .form-inline .form-check {
     width: 100%;
@@ -3470,7 +3479,7 @@ input[type="button"].btn-block {
 .dropdown-item {
     display: block;
     width: 100%;
-    padding: 0.25rem 1.5rem;
+    padding: 0.5rem 1rem;
     clear: both;
     font-weight: 400;
     color: #212529;

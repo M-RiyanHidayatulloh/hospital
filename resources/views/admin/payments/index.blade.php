@@ -48,6 +48,7 @@
 </div>
 <div class="container mt-5">
     <a href="{{ route('admin/payments/create') }}" class="btn btn-primary rounded-pill">Add New Payment</a>
+    <a href="{{ route('admin/payments/trash') }}" class="btn btn-danger rounded-pill">Trash</a>
     @if ($message = Session::get('success'))
     <div class="alert alert-success mt-2">
         {{ $message }}
