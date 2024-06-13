@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\UserAppointmentsController;
 use App\Http\Controllers\UserOnlineConsultationController;
+use App\Http\Controllers\UserInformationController;
+
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -167,3 +169,7 @@ Route::get('/about', [UserDashboardController::class, 'about'])->name('about2');
 Route::get('/doctor_schedule', [UserScheduleController::class, 'index'])->name('doctor_schedule');
 Route::get('user/appointments', [UserAppointmentsController::class, 'index'])->name('user.appointments.index');
 Route::get('/online', [UserOnlineConsultationController::class, 'index'])->name('user.OnlineConsultation.index');
+
+Route::get('/Information', [UserInformationController::class, 'index'])->name('Information.index');
+Route::get('/information/{id}', [UserInformationController::class, 'show'])->name('information.show');
+Route::get('/search', [HealthInformationController::class, 'search'])->name('search');

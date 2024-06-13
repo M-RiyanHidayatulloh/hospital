@@ -21,6 +21,11 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="category">category</label>
+                            <input type="text" name="category" class="form-control" value="{{ $health_information->category }}">
+                        </div>
+
+                        <div class="form-group">
                             <label for="image">image</label>
                             <input type="file" name="image" class="form-control" value="{{ $health_information->image }}" required>
                         </div>

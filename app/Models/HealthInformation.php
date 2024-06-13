@@ -13,5 +13,6 @@ class HealthInformation extends Model
         'title',
         'content',
         'image',
+        'category',
     ];
 }

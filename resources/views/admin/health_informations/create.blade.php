@@ -25,6 +25,10 @@
                             <textarea name="content" class="form-control" rows="5" required></textarea>
                         </div>
                         <div class="form-group">
+                            <label for="category">category</label>
+                            <input type="text" name="category" class="form-control" required>
+                        </div>
+                        <div class="form-group">
                             <label for="image">image</label>
                             <input type="file" name="image" class="form-control" required>
                         </div>
