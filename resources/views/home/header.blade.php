@@ -46,15 +46,17 @@
                             <div class="dropdown-menu" aria-labelledby="healthInfoDropdown">
                                 <a class="dropdown-item" href="{{ route('doctor_schedule') }}">Doctor Schedule</a>
                                 <a class="dropdown-item" href="{{ route('user.appointments.index') }}">Appointment</a>
-                                <a class="dropdown-item" href="#">Online Consultation</a>
-                                <a class="dropdown-item" href="#">Medical Record</a>
+                                <a class="dropdown-item" href="{{ route('user.OnlineConsultation.index') }}">Online
+                                    Consultation</a>
+                                <a class="dropdown-item" href="{{ route('user.medicalrecord.index') }}">Medical
+                                    Record</a>
                             </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Health Information</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact Us</a>
+                            <a class="nav-link" href="{{ route('contact2') }}">Contact Us</a>
                         </li>
                         @guest
                             <li class="nav-item">
