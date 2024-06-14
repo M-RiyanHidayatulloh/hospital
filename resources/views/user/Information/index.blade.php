@@ -15,13 +15,12 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Tambahkan JS Slick -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 
     <style>
-
         .header {
             display: flex;
             align-items: center;
@@ -284,7 +283,7 @@
         <div class="articles">
             @foreach ($health_informations as $health_information)
                 <div class="article">
-                    <a href="{{ route('information.show', $health_information->id) }}">
+                    <a href="{{ route('user.information.show', $health_information->id) }}">
                         <img src="{{ asset('storage/informations/' . $health_information->image) }}"
                             alt="Article Image">
                         <div class="article-content">
