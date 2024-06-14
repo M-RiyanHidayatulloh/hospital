@@ -35,3 +35,66 @@
         </div>
     </div>
 </section>
+
+
+{{-- <section class="book_section layout_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <form action="#" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <h4>
+                        BOOK <span>Ulasan</span>
+                    </h4>
+                    <div class="form-row ">
+                        <div class="form-group col-lg-4">
+                            <label for="inputPatientName">Your Name </label>
+                            <input type="text" class="form-control" id="inputPatientName"
+                                value="{{ Auth::user()->name }}" readonly>
+                        </div>
+                        <div class="form-group col-lg-4">
+                            <label for="input">Ulasan</label>
+                            <label for="content" class="form-label">Ulasan</label>
+                            <textarea type="text" class="form-control" name="content" id="content" required></textarea>
+                            <x-input-error :messages="$errors->get('content')" class="mt-2" />
+                        </div>
+                        {{-- <input type="time" id="appt-time" name="appt-time" min="00:00" max="23:59" required> --}}
+                    {{-- </div>
+            </div>
+        </div>
+        <div class="btn-box">
+            <button type="submit" class="btn ">Submit Now</button>
+        </div>
+        </form>
+    </div>
+</section> --}}
+
+{{-- <section class="book_section layout_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nama Dokter</th>
+                            <th scope="col">Ruangan</th>
+                            <th scope="col">Tanggal Pertemuan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ()
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item->doctor->doctor_name }}</td>
+                                <td>{{ $item->room->room_number }}</td>
+                                <td>{{ $item->date }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section> --}}

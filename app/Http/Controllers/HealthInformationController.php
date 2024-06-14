@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\HealthInformation;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class HealthInformationController extends Controller
         $health_informations = HealthInformation::orderBy('id', 'desc')->get();
         $health_informations = HealthInformation::count();
         $health_informations = HealthInformation::all();
-      
+
         return view('admin.health_informations.index', compact('health_informations'));
     }
 
@@ -48,7 +49,7 @@ class HealthInformationController extends Controller
         $image = $request->file('image');
         $image->storeAs('public/informations', $image->hashName());
 
-        $health_information = HealthInformation::create([
+        HealthInformation::create([
             'title' => $request->title,
             'content' => $request->content,
             'image' => $image->hashName(),
@@ -67,7 +68,7 @@ class HealthInformationController extends Controller
 
     public function update(Request $request, string $id)
     {
-              $healthInformation = HealthInformation::findOrFail($id);
+        $healthInformation = HealthInformation::findOrFail($id);
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required',
@@ -98,7 +99,7 @@ class HealthInformationController extends Controller
     public function delete($id)
     {
         $health_informations = HealthInformation::findOrFail($id)->delete();
-        if($health_informations) {
+        if ($health_informations) {
             return redirect()->route('admin/health_informations')->with('success', 'Health Information Data Was Deleted');
         } else {
             return redirect()->route('admin/health_informations')->with('error', 'Health Information Delete Fail');
@@ -119,31 +120,34 @@ class HealthInformationController extends Controller
 
 
 
-    public function trash() {
+    public function trash()
+    {
         $health_informations = HealthInformation::onlyTrashed()->get();
-         return view('admin.health_informations.trash', compact('health_informations'));
-     }
- 
-     public function restore($id = null) {
-         if($id != null) {
-             $health_informations = HealthInformation::onlyTrashed()
-             ->where('id', $id)
-             ->restore();
-         } else {
-             $health_informations = HealthInformation::onlyTrashed()->restore();
-         }
-         return redirect()->route('admin/health_informations/trash')->with('success', 'Health Information Was Restore');
-     }
- 
-     public function destroy($id = null) {
-         if($id != null) {
-             $health_informations = HealthInformation::onlyTrashed()
-             ->where('id', $id)
-             ->forceDelete();
-         } else {
-             $health_informations = HealthInformation::onlyTrashed()->forceDelete();
-         }
-         return redirect()->route('admin/health_informations/trash')->with('success', 'Health Information Was Delete Permanently');
-     }
+        return view('admin.health_informations.trash', compact('health_informations'));
+    }
+
+    public function restore($id = null)
+    {
+        if ($id != null) {
+            $health_informations = HealthInformation::onlyTrashed()
+                ->where('id', $id)
+                ->restore();
+        } else {
+            $health_informations = HealthInformation::onlyTrashed()->restore();
+        }
+        return redirect()->route('admin/health_informations/trash')->with('success', 'Health Information Was Restore');
+    }
+
+    public function destroy($id = null)
+    {
+        if ($id != null) {
+            $health_informations = HealthInformation::onlyTrashed()
+                ->where('id', $id)
+                ->forceDelete();
+        } else {
+            $health_informations = HealthInformation::onlyTrashed()->forceDelete();
+        }
+        return redirect()->route('admin/health_informations/trash')->with('success', 'Health Information Was Delete Permanently');
+    }
 
 }
