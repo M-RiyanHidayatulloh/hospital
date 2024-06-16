@@ -9,13 +9,13 @@ class Review extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'patient_id',
-        'riview' => 'string|review',
+        'user_id',
+        'review',
 
     ];
 
-    public function appointment()
+    public function user()
     {
-        return $this->belongsTo(Patient::class);
+        return $this->belongsTo(User::class);
     }
 }
