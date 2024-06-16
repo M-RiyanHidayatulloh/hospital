@@ -47,7 +47,6 @@
         </div>
     </div>
     <div class="container mt-5">
-        <a href="{{ route('admin/reviews/create') }}" class="btn btn-primary rounded-pill">Add New Review</a>
         <a href="{{ route('admin/reviews/trash') }}" class="btn btn-danger rounded-pill">Trash</a>
         @if ($message = Session::get('success'))
             <div class="alert alert-success mt-2">
@@ -64,7 +63,7 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">ID</th>
-                                    <th class="text-center">User ID</th>
+                                    <th class="text-center">Name</th>
                                     <th class="text-center">Review Content</th>
                                     <th class="text-center">Actions</th>
                                 </tr>
@@ -73,7 +72,7 @@
                                 @forelse ($reviews as $review)
                                     <tr>
                                         <td class="text-center">{{ $loop->iteration }}</td>
-                                        <td class="text-center">{{ $review->user_id }}</td>
+                                        <td class="text-center">{{ $review->user->name }}</td>
                                         <td class="text-center">{{ $review->content }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('admin/reviews/edit', $review->id) }}"

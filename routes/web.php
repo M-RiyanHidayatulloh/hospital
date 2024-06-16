@@ -23,6 +23,7 @@ use App\Http\Controllers\UserAppointmentsController;
 use App\Http\Controllers\UserMedicalRecordController;
 use App\Http\Controllers\UserOnlineConsultationController;
 use App\Http\Controllers\UserInformationController;
+use App\Http\Controllers\UserReviewController;
 
 
 // Route::get('/', function () {
@@ -219,3 +220,4 @@ Route::get('/information/{id}', [UserInformationController::class, 'show'])->nam
 Route::get('/search', [HealthInformationController::class, 'search'])->name('search');
 Route::put('set-appointment', [UserAppointmentsController::class, 'update'])->name('set-appointment');
 
+Route::post('set-review', [ReviewController::class, 'store'])->name('set-review');
