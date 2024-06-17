@@ -17,6 +17,9 @@ class PaymentController extends Controller
     public function index()
     {
         $payments = Payment::latest()->paginate(5);
+        $payments = Payment::orderBy('id', 'desc')->get();
+        $payments = Payment::count();
+        $payments = Payment::all();
         return view('admin.payments.index', compact('payments'));
     }
 
@@ -85,6 +88,33 @@ class PaymentController extends Controller
             return redirect()->route('admin/payments')->with('error', 'Queue Delete Fail');
         }
     }
+
+    public function trash() {
+        $payments = Payment::onlyTrashed()->get();
+         return view('admin.payments.trash', compact('payments'));
+     }
+
+     public function restore($id = null) {
+         if($id != null) {
+             $payments = Payment::onlyTrashed()
+             ->where('id', $id)
+             ->restore();
+         } else {
+             $payments = Payment::onlyTrashed()->restore();
+         }
+         return redirect()->route('admin/payments/trash')->with('success', 'Payment Data Was Restore');
+     }
+
+     public function destroy($id = null) {
+         if($id != null) {
+             $payments = Payment::onlyTrashed()
+             ->where('id', $id)
+             ->forceDelete();
+         } else {
+             $payments = Payment::onlyTrashed()->forceDelete();
+         }
+         return redirect()->route('admin/payments/trash')->with('success', 'Payment Data Was Delete Permanently');
+     }
 
     public function showPaymentForm(Request $request)
     {

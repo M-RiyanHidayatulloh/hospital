@@ -45,7 +45,8 @@
     </div>
 </div>
 <div class="container mt-5">
-    <a href="{{ route('admin/online_consultations/create') }}" class="btn btn-primary mb-4 rounded-pill">Create New Consultation</a>
+    <a href="{{ route('admin/online_consultations/create') }}" class="btn btn-primary rounded-pill">Create New Consultation</a>
+    <a href="{{ route('admin/online_consultations/trash') }}" class="btn btn-danger rounded-pill">Trash</a>
     @if ($message = Session::get('success'))
     <div class="alert alert-success mt-2">
         {{ $message }}

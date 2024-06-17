@@ -116,4 +116,31 @@ class AppointmentController extends Controller
             return redirect()->route('admin/appointments')->with('error', 'Appointment Delete Fail');
         }
     }
+
+    public function trash() {
+        $appointments = Appointment::onlyTrashed()->get();
+         return view('admin.appointments.trash', compact('appointments'));
+     }
+ 
+     public function restore($id = null) {
+         if($id != null) {
+             $appointments = Appointment::onlyTrashed()
+             ->where('id', $id)
+             ->restore();
+         } else {
+             $appointments = Appointment::onlyTrashed()->restore();
+         }
+         return redirect()->route('admin/appointments/trash')->with('success', 'Appointment Data Was Restore');
+     }
+ 
+     public function destroy($id = null) {
+         if($id != null) {
+             $appointments = Appointment::onlyTrashed()
+             ->where('id', $id)
+             ->forceDelete();
+         } else {
+             $appointments = Appointment::onlyTrashed()->forceDelete();
+         }
+         return redirect()->route('admin/appointments/trash')->with('success', 'Appointment Data Was Delete Permanently');
+     }
 }

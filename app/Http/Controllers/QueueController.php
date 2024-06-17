@@ -14,6 +14,9 @@ class QueueController extends Controller
     public function index()
     {
         $queues = Queue::latest()->paginate(5);
+        $queues = Queue::orderBy('id', 'desc')->get();
+        $queues = Queue::count();
+        $queues = Queue::all();
         return view('admin.queues.index', compact('queues'));
     }
 
@@ -98,4 +101,31 @@ class QueueController extends Controller
             return redirect()->route('admin/queues')->with('error', 'Queue Delete Fail');
         }
     }
+
+    public function trash() {
+        $queues = Queue::onlyTrashed()->get();
+         return view('admin.queues.trash', compact('queues'));
+     }
+ 
+     public function restore($id = null) {
+         if($id != null) {
+             $queues = Queue::onlyTrashed()
+             ->where('id', $id)
+             ->restore();
+         } else {
+             $queues = Queue::onlyTrashed()->restore();
+         }
+         return redirect()->route('admin/queues/trash')->with('success', 'Queue Data Was Restore');
+     }
+ 
+     public function destroy($id = null) {
+         if($id != null) {
+             $queues = Queue::onlyTrashed()
+             ->where('id', $id)
+             ->forceDelete();
+         } else {
+             $queues = Queue::onlyTrashed()->forceDelete();
+         }
+         return redirect()->route('admin/queues/trash')->with('success', 'Queue Data Was Delete Permanently');
+     }
 }
