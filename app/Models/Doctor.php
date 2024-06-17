@@ -14,9 +14,7 @@ class Doctor extends Model
     protected $hidden = ['created_at', 'updated_at'];
     protected $fillable = [
         'user_id',
-        'doctor_name',
         'image',
-        'specialization',
         'phone',
         'available_times',
     ];

@@ -11,8 +11,8 @@ class OnlineConsultation extends Model
     use HasFactory;
     protected $hidden = ['created_at', 'updated_at'];
     protected $fillable = [
-        'patient_id',
-        'doctor_id',
+        'patient_user_id',
+        'doctor_user_id',
         'consultation_date',
         'consultation_mode',
         'notes',
@@ -20,11 +20,11 @@ class OnlineConsultation extends Model
 
     public function patient()
     {
-        return $this->belongsTo(Patient::class);
+        return $this->belongsTo(User::class, 'patient_user_id');
     }
 
     public function doctor()
     {
-        return $this->belongsTo(Doctor::class);
+        return $this->belongsTo(User::class, 'doctor_user_id');
     }
 }

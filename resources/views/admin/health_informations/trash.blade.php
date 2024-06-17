@@ -37,7 +37,7 @@
                     <h5 class="m-b-10">Dashboard Trash</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin/dashboard') }}"><i class="feather icon-home"></i></a></li>
                     <li class="breadcrumb-item"><a href="{{ route('admin/health_informations') }}">Dashboard Health Information</a></li>
                     <li class="breadcrumb-item"><a href="#!">Trash</a></li>
                 </ul>

@@ -1,11 +1,27 @@
 @extends('admin.includes.home')
 
 @section('content')
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">Dashboard Create</h5>
+                </div>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('admin/dashboard') }}"><i class="feather icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin/health_informations') }}">Dashboard Health Information</a></li>
+                    <li class="breadcrumb-item"><a href="#!">Create</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container mt-5 mb-5">
     <div class="row">
         <div class="col-md-12">
             <div class="page-header-title">
-                <h1 class="m-b-10">Add New Health Information</h1>
+                <h2 class="m-b-10">Add New Health Information</h2>
             </div>
             <div class="card border-1 shadow-md rounded">
                 <div class="card-body">

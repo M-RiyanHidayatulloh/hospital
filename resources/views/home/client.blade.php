@@ -7,28 +7,25 @@
         </div>
     </div>
     <div class="container px-0">
-        <div id="customCarousel2" class="carousel  carousel-fade" data-ride="carousel">
+        <div id="customCarousel2{{}}" class="carousel  carousel-fade" data-ride="carousel">
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="box">
-                        <div class="client_info">
-                            <div class="client_name">
-                                <thead>
-                                    <tr>
-                                        <h5>Budi</h5>
+                @foreach ($review as $item)
+                    <div class="carousel-item active">
+                        <div class="box">
+                            <div class="client_info">
+                                <div class="client_name">
+                                    <h5>{{ $item->name }}</h5>
+                                    {{-- <h6>{{ $item->judul }}</h6> --}}
+                                </div>
+                                <i class="fa fa-quote-left" aria-hidden="true"></i>
                             </div>
-                            <i class="fa fa-quote-left" aria-hidden="true"></i>
+                            <p>
+                                {{ $item->review }}
+                            </p>
                         </div>
-                        <p>
-                            "Rumah Sehat memberikan pelayanan yang cepat dan ramah. Saya sangat puas dengan kunjungan
-                            saya."
-                        </p>
                     </div>
-                </div>
+                @endforeach
             </div>
-            </tr>
-            </thead>
-
             <div class="carousel_btn-box">
                 <a class="carousel-control-prev" href="#customCarousel2" role="button" data-slide="prev">
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
