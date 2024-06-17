@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="container px-0">
-        <div id="customCarousel2{{}}" class="carousel  carousel-fade" data-ride="carousel">
+        <div id="customCarousel2" class="carousel  carousel-fade" data-ride="carousel">
             <div class="carousel-inner">
                 @foreach ($review as $item)
                     <div class="carousel-item active">

@@ -27,7 +27,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'usertype' => 'required|string|max:255',
-            'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'profile_image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:1048',
             'phone' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'date_of_birth' => 'required|string|max:255',

@@ -39,19 +39,4 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-
-    public function doctor(): HasOne
-    {
-        return $this->hasOne(Doctor::class);
-    }
-
-    public function patient(): HasOne
-{
-    return $this->hasOne(Patient::class);
-}
-
-public function appointment()
-{
-    return $this->belongsTo(Appointment::class);
-}
 }

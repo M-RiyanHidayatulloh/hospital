@@ -214,6 +214,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('doctor_schedules', DoctorScheduleController::class);
         Route::resource('reviews', ReviewController::class);
         Route::resource('user_list', UserController::class);
+        Route::get('user/appointments', [UserAppointmentsController::class, 'index'])->name('user.appointments.index');
+
 
 
         // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -233,7 +235,6 @@ Route::get('/user', [UserDashboardController::class, 'index'])->name('user.dashb
 Route::get('/about', [UserDashboardController::class, 'about'])->name('about2');
 Route::get('/contact', [UserDashboardController::class, 'contact'])->name('contact2');
 Route::get('/doctor_schedule', [UserScheduleController::class, 'index'])->name('doctor_schedule');
-Route::get('user/appointments', [UserAppointmentsController::class, 'index'])->name('user.appointments.index');
 Route::get('user/medicalrecord', [UserMedicalRecordController::class, 'index'])->name('user.medicalrecord.index');
 Route::get('/online', [UserOnlineConsultationController::class, 'index'])->name('user.OnlineConsultation.index');
 
