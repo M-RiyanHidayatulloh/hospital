@@ -37,7 +37,7 @@
                     <h5 class="m-b-10">Dashboard Trash</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin/dashboard') }}"><i class="feather icon-home"></i></a></li>
                     <li class="breadcrumb-item"><a href="{{ route('admin/doctors') }}">Dashboard Doctor</a></li>
                     <li class="breadcrumb-item"><a href="#!">Trash</a></li>
                 </ul>
@@ -76,11 +76,11 @@
                             @forelse ($doctors as $doctor)
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
-                                <td class="text-center">{{ $doctor->doctor_name }}</td>
+                                <td class="text-center">{{ $doctor->user->name }}</td>
                                 <td class="text-center">
                                     <img src="{{ asset('/storage/doctors/' . $doctor->image) }}" class="rounded" style="width: 50px">
                                 </td>
-                                <td class="text-center">{{ $doctor->specialization }}</td>
+                                <td class="text-center">{{ $doctor->user->specialization }}</td>
                                 <td class="text-center">{{ $doctor->phone }}</td>
                                 <td class="text-center">{{ $doctor->available_times }}</td>
                                 <td class="text-center">

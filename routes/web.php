@@ -13,7 +13,9 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QueueController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserScheduleController;
 use Illuminate\Support\Facades\Route;
@@ -21,8 +23,12 @@ use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\UserAppointmentsController;
 use App\Http\Controllers\UserMedicalRecordController;
 use App\Http\Controllers\UserOnlineConsultationController;
+use App\Http\Controllers\AdminProfileController;
+use App\Http\Controllers\AdminPasswordController;
 use App\Http\Controllers\UserInformationController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UserReviewController;
+
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -48,10 +54,14 @@ Route::group(['middleware' => ['auth']], function () {
     // Route::post('/updateProfile', [ProfileController::class, 'updateProfile'])->name('profile.update');
     // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('admin/profile', [AdminProfileController::class, 'edit'])->name('admin.dashboard.edit');
+    Route::patch('admin/profile', [AdminProfileController::class, 'update'])->name('admin.dashboard.update');
+    // Route::get('admin/password', [AdminPasswordController::class, 'edit'])->name('admin.password.edit');
+    // Route::put('admin/password', [AdminPasswordController::class, 'update'])->name('admin.password.update');
 
     Route::middleware(['auth', 'verified', 'doctor'])->group(function () {
         Route::get('doctors/dashboard', [HomeController::class, 'doctor'])->name('doctor/dashboard');
-        });
+    });
 
     // Route::group(['middleware' => ['auth', 'doctor']], function () {
     //     Route::resource('my_schedule', DoctorScheduleController::class);
@@ -167,6 +177,27 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('admin/health_informations/restore/{id?}', [HealthInformationController::class, 'restore'])->name('admin/health_informations/restore');
         Route::get('admin/health_informations/destroy/{id?}', [HealthInformationController::class, 'destroy'])->name('admin/health_informations/destroy');
 
+        Route::get('/admin/reviews', [ReviewController::class, 'index'])->name('admin/reviews');
+        Route::get('/admin/reviews/create', [ReviewController::class, 'create'])->name('admin/reviews/create');
+        Route::post('/admin/reviews/store', [ReviewController::class, 'store'])->name('admin/reviews/store');
+        Route::get('/admin/reviews/edit/{id}', [ReviewController::class, 'edit'])->name('admin/reviews/edit');
+        Route::put('/admin/reviews/edit/{id}', [ReviewController::class, 'update'])->name('admin/reviews/update');
+        Route::get('/admin/reviews/delete/{id}', [ReviewController::class, 'delete'])->name('admin/reviews/delete');
+        Route::get('admin/reviews/trash', [ReviewController::class, 'trash'])->name('admin/reviews/trash');
+        Route::get('admin/reviews/restore/{id?}', [ReviewController::class, 'restore'])->name('admin/reviews/restore');
+        Route::get('admin/reviews/destroy/{id?}', [ReviewController::class, 'destroy'])->name('admin/reviews/destroy');
+
+        Route::get('/admin/user_list', [UserController::class, 'index'])->name('admin/user_list');
+        Route::get('/admin/user_list/create', [UserController::class, 'create'])->name('admin/user_list/create');
+        Route::post('/admin/user_list/store', [UserController::class, 'store'])->name('admin/user_list/store');
+        Route::get('/admin/user_list/edit/{id}', [UserController::class, 'edit'])->name('admin/user_list/edit');
+        Route::put('/admin/user_list/edit/{id}', [UserController::class, 'update'])->name('admin/user_list/update');
+        Route::get('/admin/user_list/delete/{id}', [UserController::class, 'delete'])->name('admin/user_list/delete');
+        Route::get('admin/user_list/trash', [UserController::class, 'trash'])->name('admin/user_list/trash');
+        Route::get('admin/user_list/restore/{id?}', [UserController::class, 'restore'])->name('admin/user_list/restore');
+        Route::get('admin/user_list/destroy/{id?}', [UserController::class, 'destroy'])->name('admin/user_list/destroy');
+
+
     });
 
     Route::middleware(['auth'])->group(function () {
@@ -181,6 +212,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('health_informations', HealthInformationController::class);
         Route::resource('online_consultations', OnlineConsultationController::class);
         Route::resource('doctor_schedules', DoctorScheduleController::class);
+        Route::resource('reviews', ReviewController::class);
+        Route::resource('user_list', UserController::class);
+
+
+        // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     });
 
 
@@ -202,8 +238,8 @@ Route::get('user/medicalrecord', [UserMedicalRecordController::class, 'index'])-
 Route::get('/online', [UserOnlineConsultationController::class, 'index'])->name('user.OnlineConsultation.index');
 
 
-Route::get('/Information', [UserInformationController::class, 'index'])->name('Information.index');
-Route::get('/information/{id}', [UserInformationController::class, 'show'])->name('information.show');
+Route::get('/Information', [UserInformationController::class, 'index'])->name('user.Information.index');
+Route::get('/information/{id}', [UserInformationController::class, 'show'])->name('user.information.show');
 Route::get('/search', [HealthInformationController::class, 'search'])->name('search');
 
 Route::get('/payment', [PaymentController::class, 'showPaymentForm'])->name('payment.form');
@@ -216,3 +252,4 @@ Route::post('/store-consultation', [UserOnlineConsultationController::class, 'st
 Route::post('/process-payment', [PaymentController::class, 'processPayment'])->name('process-payment');
 Route::put('set-appointment', [UserAppointmentsController::class, 'update'])->name('set-appointment');
 
+Route::post('set-review', [ReviewController::class, 'store'])->name('set-review');

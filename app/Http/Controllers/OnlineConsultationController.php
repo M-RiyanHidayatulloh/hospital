@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\OnlineConsultation;
 use App\Models\Patient;
 use App\Models\Doctor;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class OnlineConsultationController extends Controller
@@ -19,16 +20,16 @@ class OnlineConsultationController extends Controller
 
     public function create()
     {
-        $doctors = Doctor::all();
-        $patients = Patient::all();
+        $patients = User::where('usertype', 'user')->get();
+        $doctors = User::where('usertype', 'doctor')->get();
         return view('admin.online_consultations.create', compact('doctors', 'patients'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'patient_id' => 'required|exists:patients,id',
-            'doctor_id' => 'required|exists:doctors,id',
+            'patient_user_id' => 'required|exists:users,id,usertype,user',
+            'doctor_user_id' => 'required|exists:users,id,usertype,doctor',
             'consultation_date' => 'required|date',
             'consultation_mode' => 'required|in:Chat,Video,Audio',
             'notes' => 'required'
@@ -39,8 +40,8 @@ class OnlineConsultationController extends Controller
 
     public function edit(string $id)
     {
-        $doctors = Doctor::all();
-        $patients = Patient::all();
+        $patients = User::where('usertype', 'user')->get();
+        $doctors = User::where('usertype', 'doctor')->get();
         $consultation = OnlineConsultation::findOrFail($id);
         return view('admin.online_consultations.update', compact('consultation', 'doctors', 'patients'));
     }

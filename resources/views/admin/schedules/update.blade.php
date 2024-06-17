@@ -1,26 +1,53 @@
 @extends('admin.includes.home')
 @section('content')
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+                    <h5 class="m-b-10 weight-bold">Dashboard Update</h5>
+                </div>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('admin/dashboard') }}"><i class="feather icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin/schedules') }}">Dashboard Doctor's Schedule</a></li>
+                    <li class="breadcrumb-item"><a href="#!">Update</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container mt-5 mb-5">
     <div class="row">
         <div class="col-md-12">
+        <div class="page-header-title">
+                <h2 class="m-b-10">Update Doctor's Schedule</h2>
+            </div>
             <div class="card border-1 shadow-md rounded">
                 <div class="card-body">
                     <form action="{{ route('admin/schedules/update', ['id' => $schedule->id]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label for="doctor_name">Nama Doktor</label>
-                            <select name="doctor_id" id="doctor_id" class="form-control" required="required">
-                                @foreach ($doctors as $doctor)
-                                <option value="{{ $doctor->id }}">{{ $doctor->doctor_name }}{{old('doctor_name')}}</option>
+                            <label for="user_id">Doctor Name</label>
+                            <select name="user_id" class="form-control @error('user_id') is-invalid @enderror" required>
+                                <option value="">Select User</option>
+                                @foreach ($users as $user)
+                                    <option value="{{ $user->id }}" {{ $schedule->user_id == $user->id ? 'selected' : '' }}>
+                                        {{ $user->name }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="specialization">Specialization</label>
-                            <select name="doctor_id" id="doctor_id" class="form-control" required="required">
-                                @foreach ($doctors as $doctor)
-                                <option value="{{ $doctor->id }}">{{ $doctor->specialization }}{{old('specialization')}}</option>
+                            <select name="specialization" id="specialization" class="form-control" required>
+                                <option value="">Select Specialization</option>
+                                @foreach ($users as $user)
+                                    @if (!is_null($user->specialization))
+                                        <option value="{{ $user->specialization }}" {{ $schedule->specialization == $user->specialization ? 'selected' : '' }}>
+                                            {{ $user->specialization }}
+                                        </option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -53,7 +80,7 @@
                             </div>
                             @enderror
                         </div>
-                        <a href="{{ route('admin/schedules') }}" class="btn btn-danger mr-2 rounded-pill" role="button">Batal</a>
+                        <a href="{{ route('admin/schedules') }}" class="btn btn-danger mr-2 rounded-pill" role="button">Cancel</a>
                         <button class="btn btn-primary rounded-pill">Update</button>
                     </form>
                 </div>

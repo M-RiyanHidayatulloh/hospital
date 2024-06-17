@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('patient_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('doctor_id')->constrained('users')->onDelete('cascade');
+
             $table->date('consultation_date');
             $table->enum('consultation_mode', ['Chat', 'Video', 'Audio']);
             $table->text('notes');

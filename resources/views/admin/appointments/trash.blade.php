@@ -37,7 +37,7 @@
                     <h5 class="m-b-10">Dashboard Trash</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin/dashboard') }}"><i class="feather icon-home"></i></a></li>
                     <li class="breadcrumb-item"><a href="{{ route('admin/appointments') }}">Dashboard Appointment</a></li>
                     <li class="breadcrumb-item"><a href="#!">Trash</a></li>
                 </ul>
@@ -77,7 +77,7 @@
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
                                 <td class="text-center">{{ $appointment->patient->name}}</td>
-                                <td class="text-center">{{ $appointment->doctor->doctor_name}}</td>
+                                <td class="text-center">{{ $appointment->doctor->name}}</td>
                                 <td class="text-center">{{ $appointment->room ? $appointment->room->room_number : 'None' }}</td>
                                 <td class="text-center">{{ $appointment->date }}</td>
                                 <td class="text-center">{{ $appointment->status }}</td>

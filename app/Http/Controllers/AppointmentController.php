@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Patient;
 use App\Models\Doctor;
 use App\Models\Room;
+use App\Models\User;
 class AppointmentController extends Controller
 {
     /**
@@ -27,12 +28,12 @@ class AppointmentController extends Controller
      */
     public function create()
     {
-        $patients = Patient::all();
-        $doctors = Doctor::all();
+        $patients = User::where('usertype', 'user')->get();
+        $doctors = User::where('usertype', 'doctor')->get();
         $rooms = Room::all();
-
         return view('admin.appointments.create', compact('patients', 'doctors', 'rooms'));
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -40,21 +41,23 @@ class AppointmentController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'patient_id' => 'required|exists:patients,id',
-            'doctor_id' => 'required|exists:doctors,id',
+            'patient_user_id' => 'required|exists:users,id,usertype,user',
+            'doctor_user_id' => 'required|exists:users,id,usertype,doctor',
             'room_id' => 'nullable|exists:rooms,id',
             'date' => 'required|date',
             'status' => 'required'
         ]);
-
+    
         $appointment = Appointment::create($data);
-
+    
         if ($appointment) {
             return redirect()->route('admin/appointments')->with('success', 'Appointment created successfully.');
         } else {
             return redirect()->route('admin/appointments/create')->with('error', 'Some Problem Occurred');
         }
     }
+    
+    
 
     /**
      * Display the specified resource.
@@ -69,10 +72,10 @@ class AppointmentController extends Controller
      */
     public function edit(string $id)
     {
-        $appointment = Appointment::findOrFail($id);
-        $patients = Patient::all();
-        $doctors = Doctor::all();
+        $patients = User::where('usertype', 'user')->get();
+        $doctors = User::where('usertype', 'doctor')->get();
         $rooms = Room::all();
+        $appointment = Appointment::findOrFail($id);
         return view('admin.appointments.update', compact('appointment', 'doctors', 'patients', 'rooms'));
     }
 
@@ -84,16 +87,16 @@ class AppointmentController extends Controller
         $appointment = Appointment::findOrFail($id);
 
         $request->validate([
-            'patient_id' => 'required|exists:patients,id',
-            'doctor_id' => 'required|exists:doctors,id',
+            'patient_user_id' => 'required|exists:users,id,usertype,user',
+            'doctor_user_id' => 'required|exists:users,id,usertype,doctor',
+            'room_id' => 'nullable|exists:rooms,id',
             'date' => 'required|date',
-            'status' => 'required',
-            'room_id' => 'nullable|exists:rooms,id'
+            'status' => 'required'
         ]);
 
         $appointment->update([
-            'patient_id' => $request->patient_id,
-            'doctor_id' => $request->doctor_id,
+            'patient_user_id' => $request->patient_user_id,
+            'doctor_user_id' => $request->doctor_user_id,
             'date' => $request->date,
             'status' => $request->status,
             'room_id' => $request->room_id,

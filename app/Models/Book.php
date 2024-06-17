@@ -10,8 +10,7 @@ class Book extends Model
     use HasFactory;
 
     protected $fillable = [
-        'patient_id',
-        'doctor_id',
+        'user_id',
         'department_name',
         'phone',
         'symptoms',

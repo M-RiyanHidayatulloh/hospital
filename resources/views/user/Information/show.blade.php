@@ -142,7 +142,7 @@
                                 <ul class="list-unstyled mb-0">
                                     @foreach ($first_half as $item)
                                         <li><a
-                                                href="{{ route('information.show', $item->id) }}">{{ $item->category }}</a>
+                                                href="{{ route('user.information.show', $item->id) }}">{{ $item->category }}</a>
                                         </li>
                                     @endforeach
                                 </ul>
@@ -151,7 +151,7 @@
                                 <ul class="list-unstyled mb-0">
                                     @foreach ($second_half as $item)
                                         <li><a
-                                                href="{{ route('information.show', $item->id) }}">{{ $item->category }}</a>
+                                                href="{{ route('user.information.show', $item->id) }}">{{ $item->category }}</a>
                                         </li>
                                     @endforeach
                                 </ul>

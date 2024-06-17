@@ -21,7 +21,12 @@ return new class extends Migration {
             $table->string('specialist')->nullable();
             $table->integer('amount');
             $table->string('address')->nullable();
+            $table->string('image')->nullable();
+            $table->string('specialization')->nullable();
             $table->date('date_of_birth')->nullable();
+            $table->enum('gender', ['male', 'female']);
+            $table->string('specialization')->nullable();
+            $table->string('amount')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

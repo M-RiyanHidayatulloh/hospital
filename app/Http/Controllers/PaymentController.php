@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Payment;
 use App\Models\Patient;
+use App\Models\User;
 use App\Models\Appointment;
 use App\Models\OnlineConsultation;
 use Illuminate\Http\Request;
@@ -25,20 +26,22 @@ class PaymentController extends Controller
 
     public function create()
     {
-        $patients = Patient::all();
+        // $users = User::all();
+        $patients = User::where('usertype', 'user')->get();
         $appointments = Appointment::all();
-        if ($patients->isEmpty() || $appointments->isEmpty()) {
-            return redirect()->route('admin/payments')->with('error', 'No patients or appointments available.');
-        }
+        $payments = Payment::all();
+        // if ($appointments->isEmpty()) {
+        //     return redirect()->route('admin/payments')->with('error', 'No patients or appointments available.');
+        // }
 
-        return view('admin.payments.create', compact('patients', 'appointments'));
+        return view('admin.payments.create', compact('patients', 'appointments', 'payments'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'appointment_id' => 'required|exists:appointments,id',
-            'patient_id' => 'required|exists:patients,id',
+            'patient_user_id' => 'required|exists:users,id,usertype,user',
             'amount' => 'required|numeric',
             'payment_date' => 'required|date',
             'status' => 'required'
@@ -49,17 +52,19 @@ class PaymentController extends Controller
 
     public function show(Payment $payment)
     {
-        return view('admin.payments.show', compact('payment'));
+        $patients = User::where('usertype', 'user')->get();
+        $appointments = Appointment::all();
+        return view('admin.payments.show', compact('patients', 'appointments', 'payment'));
     }
 
     public function edit(string $id)
     {
         $appointments = Appointment::all();
-        $patients = Patient::all();
+        $patients = User::where('usertype', 'user')->get();
         $payment = Payment::findOrFail($id);
-        if ($patients->isEmpty() || $appointments->isEmpty()) {
-            return redirect()->route('admin.payments.index')->with('error', 'No patients or appointments available.');
-        }
+        // if ($patients->isEmpty() || $appointments->isEmpty()) {
+        //     return redirect()->route('admin.payments.index')->with('error', 'No patients or appointments available.');
+        // }
         return view('admin.payments.update', compact('payment', 'patients', 'appointments'));
     }
 
@@ -67,7 +72,7 @@ class PaymentController extends Controller
     {
         $request->validate([
             'appointment_id' => 'required|exists:appointments,id',
-            'patient_id' => 'required|exists:patients,id',
+            'patient_user_id' => 'required|exists:users,id,usertype,user',
             'amount' => 'required|numeric',
             'payment_date' => 'required|date',
             'status' => 'required'
