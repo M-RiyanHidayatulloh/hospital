@@ -37,7 +37,7 @@
                     <h5 class="m-b-10">Dashboard Appointment</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin/dashboard') }}"><i class="feather icon-home"></i></a></li>
                     <li class="breadcrumb-item"><a href="#!">Dashboard Appointment</a></li>
                 </ul>
             </div>
@@ -45,8 +45,8 @@
     </div>
 </div>
 <div class="container mt-5">
-    <a href="{{ route('admin/appointments/create') }}" class="btn btn-primary rounded-pill">Add New Appointment</a>
-    <a href="{{ route('admin/appointments/trash') }}" class="btn btn-danger rounded-pill">Trash</a>
+    <a href="{{ route('admin/appointments/create') }}" class="btn btn-primary rounded-pill"><i class="fa fa-plus fa-md"></i> Add Appointment</a>
+    <a href="{{ route('admin/appointments/trash') }}" class="btn btn-danger rounded-pill"><i class="fa fa-trash" aria-hidden="true"></i> Trash</a>
     @if ($message = Session::get('success'))
     <div class="alert alert-success mt-2">
         {{ $message }}
@@ -75,13 +75,13 @@
                                 <tr>
                                     <td class="text-center">{{ $loop->iteration }}</td>
                                     <td class="text-center">{{ $appointment->patient->name}}</td>
-                                    <td class="text-center">{{ $appointment->doctor->doctor_name}}</td>
+                                    <td class="text-center">{{ $appointment->doctor->name}}</td>
                                     <td class="text-center">{{ $appointment->room ? $appointment->room->room_number : 'None' }}</td>
                                     <td class="text-center">{{ $appointment->date }}</td>
                                     <td class="text-center">{{ $appointment->status }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('admin/appointments/edit', ['id'=>$appointment->id]) }}" class="btn btn-warning rounded-pill">Edit</a>
-                                        <a onclick="confirmDelete(this)" data-url="{{ route('admin/appointments/delete', ['id'=>$appointment->id]) }}" class="btn btn-danger rounded-pill" role="button">Delete</a>
+                                        <a href="{{ route('admin/appointments/edit', ['id'=>$appointment->id]) }}" class="btn btn-warning rounded-pill"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
+                                        <a onclick="confirmDelete(this)" data-url="{{ route('admin/appointments/delete', ['id'=>$appointment->id]) }}" class="btn btn-danger rounded-pill" role="button"><i class="fa fa-eraser" aria-hidden="true"></i> Delete</a>
                                     </td>
                                 </tr>
                                 @empty

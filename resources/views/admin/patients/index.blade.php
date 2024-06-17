@@ -37,7 +37,7 @@
                     <h5 class="m-b-10">Dashboard Patient</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin/dashboard') }}"><i class="feather icon-home"></i></a></li>
                     <li class="breadcrumb-item"><a href="#!">Dashboard Patient</a></li>
                 </ul>
             </div>
@@ -45,8 +45,8 @@
     </div>
 </div>
 <div class="container mt-5">
-    <a href="{{ route('admin/patients/create') }}" class="btn btn-primary rounded-pill">Add New Patient</a>
-    <a href="{{ route('admin/patients/trash') }}" class="btn btn-danger rounded-pill">Trash</a>
+    <a href="{{ route('admin/patients/create') }}" class="btn btn-primary rounded-pill"><i class="fa fa-user-plus fa-md"></i> Add Patient</a>
+    <a href="{{ route('admin/patients/trash') }}" class="btn btn-danger rounded-pill"><i class="fa fa-trash" aria-hidden="true"></i> Trash</a>
     @if ($message = Session::get('success'))
     <div class="alert alert-success mt-2">
         {{ $message }}
@@ -75,15 +75,15 @@
                             @forelse ($patients as $index => $patient)
                             <tr>
                                 <td class="text-center">{{ $index + 1 }}</td>
-                                <td class="text-center">{{ $patient->name }}</td>
+                                <td class="text-center">{{ $patient->user->name }}</td>
                                 <td class="text-center">{{ $patient->address }}</td>
                                 <td class="text-center">{{ $patient->phone }}</td>
                                 <td class="text-center">{{ $patient->birthdate }}</td>
                                 <td class="text-center">{{ $patient->gender }}</td>
                                 <td class="text-center">{!! $patient->description !!}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('admin/patients/edit', ['id'=>$patient->id]) }}" class="btn btn-warning rounded-pill">Edit</a>
-                                    <a onclick="confirmDelete(this)" data-url="{{ route('admin/patients/delete', ['id'=>$patient->id]) }}" class="btn btn-danger rounded-pill" role="button">Delete</a>
+                                    <a href="{{ route('admin/patients/edit', ['id'=>$patient->id]) }}" class="btn btn-warning rounded-pill"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
+                                    <a onclick="confirmDelete(this)" data-url="{{ route('admin/patients/delete', ['id'=>$patient->id]) }}" class="btn btn-danger rounded-pill" role="button"><i class="fa fa-eraser" aria-hidden="true"></i> Delete</a>
                                 </td>
                             </tr>
                             @empty

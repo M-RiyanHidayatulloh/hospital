@@ -74,6 +74,13 @@
                                         class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
                                     <x-input-error :messages="$errors->get('address')" class="mt-2" />
                                 </div>
+                                <div class="form-group mb-3">
+                                    <label for="specialization" class="sr-only">Specialization</label>
+                                    <input id="specialization" type="text" name="specialization" value="{{ old('specialization') }}"
+                                        required autofocus autocomplete="specialization" placeholder="Your Specialization"
+                                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+                                    <x-input-error :messages="$errors->get('specialization')" class="mt-2" />
+                                </div>
                                 <div class="form-group mb-4">
                                     <label for="password" class="sr-only">Password</label>
                                     <input id="password" type="password" name="password" required

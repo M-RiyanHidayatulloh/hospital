@@ -1,11 +1,27 @@
 @extends('admin.includes.home')
 
 @section('content')
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">Dashboard Create</h5>
+                </div>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('admin/dashboard') }}"><i class="feather icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin/rooms') }}">Dashboard Room</a></li>
+                    <li class="breadcrumb-item"><a href="#!">Create</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container mt-5 mb-5">
     <div class="row">
         <div class="col-md-12">
             <div class="page-header-title">
-                <h1 class="m-b-10">Add New Room</h1>
+                <h2 class="m-b-10">Add New Room</h2>
             </div>
             <div class="card border-1 shadow-md rounded">
                 <div class="card-body">
@@ -50,7 +66,7 @@
                             </div>
                             @enderror
                         </div>
-                        <a href="{{ route('admin/rooms') }}" class="btn btn-danger mr-2 rounded-pill" role="button">Batal</a>
+                        <a href="{{ route('admin/rooms') }}" class="btn btn-danger mr-2 rounded-pill" role="button">Cancel</a>
                         <button type="submit" class="btn btn-primary rounded-pill">Save</button>
                     </form>
                 </div>

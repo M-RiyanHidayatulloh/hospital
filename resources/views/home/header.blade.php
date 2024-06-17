@@ -21,7 +21,7 @@
         <div class="container-fluid">
             <nav class="navbar navbar-expand-lg custom_nav-container">
                 <a class="navbar-brand" href="index.html">
-                    <img src="{{asset('images/logo1.png')}}" alt="">
+                    <img src="{{ asset('images/logo1.png') }}" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class=""> </span>
@@ -52,7 +52,16 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact Us</a>
                         </li>
-                        @guest
+                    </ul>
+
+                    <!-- <form class="form-inline mx-auto">
+                        <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                    </form> -->
+                    
+                    @guest
+                    <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/login') }}">
                                 <i class="fa fa-user" aria-hidden="true"></i>
@@ -65,9 +74,17 @@
                                 <span>Sign Up</span>
                             </a>
                         </li>
-                        @endguest
-                        @auth
-                        @if (Auth::user()->usertype == 'user')
+                    </ul>
+                      <!-- <form class="form-inline mx-auto">
+                        <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                    </form>  -->
+                    @endguest
+
+                    @auth
+                    @if (Auth::user()->usertype == 'user')
+                    <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-user-secret" aria-hidden="true"></i>
@@ -85,14 +102,14 @@
                                 </form>
                             </div>
                         </li>
-                        @endif
-                        @endauth
-                    </ul>
-                    <form class="form-inline mx-auto">
+                        <form class="form-inline mx-auto">
                         <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
                             <i class="fa fa-search" aria-hidden="true"></i>
                         </button>
-                    </form>
+                    </form> 
+                    </ul>
+                    @endif
+                    @endauth
                 </div>
             </nav>
         </div>

@@ -6,6 +6,7 @@ use App\Models\MedicalRecord;
 use App\Models\Doctor;
 use App\Models\Patient;
 use App\Models\Room;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class MedicalRecordController extends Controller
@@ -27,8 +28,8 @@ class MedicalRecordController extends Controller
      */
     public function create()
     {
-        $doctors = Doctor::all();
-        $patients = Patient::all();
+        $patients = User::where('usertype', 'user')->get();
+        $doctors = User::where('usertype', 'doctor')->get();
         $rooms = Room::all();
         return view('admin.medical_records.create', compact('doctors', 'patients', 'rooms'));
     }
@@ -40,8 +41,8 @@ class MedicalRecordController extends Controller
     {
         $request->validate([
             'room_id' => 'required|exists:rooms,id',
-            'patient_id' => 'required|exists:patients,id',
-            'doctor_id' => 'required|exists:doctors,id',
+            'patient_user_id' => 'required|exists:users,id,usertype,user',
+            'doctor_user_id' => 'required|exists:users,id,usertype,doctor',
             'diagnosis' => 'required',
             'treatment' => 'required'
         ]);
@@ -62,8 +63,8 @@ class MedicalRecordController extends Controller
      */
     public function edit(string $id)
     {
-        $doctors = Doctor::all();
-        $patients = Patient::all();
+        $patients = User::where('usertype', 'user')->get();
+        $doctors = User::where('usertype', 'doctor')->get();
         $rooms = Room::all();
         $record = MedicalRecord::findOrFail($id);
         return view('admin.medical_records.update', compact('record', 'doctors', 'patients', 'rooms'));

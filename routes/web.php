@@ -21,6 +21,8 @@ use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\UserAppointmentsController;
 use App\Http\Controllers\UserMedicalRecordController;
 use App\Http\Controllers\UserOnlineConsultationController;
+use App\Http\Controllers\AdminProfileController;
+use App\Http\Controllers\AdminPasswordController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -46,6 +48,10 @@ Route::group(['middleware' => ['auth']], function () {
     // Route::post('/updateProfile', [ProfileController::class, 'updateProfile'])->name('profile.update');
     // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('admin/profile', [AdminProfileController::class, 'edit'])->name('admin.dashboard.edit');
+    Route::patch('admin/profile', [AdminProfileController::class, 'update'])->name('admin.dashboard.update');
+    // Route::get('admin/password', [AdminPasswordController::class, 'edit'])->name('admin.password.edit');
+    // Route::put('admin/password', [AdminPasswordController::class, 'update'])->name('admin.password.update');
 
     Route::middleware(['auth', 'verified', 'doctor'])->group(function () {
         Route::get('doctors/dashboard', [HomeController::class, 'doctor'])->name('doctor/dashboard');
