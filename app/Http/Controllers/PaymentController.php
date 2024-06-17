@@ -130,7 +130,6 @@ class PaymentController extends Controller
 
         $snapToken = Snap::getSnapToken($params);
 
-        // dd($doctor->amount);
         OnlineConsultation::create([
             'patient_id' => auth()->id(),
             'doctor_id' => $request->doctor_id,
@@ -146,63 +145,6 @@ class PaymentController extends Controller
             'patientName' => $request->patientName,
         ]);
     }
-
-
-    // public function showPaymentForm(Request $request)
-    // {
-    //     $doctor = $request->doctor_id;
-    //     $doctors = User::where('id', $doctor)->get();
-    //     foreach ($doctors as $item) {
-    //         $item->name;
-    //     }
-
-    //     $doctorAmount = $item->amount;
-
-    //     Config::$serverKey = config('midtrans.server_key');
-    //     Config::$isProduction = config('midtrans.is_production');
-    //     Config::$isSanitized = config('midtrans.is_sanitized');
-    //     Config::$is3ds = config('midtrans.is_3ds');
-
-    //     $item_details = $doctors->map(function ($doctor) {
-    //         return [
-    //             'id' => $doctor->id,
-    //             'price' => $doctor->amount,
-    //             'quantity' => 1,
-    //             'name' => 'Biaya Konsultasi dengan ' . $doctor->name,
-    //         ];
-    //     })->toArray();
-
-    //     $transaction_details = [
-    //         'order_id' => uniqid(),
-    //     ];
-
-    //     $detailDoctor = [
-    //         'amount' => $item->amount,
-    //         'name' => $item->name,
-    //     ];
-
-    //     $customer_details = [
-    //         'first_name' => $request->patientName,
-    //         'email' => $request->patientEmail,
-    //         'phone' => $request->patientPhone,
-    //     ];
-
-    //     $params = [
-    //         'transaction_details' => $transaction_details,
-    //         'item_details' => $item_details,
-    //         'customer_details' => $customer_details,
-    //         'doctor_details' => $detailDoctor
-    //     ];
-
-    //     $snapToken = Snap::getSnapToken($params);
-
-    //     return view('user.payment.index', [
-    //         'snapToken' => $snapToken,
-    //         'doctors' => $doctors[0],
-    //         'patientName' => $request->patientName,
-    //     ]);
-    // }
-
 
 
     public function success()
