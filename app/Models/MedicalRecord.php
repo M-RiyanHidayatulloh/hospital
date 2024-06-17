@@ -12,21 +12,20 @@ class MedicalRecord extends Model
     protected $hidden = ['created_at', 'updated_at'];
     protected $fillable = [
         'room_id',
-        'patient_id',
-        'doctor_id',
-        'room_id',
+        'patient_user_id',
+        'doctor_user_id',
         'diagnosis',
         'treatment'
     ];
 
     public function patient()
     {
-        return $this->belongsTo(Patient::class);
+        return $this->belongsTo(User::class, 'patient_user_id');
     }
 
     public function doctor()
     {
-        return $this->belongsTo(Doctor::class);
+        return $this->belongsTo(User::class, 'doctor_user_id');
     }
 
     public function room()

@@ -37,7 +37,7 @@
                     <h5 class="m-b-10 weight-bold">Dashboard Doctor's Schedule</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin/dashboard') }}"><i class="feather icon-home"></i></a></li>
                     <li class="breadcrumb-item"><a href="#!">Dashboard Doctor's Schedule</a></li>
                 </ul>
             </div>
@@ -45,8 +45,8 @@
     </div>
 </div>
 <div class="container mt-5">
-    <a href="{{ route('admin/schedules/create') }}" class="btn btn-primary rounded-pill">Add New Schedule</a>
-    <a href="{{ route('admin/schedules/trash') }}" class="btn btn-danger rounded-pill">Trash</a>
+    <a href="{{ route('admin/schedules/create') }}" class="btn btn-primary rounded-pill"><i class="fa fa-plus fa-md"></i> Add Schedule</a>
+    <a href="{{ route('admin/schedules/trash') }}" class="btn btn-danger rounded-pill"><i class="fa fa-trash" aria-hidden="true"></i> Trash</a>
     @if (Session::has('success'))
     <div class="alert alert-success mt-2">
         {{ Session::get('success') }}
@@ -74,14 +74,14 @@
                             @forelse ($schedules as $schedule)
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
-                                <td class="text-center">{{ $schedule->doctor->doctor_name }}</td>
-                                <td class="text-center">{{ $schedule->doctor->specialization }}</td>
+                                <td class="text-center">{{ $schedule->user->name }}</td>
+                                <td class="text-center">{{ $schedule->user->specialization }}</td>
                                 <td class="text-center">{{ $schedule->day_of_week}}</td>
                                 <td class="text-center">{{ $schedule->start_time}}</td>
                                 <td class="text-center">{{ $schedule->end_time}}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('admin/schedules/edit', ['id'=>$schedule->id]) }}" class="btn btn-warning rounded-pill">Edit</a>
-                                    <a onclick="confirmDelete(this)" data-url="{{ route('admin/schedules/delete', ['id'=>$schedule->id]) }}" class="btn btn-danger rounded-pill" role="button">Delete</a>
+                                    <a href="{{ route('admin/schedules/edit', ['id'=>$schedule->id]) }}" class="btn btn-warning rounded-pill"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
+                                    <a onclick="confirmDelete(this)" data-url="{{ route('admin/schedules/delete', ['id'=>$schedule->id]) }}" class="btn btn-danger rounded-pill" role="button"><i class="fa fa-eraser" aria-hidden="true"></i> Delete</a>
                                 </td>
                             </tr>
                             @empty

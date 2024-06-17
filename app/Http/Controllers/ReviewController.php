@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
@@ -12,7 +14,12 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $reviews = Review::latest()->paginate(5);
+        // $reviews = Review::latest()->paginate(5);
+        // $reviews = Review::count();
+        $reviews = Review::all();
+        $reviews = Review::whereHas('user', function($query) {
+            $query->where('usertype', 'user');
+        })->get();
         return view('admin.reviews.index', compact('reviews'));
     }
 
@@ -21,7 +28,8 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        return view('admin.reviews.create');
+        $users = User::all()->get();
+        return view('admin.reviews.create',compact('reviews'));
     }
 
     /**
@@ -29,13 +37,19 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
+        // dd($request);
+        $data=$request->validate([
+            'name' => 'required|string|exists:name',
             'review' => 'required',
-        ]);
 
-        Review::create($request->all());
-        redirect()->route('admin.reviews.index')->with('success', 'Review created successfully.');
+        ]);
+        $review=review::create([
+            'name' => $request->name,
+            'review' => $request->review,
+        ]);
+        $data['user_id']=Auth::user()->id;
+        Review::create($data);
+        return redirect()->route('home')->with('success', 'Review created successfully.');
     }
 
     /**
@@ -61,8 +75,10 @@ class ReviewController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'judul' => 'required',
             'review' => 'required',
         ]);
+        return redirect()->route('home')->with('success', 'Review Data Was Create');
     }
 
     /**

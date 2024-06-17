@@ -11,8 +11,7 @@ class DoctorSchedule extends Model
     use HasFactory;
     protected $hidden = ['created_at', 'updated_at'];
     protected $fillable = [
-        'doctor_id',
-        'specialization',
+        'user_id',
         'day_of_week',
         'start_time',
         'end_time',
@@ -21,5 +20,10 @@ class DoctorSchedule extends Model
     public function doctor()
     {
         return $this->belongsTo(Doctor::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

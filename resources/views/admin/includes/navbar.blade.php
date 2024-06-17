@@ -1,19 +1,19 @@
 <header class="navbar pcoded-header navbar-expand-lg navbar-light header-dark">
 
 
-		<div class="m-header">
-			<a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
-			<a href="#!" class="b-brand">
-				<!-- ========   change your logo hear   ============ -->
-				<img src="{{ asset('images/lg2.png') }}" alt="" class="w-50 mx-auto">
-			</a>
-			<a href="#!" class="mob-toggler">
-				<i class="feather icon-more-vertical"></i>
-			</a>
-		</div>
-		<div class="collapse navbar-collapse">
-			 <ul class="navbar-nav mr-auto">
-				<!-- <li class="nav-item">
+	<div class="m-header">
+		<a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
+		<a href="#!" class="b-brand">
+			<!-- ========   change your logo hear   ============ -->
+			<img src="{{ asset('admin/dist/assets/images/logors.png') }}" alt="" class="logo">
+		</a>
+		<a href="#!" class="mob-toggler">
+			<i class="feather icon-more-vertical"></i>
+		</a>
+	</div>
+	<div class="collapse navbar-collapse">
+		<ul class="navbar-nav mr-auto">
+			<!-- <li class="nav-item">
 					<a href="#!" class="pop-search"><i class="feather icon-search"></i></a>
 					<div class="search-bar">
 						<input type="text" class="form-control border-0 shadow-none" placeholder="Search hear">
@@ -22,7 +22,7 @@
 						</button>
 					</div>
 				</li> -->
-				<!-- <li class="nav-item">
+			<!-- <li class="nav-item">
 					<div class="dropdown">
 						<a class="dropdown-toggle h-drop" href="#" data-toggle="dropdown">
 							Dropdown
@@ -89,10 +89,10 @@
 						</div>
 					</div>
 				</li> -->
-			</ul> 
-			<ul class="navbar-nav ml-auto">
-				<li> 
-					<!-- <div class="dropdown">
+		</ul>
+		<ul class="navbar-nav ml-auto">
+			<li>
+				<!-- <div class="dropdown">
 						<a class="dropdown-toggle" href="#" data-toggle="dropdown">
 							<i class="icon feather icon-bell"></i>
 							<span class="badge badge-pill badge-danger">5</span>
@@ -154,35 +154,39 @@
 							</div>
 						</div>
 					</div> -->
-				</li>
-				<li>
-					<div class="dropdown drp-user">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="feather icon-user"></i>
-						</a>
-						<div class="dropdown-menu dropdown-menu-right profile-notification">
-							<div class="pro-head">
+			</li>
+			<li>
+				<div class="dropdown drp-user">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<i class="feather icon-user"></i>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right profile-notification">
+						<div class="pro-head">
 							<form method="POST" action="{{ route('logout') }}">
-							@csrf
-								<img src="{{asset('admin/dist/assets/images/user/avatar-2.jpg')}}" class="img-radius" alt="User-Profile-Image"><br>
-								<span><div>{{ Auth::user()->name }}</div></span>
-								<a href="route('logout')" class="dud-logout" title="Logout" onclick="event.preventDefault();
-                                                this.closest('form').submit();">
+								@csrf
+								@if (Auth::user()->image)
+								<img src="{{ Storage::url(Auth::user()->image) }}" class="img-radius" alt="User-Profile-Image"><br>
+								@else
+								<img src="{{ asset('path/to/default-image.jpg') }}" class="img-radius" alt="Default-Profile-Image"><br>
+								@endif
+								<span>
+									<div>{{ Auth::user()->name }}</div>
+								</span>
+								<a href="route('logout')" class="dud-logout" title="Logout" onclick="event.preventDefault(); this.closest('form').submit();">
 									<i class="feather icon-log-out"></i>
 								</a>
-							</div>
-							<ul class="pro-body">
-								<li><a href="{{ route('profile.edit') }}" :active="request()->routeIs('profile.edit')" class="dropdown-item"><i class="feather icon-user"></i>{{ __('Profile') }}</a></li>
-								<!-- <li><a href="email_inbox.html" class="dropdown-item"><i class="feather icon-mail"></i> My Messages</a></li>
-								<li><a href="auth-signin.html" class="dropdown-item"><i class="feather icon-lock"></i> Lock Screen</a></li> -->
-								<li><a href="auth-signin.html" class="dropdown-item"><i class="feather icon-settings"></i> Setting</a></li>
-							</ul>
+							</form>
 						</div>
+						<ul class="pro-body">
+							<li><a href="{{ route('admin.dashboard.edit') }}" class="dropdown-item"><i class="feather icon-user"></i>{{ __('Profile') }}</a></li>
+							<li><a href="{{ route('admin.password.edit') }}" class="dropdown-item"><i class="feather icon-edit"></i> Change Password</a></li>
+						</ul>
 					</div>
-				</li>
-			</ul>
-		</div>
+				</div>
+			</li>
+		</ul>
+	</div>
 
 
-	</header>
-	@include('admin.includes.script')
+</header>
+@include('admin.includes.script')

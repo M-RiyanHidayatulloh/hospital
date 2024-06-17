@@ -37,7 +37,7 @@
                     <h5 class="m-b-10">Dashboard Doctor</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin/dashboard') }}"><i class="feather icon-home"></i></a></li>
                     <li class="breadcrumb-item"><a href="#!">Dashboard Doctor</a></li>
                 </ul>
             </div>
@@ -45,8 +45,8 @@
     </div>
 </div>
 <div class="container mt-5">
-    <a href="{{ route('admin/doctors/create') }}" class="btn btn-primary rounded-pill">Add New Doctor</a>
-    <a href="{{ route('admin/doctors/trash') }}" class="btn btn-danger rounded-pill">Trash</a>
+    <a href="{{ route('admin/doctors/create') }}" class="btn btn-primary rounded-pill"><i class="fa fa-user-plus fa-md"></i> Add Doctor</a>
+    <a href="{{ route('admin/doctors/trash') }}" class="btn btn-danger rounded-pill"><i class="fa fa-trash" aria-hidden="true"></i> Trash</a>
     @if ($message = Session::get('success'))
     <div class="alert alert-success mt-2">
         {{ $message }}
@@ -74,16 +74,16 @@
                             @forelse ($doctors as $doctor)
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
-                                <td class="text-center">{{ $doctor->doctor_name }}</td>
+                                <td class="text-center">{{ $doctor->user->name }}</td>
                                 <td class="text-center">
                                     <img src="{{ asset('/storage/doctors/' . $doctor->image) }}" class="rounded" style="width: 50px">
                                 </td>
-                                <td class="text-center">{{ $doctor->specialization }}</td>
+                                <td class="text-center">{{ $doctor->user->specialization }}</td>
                                 <td class="text-center">{{ $doctor->phone }}</td>
                                 <td class="text-center">{{ $doctor->available_times }}</td>
                                 <td class="text-center">
-                                    <a href="{{route('admin/doctors/edit', ['id'=>$doctor->id])}}" class="btn btn-warning rounded-pill">Edit</a>
-                                    <a onclick="confirmDelete(this)" data-url="{{ route('admin/doctors/delete', ['id'=>$doctor->id]) }}" class="btn btn-danger rounded-pill">Delete</a>
+                                    <a href="{{route('admin/doctors/edit', ['id'=>$doctor->id])}}" class="btn btn-warning rounded-pill"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
+                                    <a onclick="confirmDelete(this)" data-url="{{ route('admin/doctors/delete', ['id'=>$doctor->id]) }}" class="btn btn-danger rounded-pill"><i class="fa fa-eraser" aria-hidden="true"></i> Delete</a>
                                 </td>
                             </tr>
                             @empty
