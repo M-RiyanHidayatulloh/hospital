@@ -65,6 +65,10 @@
                                 <span class="pcoded-mtext">Patient</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('user_list.index') }}" class="nav-link "><span class="pcoded-micon"><i
+                                        class="feather icon-user"></i></span><span class="pcoded-mtext">User</span></a>
+                        </li>
                         <li class="nav-item pcoded-menu-caption">
                             <label>Other</label>
                         </li>

@@ -1,43 +1,43 @@
 @extends('admin.includes.home')
 
 @section('csstable')
-<link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap4.min.css') }}">
 @endsection
 
 @section('jstable')
-<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
-<script>
-    $(function() {
-        $('#data-table').DataTable();
-    })
-</script>
-<script src="{{ asset('js/sweetalert.min.js') }}"></script>
-<script>
-    confirmDelete = function(button) {
-        var url = $(button).data('url');
-        swal({
-            'title': 'Konfirmasi Hapus',
-            'text': 'Apakah Kamu Yakin Ingin Menghapus Data Ini?',
-            'dangermode': true,
-            'buttons': true
-        }).then(function(value) {
-            if (value) {
-                window.location = url;
-            }
+    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
+    <script>
+        $(function() {
+            $('#data-table').DataTable();
         })
-    }
-</script>
+    </script>
+    <script src="{{ asset('js/sweetalert.min.js') }}"></script>
+    <script>
+        confirmDelete = function(button) {
+            var url = $(button).data('url');
+            swal({
+                'title': 'Konfirmasi Hapus',
+                'text': 'Apakah Kamu Yakin Ingin Menghapus Data Ini?',
+                'dangermode': true,
+                'buttons': true
+            }).then(function(value) {
+                if (value) {
+                    window.location = url;
+                }
+            })
+        }
+    </script>
 @endsection
 
 @section('content')
-<div class="page-header">
-    <div class="page-block">
-        <div class="row align-items-center">
-            <div class="col-md-12">
-                <div class="page-header-title">
-                    <h5 class="m-b-10">Dashboard Queue</h5>
-                </div>
+    <div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-12">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Dashboard Queue</h5>
+                    </div>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('admin/dashboard') }}"><i class="feather icon-home"></i></a></li>
                     <li class="breadcrumb-item"><a href="#!">Dashboard Queue</a></li>
@@ -91,5 +91,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection

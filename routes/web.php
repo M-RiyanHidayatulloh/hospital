@@ -15,6 +15,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QueueController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserScheduleController;
 use Illuminate\Support\Facades\Route;
@@ -185,6 +186,17 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('admin/reviews/restore/{id?}', [ReviewController::class, 'restore'])->name('admin/reviews/restore');
         Route::get('admin/reviews/destroy/{id?}', [ReviewController::class, 'destroy'])->name('admin/reviews/destroy');
 
+        Route::get('/admin/user_list', [UserController::class, 'index'])->name('admin/user_list');
+        Route::get('/admin/user_list/create', [UserController::class, 'create'])->name('admin/user_list/create');
+        Route::post('/admin/user_list/store', [UserController::class, 'store'])->name('admin/user_list/store');
+        Route::get('/admin/user_list/edit/{id}', [UserController::class, 'edit'])->name('admin/user_list/edit');
+        Route::put('/admin/user_list/edit/{id}', [UserController::class, 'update'])->name('admin/user_list/update');
+        Route::get('/admin/user_list/delete/{id}', [UserController::class, 'delete'])->name('admin/user_list/delete');
+        Route::get('admin/user_list/trash', [UserController::class, 'trash'])->name('admin/user_list/trash');
+        Route::get('admin/user_list/restore/{id?}', [UserController::class, 'restore'])->name('admin/user_list/restore');
+        Route::get('admin/user_list/destroy/{id?}', [UserController::class, 'destroy'])->name('admin/user_list/destroy');
+
+
     });
 
     Route::middleware(['auth'])->group(function () {
@@ -199,6 +211,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('health_informations', HealthInformationController::class);
         Route::resource('online_consultations', OnlineConsultationController::class);
         Route::resource('doctor_schedules', DoctorScheduleController::class);
+        Route::resource('reviews', ReviewController::class);
+        Route::resource('user_list', UserController::class);
+
+
         // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     });
 

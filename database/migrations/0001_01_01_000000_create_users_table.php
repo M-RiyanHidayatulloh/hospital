@@ -21,6 +21,9 @@ return new class extends Migration {
             $table->string('image')->nullable();
             $table->string('specialization')->nullable();
             $table->date('date_of_birth')->nullable();
+            $table->enum('gender', ['male', 'female']);
+            $table->string('specialization')->nullable();
+            $table->string('amount')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
