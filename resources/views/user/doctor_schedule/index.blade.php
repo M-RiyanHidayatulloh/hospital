@@ -23,8 +23,8 @@
                         @foreach ($schedule as $schedules)
                         <tr>
                         <td class="text-center">{{ $loop->iteration }}</td>
-                                <td class="text-center">{{ $schedules->doctor->doctor_name }}</td>
-                                <td class="text-center">{{ $schedules->doctor->specialization }}</td>
+                                <td class="text-center">{{ $schedules->user->name }}</td>
+                                <td class="text-center">{{ $schedules->user->specialization }}</td>
                                 <td class="text-center">{{ $schedules->day_of_week}}</td>
                                 <td class="text-center">{{ $schedules->start_time}}</td>
                                 <td class="text-center">{{ $schedules->end_time}}</td>

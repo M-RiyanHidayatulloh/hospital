@@ -12,7 +12,6 @@ class Patient extends Model
     protected $hidden = ['created_at', 'updated_at'];
     protected $fillable = [
         'user_id',
-        'name',
         'address',
         'phone',
         'birthdate',
@@ -22,7 +21,7 @@ class Patient extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class);
     }
 
     public function appointments()

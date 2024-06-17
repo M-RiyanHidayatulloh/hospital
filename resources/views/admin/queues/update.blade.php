@@ -1,9 +1,28 @@
 @extends('admin.includes.home')
 
 @section('content')
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">Dashboard Update</h5>
+                </div>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('admin/dashboard') }}"><i class="feather icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin/queues') }}">Dashboard Queue</a></li>
+                    <li class="breadcrumb-item"><a href="#!">Update</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container mt-5 mb-5">
     <div class="row">
         <div class="col-md-12">
+        <div class="page-header-title">
+                <h2 class="m-b-10">Update Queue Data</h2>
+            </div>
             <div class="card border-1 shadow-md rounded">
                 <div class="card-body">
                     <form action="{{ route('admin/queues/update', ['id' => $queue->id]) }}" method="POST" enctype="multipart/form-data">
@@ -36,7 +55,7 @@
                                 </option>
                             </select>
                         </div>
-                        <a href="{{ route('admin/queues') }}" class="btn btn-danger mr-2 rounded-pill" role="button">Batal</a>
+                        <a href="{{ route('admin/queues') }}" class="btn btn-danger mr-2 rounded-pill" role="button">Cancel</a>
                         <button type="submit" class="btn btn-primary rounded-pill">Update</button>
                     </form>
                 </div>

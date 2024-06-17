@@ -37,7 +37,7 @@
                     <h5 class="m-b-10">Dashboard Trash</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin/dashboard') }}"><i class="feather icon-home"></i></a></li>
                     <li class="breadcrumb-item"><a href="{{ route('admin/online_consultations') }}">Dashboard Online Consultation</a></li>
                     <li class="breadcrumb-item"><a href="#!">Trash</a></li>
                 </ul>
@@ -77,7 +77,7 @@
                             <tr>
                                 <td class="text-center">{{ $consultation->id }}</td>
                                 <td class="text-center">{{ $consultation->patient->name }}</td>
-                                <td class="text-center">{{ $consultation->doctor->doctor_name }}</td>
+                                <td class="text-center">{{ $consultation->doctor->name }}</td>
                                 <td class="text-center">{{ $consultation->consultation_date }}</td>
                                 <td class="text-center">{{ $consultation->consultation_mode }}</td>
                                 <td class="text-center">{!! $consultation->notes !!}</td>
