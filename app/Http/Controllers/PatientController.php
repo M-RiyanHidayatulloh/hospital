@@ -17,7 +17,7 @@ class PatientController extends Controller
         $patients = Patient::whereHas('user', function($query) {
             $query->where('usertype', 'user');
         })->get();
-        
+
         return view('admin.patients.index', compact('patients'));
     }
 
@@ -28,7 +28,7 @@ class PatientController extends Controller
 {
     // Ambil semua user yang memiliki usertype 'user'
     $users = \App\Models\User::where('usertype', 'user')->get();
-    
+
     // Kirim data users ke view create
     return view('admin.patients.create', compact('users'));
 }
@@ -42,8 +42,8 @@ class PatientController extends Controller
             'user_id' => 'required|string|exists:users,id',
             'name' => 'required|string|max:255',
             'address' => 'required|min:2',
-            'phone' => 'required|min:5', 
-            'birthdate' => 'required|string|min:5',      
+            'phone' => 'required|min:5',
+            'birthdate' => 'required|string|min:5',
             'gender' => 'required',
             'description' => 'nullable|string',
         ]);
@@ -60,7 +60,7 @@ class PatientController extends Controller
      */
     public function show(Patient $patient)
     {
-        // return view('patients.show', compact('patient'));
+        return view('patients.show', compact('patient'));
     }
 
     /**

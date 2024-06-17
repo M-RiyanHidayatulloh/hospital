@@ -9,7 +9,7 @@ class UserScheduleController extends Controller
 {
     public function index()
     {
-        // $schedule = DoctorSchedule::all();
+        $schedule = DoctorSchedule::all();
         return view('home.doctor_schedule.index', compact('doctor_schedules'));
     }
 }

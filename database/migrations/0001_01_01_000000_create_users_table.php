@@ -17,13 +17,16 @@ return new class extends Migration {
             $table->enum('usertype', ['admin', 'user', 'doctor'])->default('user');
             $table->string('profile_image')->nullable();
             $table->string('phone')->nullable();
+            $table->string('password');
+            $table->string('specialist')->nullable();
+            $table->integer('amount');
             $table->string('address')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
+
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();

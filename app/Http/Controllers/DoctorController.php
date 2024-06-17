@@ -31,9 +31,9 @@ class DoctorController extends Controller
             'user_id' => 'required|string|exists:users,id',
             'doctor_name' => 'required|min:5',
             'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
-            'specialization' => 'required|min:5', 
-            'phone' => 'required|string|min:5',      
-            'available_times' => 'required|string|min:5',         
+            'specialization' => 'required|min:5',
+            'phone' => 'required|string|min:5',
+            'available_times' => 'required|string|min:5',
         ]);
 
         $image = $request->file('image');

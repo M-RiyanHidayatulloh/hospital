@@ -21,7 +21,7 @@ use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\UserAppointmentsController;
 use App\Http\Controllers\UserOnlineConsultationController;
 use App\Http\Controllers\UserInformationController;
-
+use App\Http\Controllers\TransactionController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -173,3 +173,12 @@ Route::get('/online', [UserOnlineConsultationController::class, 'index'])->name(
 Route::get('/Information', [UserInformationController::class, 'index'])->name('Information.index');
 Route::get('/information/{id}', [UserInformationController::class, 'show'])->name('information.show');
 Route::get('/search', [HealthInformationController::class, 'search'])->name('search');
+
+Route::get('/payment', [PaymentController::class, 'showPaymentForm'])->name('payment.form');
+Route::post('/payment/process', [PaymentController::class, 'processPayment'])->name('payment.process');
+Route::get('/payment-success', [PaymentController::class, 'success'])->name('payment.success');
+Route::get('/payment-cancel', [PaymentController::class, 'cancel'])->name('payment.cancel');
+
+Route::post('/online_consultations/store', [UserOnlineConsultationController::class, 'store'])->name('store-online-consultations');
+Route::post('/store-consultation', [UserOnlineConsultationController::class, 'store'])->name('store-consultation');
+Route::post('/process-payment', [PaymentController::class, 'processPayment'])->name('process-payment');

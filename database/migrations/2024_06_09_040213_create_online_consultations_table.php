@@ -13,13 +13,16 @@ return new class extends Migration
     {
         Schema::create('online_consultations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('patient_id')->constrained('patients')->onDelete('cascade');
-            $table->foreignId('doctor_id')->constrained('doctors')->onDelete('cascade');
+            $table->foreignId('patient_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('doctor_id')->constrained('users')->onDelete('cascade');
             $table->date('consultation_date');
             $table->enum('consultation_mode', ['Chat', 'Video', 'Audio']);
             $table->text('notes');
+            // $table->decimal('amount', 10, 2);
             $table->timestamps();
         });
+
+
     }
 
     /**

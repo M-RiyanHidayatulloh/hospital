@@ -69,23 +69,17 @@
                                 </div>
                             </div>
                             <hr>
-                            {{-- <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Diagnosa</h6>
+                            @if (Auth::user()->usertype == 'doctor')
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Specialist</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        {{ Auth::user()->specialist }}
+                                    </div>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
-                                    {{ Auth::user()->diagnosa }}
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Room</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    {{ Auth::user()->room }}
-                                </div>
-                            </div> --}}
+                                <hr>
+                            @endif
                             <hr>
                             <div class="row">
                                 <div class="col-sm-12">
@@ -149,23 +143,17 @@
                                             <label for="address">Alamat:</label>
                                             <textarea name="address" id="address" rows="3" class="form-control">{{ $profile->address }}</textarea>
                                         </div>
-
-                                        {{-- <div class="form-group">
-                                            <label for="diagnosa">Diagnosa:</label>
-                                            <textarea name="diagnosa" id="diagnosa" rows="3" class="form-control">{{ $profile->diagnosa }}</textarea>
-
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="room">Room:</label>
-                                            <input type="text" id="room" name="room" class="form-control"
-                                                value="{{ $profile->room }}">
-                                        </div> --}}
-
+                                        @if ($profile->usertype === 'doctor')
+                                            <div class="form-group">
+                                                <label for="specialist">Specialist:</label>
+                                                <input type="text" id="specialist" name="specialist"
+                                                    class="form-control" value="{{ $profile->specialist }}">
+                                            </div>
+                                        @endif
                                         <div class="form-group">
                                             <label for="password">Password:</label>
-                                            <input type="password" id="password" name="password" class="form-control"
-                                                value="">
+                                            <input type="password" id="password" name="password"
+                                                class="form-control" value="">
                                         </div>
 
                                         <div class="form-group">

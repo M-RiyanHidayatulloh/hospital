@@ -14,6 +14,7 @@ class OnlineConsultation extends Model
         'consultation_date',
         'consultation_mode',
         'notes',
+        // 'amount',
     ];
 
     public function patient()
