@@ -7,10 +7,9 @@
                     @if (Auth::user()->image)
                         <img class="img-radius" src="{{ Storage::url(Auth::user()->image) }}" alt="User-Profile-Image">
                     @else
-                        <img class="img-radius" src="{{ asset('admin/dist/assets/images/user/avatar-2.jpg') }}" alt="Default-Profile-Image">
+                        <img class="img-radius" src="{{ asset('admin/dist/assets/images/user/avatar-2.jpg') }}"
+                            alt="Default-Profile-Image">
                     @endif
-                    <img class="img-radius" src="{{ asset('admin/dist/assets/images/user/avatar-2.jpg') }}"
-                        alt="User-Profile-Image">
                     <div class="user-details">
                         <span>{{ Auth::user()->name }}</span>
                     </div>
@@ -19,14 +18,15 @@
                 <div class="collapse" id="nav-user-link">
                     <ul class="list-unstyled">
                         <li class="list-group-item">
-                            <a href="{{ route('profile.edit') }}" :active="request()->routeIs('profile.edit')">
+                            <a href="{{ route('profile.edit') }}" :active="request() - > routeIs('profile.edit')">
                                 <i class="feather icon-user m-r-5"></i>View Profile
                             </a>
                         </li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <li class="list-group-item">
-                                <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                                <a href="route('logout')"
+                                    onclick="event.preventDefault(); this.closest('form').submit();">
                                     <i class="feather icon-log-out m-r-5"></i>{{ __('Log Out') }}
                                 </a>
                             </li>
@@ -39,8 +39,8 @@
                 <li class="nav-item pcoded-menu-caption">
                     <label>Home</label>
                 </li>
-                @if(Auth::check())
-                    @if(Auth::user()->usertype == 'admin')
+                @if (Auth::check())
+                    @if (Auth::user()->usertype == 'admin')
                         <li class="nav-item">
                             <a href="{{ route('admin/dashboard') }}" class="nav-link">
                                 <span class="pcoded-micon"><i class="feather icon-home"></i></span>
@@ -115,7 +115,7 @@
                         </li>
                     @else
                         <li class="nav-item">
-                            <a href="{{route('users.index')}}" class="nav-link">
+                            <a href="{{ route('users.index') }}" class="nav-link">
                                 <span class="pcoded-micon"><i class="fa fa-sign-in" aria-hidden="true"></i></span>
                                 <span class="pcoded-mtext">Login</span>
                             </a>

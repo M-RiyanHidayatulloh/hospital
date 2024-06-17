@@ -61,16 +61,15 @@
                         <div class="form-group">
                             <label for="usertype">User Type</label>
                             <select class="form-control" id="usertype" name="usertype" required>
-                                {{-- <option value="admin" {{ $user->usertype == 'admin' ? 'selected' : '' }}>Admin</option>
-                                <option value="user" {{ $user->usertype == 'user' ? 'selected' : '' }}>User</option>
-                                <option value="doctor" {{ $user->usertype == 'doctor' ? 'selected' : '' }}>Doctor</option>
-                            </select> --}}
+                                <option value="admin">Admin</option>
+                                <option value="user">User</option>
+                                <option value="doctor">Doctor</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label>Profile_image</label>
-                            <input type="file" class="form-control  @error('profile_image') is-invalid @enderror"
-                                name="profile_image">
-                            @error('profile_image')
+                            <label>Image</label>
+                            <input type="file" class="form-control  @error('image') is-invalid @enderror" name="image">
+                            @error('image')
                                 <div class="alert alert-danger mt-2">
                                     {{ $message }}
                                 </div>

@@ -23,7 +23,7 @@ class User extends Authenticatable
         'specialization',
         'amount',
         'password',
-        'profile_image',
+        'image',
     ];
 
     protected $hidden = [
