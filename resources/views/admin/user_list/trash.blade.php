@@ -1,5 +1,4 @@
 @extends('admin.includes.home')
-
 @section('csstable')
     <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap4.min.css') }}">
 @endsection
@@ -29,26 +28,23 @@
         }
     </script>
 @endsection
-
 @section('content')
     <div class="page-header">
         <div class="page-block">
             <div class="row align-items-center">
                 <div class="col-md-12">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Dashboard Queue</h5>
+                        <h5 class="m-b-10">Trashed Users</h5>
                     </div>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
-                        <li class="breadcrumb-item"><a href="#!">Dashboard Queue</a></li>
+                        <li class="breadcrumb-item"><a href="#!">Trashed Users</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
     <div class="container mt-5">
-        <a href="{{ route('admin/queues/create') }}" class="btn btn-primary rounded-pill">Add New Queue</a>
-        <a href="{{ route('admin/queues/trash') }}" class="btn btn-danger rounded-pill">Trash</a>
         @if ($message = Session::get('success'))
             <div class="alert alert-success mt-2">
                 {{ $message }}
@@ -64,29 +60,48 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">ID</th>
-                                    <th class="text-center">Appointment ID</th>
-                                    <th class="text-center">Queue Number</th>
-                                    <th class="text-center">Status</th>
+                                    <th class="text-center">Name</th>
+                                    <th class="text-center">Email</th>
+                                    <th class="text-center">User Type</th>
+                                    <th class="text-center">Phone</th>
+                                    <th class="text-center">Address</th>
+                                    <th class="text-center">Birthdate</th>
+                                    <th class="text-center">Gender</th>
+                                    <th class="text-center">Specialization</th>
+                                    <th class="text-center">Amount</th>
                                     <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($queues as $queue)
+                                @forelse ($users as $user)
                                     <tr>
                                         <td class="text-center">{{ $loop->iteration }}</td>
-                                        <td class="text-center">{{ $queue->appointment_id }}</td>
-                                        <td class="text-center">{{ $queue->queue_number }}</td>
-                                        <td class="text-center">{{ $queue->status }}</td>
+                                        <td class="text-center">{{ $user->name }}</td>
+                                        <td class="text-center">{{ $user->email }}</td>
+                                        <td class="text-center">{{ $user->usertype }}</td>
+                                        <td class="text-center">{{ $user->phone }}</td>
+                                        <td class="text-center">{{ $user->address }}</td>
+                                        <td class="text-center">{{ $user->birthdate }}</td>
+                                        <td class="text-center">{{ $user->gender }}</td>
+                                        <td class="text-center">{{ $user->specialization }}</td>
+                                        <td class="text-center">{{ $user->amount }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('admin/queues/edit', $queue->id) }}"
-                                                class="btn btn-warning rounded-pill">Edit</a>
-                                            <a onclick="confirmDelete(this)"
-                                                data-url="{{ route('admin/queues/delete', ['id' => $queue->id]) }}"
-                                                class="btn btn-danger rounded-pill" role="button">Delete</a>
+                                            <form action="{{ route('users.restore', $user->id) }}" method="POST"
+                                                style="display: inline-block;">
+                                                @csrf
+                                                <button type="submit" class="btn btn-success rounded-pill">Restore</button>
+                                            </form>
+                                            <form action="{{ route('users.forceDelete', $user->id) }}" method="POST"
+                                                style="display: inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger rounded-pill">Delete
+                                                    Permanently</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @empty
-                                    <div class="alert alert-danger">Data Antrian belum tersedia</div>
+                                    <div class="alert alert-danger">No trashed users available</div>
                                 @endforelse
                             </tbody>
                         </table>
