@@ -34,7 +34,7 @@
                         @csrf
                         <div class="form-group">
                         <div class="form-group">
-                                <label for="room_id">Room Number</label>
+                                <label for="room_id">Room Number *</label>
                                 <select name="room_id" class="form-control" required>
                                     @foreach ($rooms as $room)
                                     <option value="{{ $room->id }}">{{ $room->room_number }}</option>
@@ -42,7 +42,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                            <label for="patient_user_id">Patient Name</label>
+                            <label for="patient_user_id">Patient Name *</label>
                             <select name="patient_user_id" id="patient_user_id" class="form-control" required>
                                 <option value="">Select Patient</option>
                                 @foreach ($patients as $patient)
@@ -51,7 +51,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="doctor_user_id">Doctor Name</label>
+                            <label for="doctor_user_id">Doctor Name *</label>
                             <select name="doctor_user_id" id="doctor_user_id" class="form-control" required>
                                 <option value="">Select Doctor</option>
                                 @foreach ($doctors as $doctor)

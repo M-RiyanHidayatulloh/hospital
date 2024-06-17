@@ -32,7 +32,7 @@
                     <form action="{{ route('admin/appointments/store') }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label for="patient_user_id">Patient Name</label>
+                            <label for="patient_user_id">Patient Name *</label>
                             <select name="patient_user_id" id="patient_user_id" class="form-control" required>
                                 <option value="">Select Patient</option>
                                 @foreach ($patients as $patient)
@@ -41,7 +41,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="doctor_user_id">Doctor Name</label>
+                            <label for="doctor_user_id">Doctor Name *</label>
                             <select name="doctor_user_id" id="doctor_user_id" class="form-control" required>
                                 <option value="">Select Doctor</option>
                                 @foreach ($doctors as $doctor)
@@ -64,7 +64,7 @@
                             <input type="datetime-local" name="date" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="status">Status</label>
+                            <label for="status">Status *</label>
                             <select name="status" class="form-control" required>
                                 <option value="scheduled">Scheduled</option>
                                 <option value="completed">Completed</option>

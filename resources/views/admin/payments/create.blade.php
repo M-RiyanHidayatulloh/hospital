@@ -33,7 +33,7 @@
                     <form action="{{ route('admin/payments/store') }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label for="appointment_id">Appointment</label>
+                            <label for="appointment_id">Appointment *</label>
                             @if ($appointments->isEmpty())
                                 <p>No appointments available</p>
                             @else
@@ -45,7 +45,7 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            <label for="patient_user_id">Patient Name</label>
+                            <label for="patient_user_id">Patient Name *</label>
                             <select name="patient_user_id" id="patient_user_id" class="form-control" required>
                                 <option value="">Select Patient</option>
                                 @foreach ($patients as $patient)
@@ -62,7 +62,7 @@
                             <input type="number" name="amount" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="status">Status</label>
+                            <label for="status">Status *</label>
                             <select name="status" class="form-control" required>
                                 <option value="pending">Pending</option>
                                 <option value="paid">Paid</option>

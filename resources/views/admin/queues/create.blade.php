@@ -33,7 +33,7 @@
                     <form action="{{ route('admin/queues/store') }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label for="appointment_id">ID Appointment</label>
+                            <label for="appointment_id">ID Appointment *</label>
                             <select class="form-control" id="appointment_id" name="appointment_id" required>
                                 @foreach ($appointments as $appointment)
                                 <option value="{{ $appointment->id }}">
@@ -44,11 +44,11 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="queue_number">Nomor Antrian</label>
+                            <label for="queue_number">Nomor Antrian *</label>
                             <input type="number" class="form-control" id="queue_number" name="queue_number" required>
                         </div>
                         <div class="form-group">
-                            <label for="status">Status</label>
+                            <label for="status">Status *</label>
                             <select class="form-control" id="status" name="status" required>
                                 <option value="pending">Pending</option>
                                 <option value="confirmed">Confirmed</option>

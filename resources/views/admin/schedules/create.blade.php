@@ -32,7 +32,7 @@
                     <form action="{{ route('admin/schedules/store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="user_id ">Doctor Name</label>
+                            <label for="user_id ">Doctor Name *</label>
                             <select name="user_id" id="user_id " class="form-control" required="required">
                             <option value="">Select Doctor</option>
                                 @foreach ($users as $user)
@@ -41,7 +41,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="specialization">Specialization</label>
+                            <label for="specialization">Specialization *</label>
                             <select name="specialization" id="specialization" class="form-control" required>
                                 <option value="">Select Specialization</option>
                                 @foreach ($users as $user)
@@ -52,7 +52,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="day_of_week">Day Of Week</label>
+                            <label for="day_of_week">Day Of Week *</label>
                             <select name="day_of_week" id="day_of_week" class="form-control" required>
                                 <option value="">Select Day</option>
                                 @foreach (['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] as $day)
@@ -61,7 +61,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="start_time">Start Time</label>
+                            <label for="start_time">Start Time *</label>
                             <input type="time" name="start_time" class="form-control @error ('start_time') is-invalid @enderror" required>
                             @error('start_time')
                             <div class="alert alert-danger mt-2">
@@ -70,7 +70,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="end_time">End Time</label>
+                            <label for="end_time">End Time *</label>
                             <input type="time" name="end_time" class="form-control @error ('end_time') is-invalid @enderror" required>
                             @error('end_time')
                             <div class="alert alert-danger mt-2">

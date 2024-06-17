@@ -33,7 +33,7 @@
                     <form action="{{ route('admin/online_consultations/store') }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label for="patient_user_id">Patient Name</label>
+                            <label for="patient_user_id">Patient Name *</label>
                             <select name="patient_user_id" id="patient_user_id" class="form-control" required>
                                 <option value="">Select Patient</option>
                                 @foreach ($patients as $patient)
@@ -42,7 +42,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="doctor_user_id">Doctor Name</label>
+                            <label for="doctor_user_id">Doctor Name *</label>
                             <select name="doctor_user_id" id="doctor_user_id" class="form-control" required>
                                 <option value="">Select Doctor</option>
                                 @foreach ($doctors as $doctor)
