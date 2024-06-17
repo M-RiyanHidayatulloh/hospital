@@ -25,7 +25,7 @@
             </div>
             <div class="card border-1 shadow-md rounded">
                 <div class="card-body">
-                    <form action="{{ route('admin/health_informations/update', $health_information->id) }}" method="POST">
+                    <form action="{{ route('admin/health_informations/update', $health_information->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT') <!-- Laravel's way to handle PUT requests via forms -->
 
@@ -38,7 +38,17 @@
                             <label for="content">Content</label>
                             <textarea name="content" class="form-control" rows="5" required>{{ $health_information->content }}</textarea>
                         </div>
-                        <a href="{{ route('admin/health_informations') }}" class="btn btn-danger mr-2 rounded-pill" role="button">Cancel</a>
+
+                        <div class="form-group">
+                            <label for="category">category</label>
+                            <input type="text" name="category" class="form-control" value="{{ $health_information->category }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="image">image</label>
+                            <input type="file" name="image" class="form-control" value="{{ $health_information->image }}" required>
+                        </div>
+                       <a href="{{ route('admin/health_informations') }}" class="btn btn-danger mr-2 rounded-pill" role="button">Cancel</a>
                         <button type="submit" class="btn btn-primary rounded-pill">Update</button>
                     </form>
                 </div>

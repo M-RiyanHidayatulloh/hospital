@@ -11,30 +11,32 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                            <th>ID</th>
-                            <th>Patient</th>
-                            <th>Doctor</th>
-                            <th>Diagnosis</th>
-                            <th>Treatment</th>
+                                <th>ID</th>
+                                <th>Patient</th>
+                                <th>Doctor</th>
+                                <th>Room</th>
+                                <th>Diagnosis</th>
+                                <th>Treatment</th>
                             </tr>
-                            </thead>
-                            
-                            @foreach($medicalRecords as $record)
-                                    <tr>
-                                        <td>{{ $record->id }}</td>
-                                        <td>{{ $record->patient->name }}</td>
-                                        <td>{{ $record->doctor->name }}</td>
-                                        <td>{{ $record->diagnosis }}</td>
-                                        <td>{{ $record->treatment }}</td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
+                        </thead>
+
+                        @foreach ($medicalRecords as $record)
+                            <tr>
+                                <td>{{ $record->id }}</td>
+                                <td>{{ $record->patient->name }}</td>
+                                <td>{{ $record->doctor->name }}</td>
+                                <td>{{ $record->room ? $record->room->room_number : 'None' }}</td>
+                                <td>{{ $record->diagnosis }}</td>
+                                <td>{{ $record->treatment }}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
                     </table>
+                </form>
             </div>
         </div>
     </div>
 </section>
-
 
 @include('home.info')
 @include('home.footer')

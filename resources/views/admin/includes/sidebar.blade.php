@@ -9,6 +9,8 @@
                     @else
                         <img class="img-radius" src="{{ asset('admin/dist/assets/images/user/avatar-2.jpg') }}" alt="Default-Profile-Image">
                     @endif
+                    <img class="img-radius" src="{{ asset('admin/dist/assets/images/user/avatar-2.jpg') }}"
+                        alt="User-Profile-Image">
                     <div class="user-details">
                         <span>{{ Auth::user()->name }}</span>
                     </div>

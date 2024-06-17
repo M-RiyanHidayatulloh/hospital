@@ -8,13 +8,16 @@ use App\Models\Patient;
 use App\Models\Room;
 use App\Models\Appointment;
 use App\Models\Queue;
+use App\Models\Review;
+
 class HomeController extends Controller
 {
 
     public function home()
     {
         $doctor = Doctor::all();
-        return view('home.index', compact('doctor'));
+        $review = Review::all();
+        return view('home.index', compact('doctor','review'));
     }
     public function admin()
     {

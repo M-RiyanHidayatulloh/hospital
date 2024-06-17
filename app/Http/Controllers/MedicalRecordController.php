@@ -40,9 +40,9 @@ class MedicalRecordController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'patient_id' => 'required|exists:patients,id',
+            'doctor_id' => 'required|exists:doctors,id',
             'room_id' => 'required|exists:rooms,id',
-            'patient_user_id' => 'required|exists:users,id,usertype,user',
-            'doctor_user_id' => 'required|exists:users,id,usertype,doctor',
             'diagnosis' => 'required',
             'treatment' => 'required'
         ]);
@@ -92,37 +92,40 @@ class MedicalRecordController extends Controller
     public function delete($id)
     {
         $medical_records = MedicalRecord::findOrFail($id)->delete();
-        if($medical_records) {
+        if ($medical_records) {
             return redirect()->route('admin/medical_records')->with('success', 'Medical record Data Was Deleted');
         } else {
             return redirect()->route('admin/medical_records')->with('error', 'Medical record Delete Fail');
         }
     }
 
-    public function trash() {
+    public function trash()
+    {
         $medical_records = MedicalRecord::onlyTrashed()->get();
-         return view('admin.medical_records.trash', compact('medical_records'));
-     }
- 
-     public function restore($id = null) {
-         if($id != null) {
-             $medical_records = MedicalRecord::onlyTrashed()
-             ->where('id', $id)
-             ->restore();
-         } else {
-             $medical_records = MedicalRecord::onlyTrashed()->restore();
-         }
-         return redirect()->route('admin/medical_records/trash')->with('success', 'Medical Record Data Was Restore');
-     }
- 
-     public function destroy($id = null) {
-         if($id != null) {
-             $medical_records = MedicalRecord::onlyTrashed()
-             ->where('id', $id)
-             ->forceDelete();
-         } else {
-             $medical_records = MedicalRecord::onlyTrashed()->forceDelete();
-         }
-         return redirect()->route('admin/medical_records/trash')->with('success', 'Medical Record Data Was Delete Permanently');
-     }
+        return view('admin.medical_records.trash', compact('medical_records'));
+    }
+
+    public function restore($id = null)
+    {
+        if ($id != null) {
+            $medical_records = MedicalRecord::onlyTrashed()
+                ->where('id', $id)
+                ->restore();
+        } else {
+            $medical_records = MedicalRecord::onlyTrashed()->restore();
+        }
+        return redirect()->route('admin/medical_records/trash')->with('success', 'Medical Record Data Was Restore');
+    }
+
+    public function destroy($id = null)
+    {
+        if ($id != null) {
+            $medical_records = MedicalRecord::onlyTrashed()
+                ->where('id', $id)
+                ->forceDelete();
+        } else {
+            $medical_records = MedicalRecord::onlyTrashed()->forceDelete();
+        }
+        return redirect()->route('admin/medical_records/trash')->with('success', 'Medical Record Data Was Delete Permanently');
+    }
 }

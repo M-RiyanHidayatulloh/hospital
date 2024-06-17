@@ -13,6 +13,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QueueController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserScheduleController;
@@ -23,6 +24,9 @@ use App\Http\Controllers\UserMedicalRecordController;
 use App\Http\Controllers\UserOnlineConsultationController;
 use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\AdminPasswordController;
+use App\Http\Controllers\UserInformationController;
+use App\Http\Controllers\UserReviewController;
+
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -55,7 +59,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::middleware(['auth', 'verified', 'doctor'])->group(function () {
         Route::get('doctors/dashboard', [HomeController::class, 'doctor'])->name('doctor/dashboard');
-        });
+    });
 
     // Route::group(['middleware' => ['auth', 'doctor']], function () {
     //     Route::resource('my_schedule', DoctorScheduleController::class);
@@ -171,6 +175,16 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('admin/health_informations/restore/{id?}', [HealthInformationController::class, 'restore'])->name('admin/health_informations/restore');
         Route::get('admin/health_informations/destroy/{id?}', [HealthInformationController::class, 'destroy'])->name('admin/health_informations/destroy');
 
+        Route::get('/admin/reviews', [ReviewController::class, 'index'])->name('admin/reviews');
+        Route::get('/admin/reviews/create', [ReviewController::class, 'create'])->name('admin/reviews/create');
+        Route::post('/admin/reviews/store', [ReviewController::class, 'store'])->name('admin/reviews/store');
+        Route::get('/admin/reviews/edit/{id}', [ReviewController::class, 'edit'])->name('admin/reviews/edit');
+        Route::put('/admin/reviews/edit/{id}', [ReviewController::class, 'update'])->name('admin/reviews/update');
+        Route::get('/admin/reviews/delete/{id}', [ReviewController::class, 'delete'])->name('admin/reviews/delete');
+        Route::get('admin/reviews/trash', [ReviewController::class, 'trash'])->name('admin/reviews/trash');
+        Route::get('admin/reviews/restore/{id?}', [ReviewController::class, 'restore'])->name('admin/reviews/restore');
+        Route::get('admin/reviews/destroy/{id?}', [ReviewController::class, 'destroy'])->name('admin/reviews/destroy');
+
     });
 
     Route::middleware(['auth'])->group(function () {
@@ -205,3 +219,11 @@ Route::get('/doctor_schedule', [UserScheduleController::class, 'index'])->name('
 Route::get('user/appointments', [UserAppointmentsController::class, 'index'])->name('user.appointments.index');
 Route::get('user/medicalrecord', [UserMedicalRecordController::class, 'index'])->name('user.medicalrecord.index');
 Route::get('/online', [UserOnlineConsultationController::class, 'index'])->name('user.OnlineConsultation.index');
+
+
+Route::get('/Information', [UserInformationController::class, 'index'])->name('user.Information.index');
+Route::get('/information/{id}', [UserInformationController::class, 'show'])->name('user.information.show');
+Route::get('/search', [HealthInformationController::class, 'search'])->name('search');
+Route::put('set-appointment', [UserAppointmentsController::class, 'update'])->name('set-appointment');
+
+Route::post('set-review', [ReviewController::class, 'store'])->name('set-review');

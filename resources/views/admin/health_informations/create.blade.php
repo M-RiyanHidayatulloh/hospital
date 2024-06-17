@@ -30,7 +30,7 @@
                         {{ Session('error') }}
                     </div>
                     @endif
-                    <form action="{{ route('admin/health_informations/store') }}" method="POST">
+                    <form action="{{ route('admin/health_informations/store') }}" method="POST" enctype="multipart/form-data" >
                         @csrf
                         <div class="form-group">
                             <label for="title">Title</label>
@@ -40,7 +40,15 @@
                             <label for="content">Content</label>
                             <textarea name="content" class="form-control" rows="5" required></textarea>
                         </div>
-                        <a href="{{ route('admin/health_informations') }}" class="btn btn-danger mr-2 rounded-pill" role="button">Cancel</a>
+                        <div class="form-group">
+                            <label for="category">category</label>
+                            <input type="text" name="category" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="image">image</label>
+                            <input type="file" name="image" class="form-control" required>
+                        </div>
+                        <a href="{{ route('admin/health_informations') }}" class="btn btn-danger mr-2 rounded-pill" role="button">Batal</a>
                         <button type="submit" class="btn btn-primary rounded-pill">Save</button>
                     </form>
                 </div>

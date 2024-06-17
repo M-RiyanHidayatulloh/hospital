@@ -23,34 +23,40 @@
                 <a class="navbar-brand" href="index.html">
                     <img src="{{ asset('images/logo1.png') }}" alt="">
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
                     <span class=""> </span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{ route('home') }}">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{ route('home') }}">Home <span
+                                    class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('about2') }}">About</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="healthInfoDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="healthInfoDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Menu
                             </a>
                             <div class="dropdown-menu" aria-labelledby="healthInfoDropdown">
                                 <a class="dropdown-item" href="{{ route('doctor_schedule') }}">Doctor Schedule</a>
                                 <a class="dropdown-item" href="{{ route('user.appointments.index') }}">Appointment</a>
-                                <a class="dropdown-item" href="#">Online Consultation</a>
-                                <a class="dropdown-item" href="#">Medical Record</a>
+                                <a class="dropdown-item" href="{{ route('user.OnlineConsultation.index') }}">Online
+                                    Consultation</a>
+                                <a class="dropdown-item" href="{{ route('user.medicalrecord.index') }}">Medical
+                                    Record</a>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Health Information</a>
+                            <a class="nav-link" href="{{ route('user.Information.index') }}">Health Information</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact Us</a>
+                            <a class="nav-link" href="{{ route('contact2') }}">Contact Us</a>
                         </li>
                     </ul>
 
@@ -103,6 +109,7 @@
                             </div>
                         </li>
                         <form class="form-inline mx-auto">
+
                         <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
                             <i class="fa fa-search" aria-hidden="true"></i>
                         </button>

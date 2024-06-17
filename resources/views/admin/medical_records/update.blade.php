@@ -57,9 +57,9 @@
                         <a href="{{ route('admin/medical_records') }}" class="btn btn-danger mr-2 rounded-pill" role="button">Cancel</a>
                         <button type="submit" class="btn btn-primary rounded-pill">Update</button>
                     </form>
+
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
