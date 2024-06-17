@@ -31,8 +31,10 @@ class DoctorController extends Controller
         $validation = $request->validate([
             'user_id' => 'required|exists:users,id',
             'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
-            'phone' => 'required|string|min:5',      
-            'available_times' => 'required|string|min:5',         
+            'specialization' => 'required|min:5',
+            'phone' => 'required|string|min:5',
+            'available_times' => 'required|string|min:5',
+
         ]);
 
         $image = $request->file('image');

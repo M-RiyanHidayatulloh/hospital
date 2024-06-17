@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class ProfileController extends Controller
 {
@@ -26,19 +25,6 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    // public function update(ProfileUpdateRequest $request): RedirectResponse
-    // {
-    //     $request->user()->fill($request->validated());
-
-    //     if ($request->user()->isDirty('email')) {
-    //         $request->user()->email_verified_at = null;
-    //     }
-
-    //     $request->user()->save();
-
-    //     return Redirect::route('profile.edit')->with('status', 'profile-updated');
-    // }
-
     public function update(Request $request)
     {
         $user = Auth::user();
@@ -50,41 +36,33 @@ class ProfileController extends Controller
             'password' => 'nullable|string|min:8',
             'phone' => 'nullable|string|max:255',
             'address' => 'nullable|string|max:255',
+            'specialist' => 'nullable|string|max:255',
         ]);
-
 
         $user->name = $request->name;
         $user->email = $request->email;
         $user->date_of_birth = $request->date_of_birth;
         $user->phone = $request->phone;
         $user->address = $request->address;
+        $user->specialist = $request->specialist;
 
         if ($request->password) {
             $user->password = Hash::make($request->password);
         }
 
         if ($request->hasFile('profile_image')) {
-
             $profile_image = $request->file('profile_image');
             $profile_image->storeAs('public/profile-image', $profile_image->hashName());
 
-            Storage::delete('public/profile-image/' . $user->profile_image);
+            // Delete the old profile image if it exists
+            if ($user->profile_image) {
+                Storage::delete('public/profile-image/' . $user->profile_image);
+            }
 
-            $user->update([
-                'profile_image' => $profile_image->hashName(),
-                'name' => $request->name,
-                'phone' => $request->phone,
-                'address' => $request->address,
-            ]);
-
-        } else {
-
-            $user->update([
-                'name' => $request->name,
-                'phone' => $request->phone,
-                'address' => $request->address,
-            ]);
+            $user->profile_image = $profile_image->hashName();
         }
+
+        $user->save();
 
         return redirect()->back()->with('success', 'Profile Updated');
     }

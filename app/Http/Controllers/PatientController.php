@@ -18,7 +18,7 @@ class PatientController extends Controller
         $patients = Patient::whereHas('user', function($query) {
             $query->where('usertype', 'user');
         })->get();
-        
+
         return view('admin.patients.index', compact('patients'));
     }
 
@@ -26,13 +26,14 @@ class PatientController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        // Ambil semua user yang memiliki usertype 'user'
-        $users = User::where('usertype', 'user')->get();
-        
-        // Kirim data users ke view create
-        return view('admin.patients.create', compact('users'));
-    }
+{
+    // Ambil semua user yang memiliki usertype 'user'
+    $users = \App\Models\User::where('usertype', 'user')->get();
+
+    // Kirim data users ke view create
+    return view('admin.patients.create', compact('users'));
+}
+
 
     /**
      * Store a newly created resource in storage.
@@ -70,7 +71,7 @@ class PatientController extends Controller
      */
     public function show(Patient $patient)
     {
-        // return view('patients.show', compact('patient'));
+        return view('patients.show', compact('patient'));
     }
 
     /**
