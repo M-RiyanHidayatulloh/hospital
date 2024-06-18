@@ -9,22 +9,22 @@
     <div class="container px-0">
         <div id="customCarousel2" class="carousel  carousel-fade" data-ride="carousel">
             <div class="carousel-inner">
-                @foreach ($review as $item)
+                {{-- @foreach ($review as $item)
                     <div class="carousel-item active">
                         <div class="box">
                             <div class="client_info">
                                 <div class="client_name">
                                     <h5>{{ $item->name }}</h5>
                                     {{-- <h6>{{ $item->judul }}</h6> --}}
-                                </div>
+                {{-- </div>
                                 <i class="fa fa-quote-left" aria-hidden="true"></i>
                             </div>
                             <p>
-                                {{ $item->review }}
+                                {{ }}
                             </p>
                         </div>
                     </div>
-                @endforeach
+                @endforeach --}} --
             </div>
             <div class="carousel_btn-box">
                 <a class="carousel-control-prev" href="#customCarousel2" role="button" data-slide="prev">

@@ -8,6 +8,7 @@ use App\Models\Patient;
 use App\Models\Doctor;
 use App\Models\Room;
 use App\Models\User;
+
 class AppointmentController extends Controller
 {
     /**
@@ -15,11 +16,8 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        $appointments = Appointment::latest()->paginate(5);
-
-        $appointments = Appointment::orderBy('id', 'desc')->get();
-        $appointments = Appointment::count();
         $appointments = Appointment::all();
+        // dd($appointments);
         return view('admin.appointments.index', compact('appointments'));
     }
 
@@ -33,7 +31,7 @@ class AppointmentController extends Controller
         $rooms = Room::all();
         return view('admin.appointments.create', compact('patients', 'doctors', 'rooms'));
     }
-    
+
 
     /**
      * Store a newly created resource in storage.
@@ -47,17 +45,17 @@ class AppointmentController extends Controller
             'date' => 'required|date',
             'status' => 'required'
         ]);
-    
+
         $appointment = Appointment::create($data);
-    
+
         if ($appointment) {
             return redirect()->route('admin/appointments')->with('success', 'Appointment created successfully.');
         } else {
             return redirect()->route('admin/appointments/create')->with('error', 'Some Problem Occurred');
         }
     }
-    
-    
+
+
 
     /**
      * Display the specified resource.
@@ -113,37 +111,40 @@ class AppointmentController extends Controller
     public function delete($id)
     {
         $appointment = Appointment::findOrFail($id)->delete();
-        if($appointment) {
+        if ($appointment) {
             return redirect()->route('admin/appointments')->with('success', 'Appointment Data Was Deleted');
         } else {
             return redirect()->route('admin/appointments')->with('error', 'Appointment Delete Fail');
         }
     }
 
-    public function trash() {
+    public function trash()
+    {
         $appointments = Appointment::onlyTrashed()->get();
-         return view('admin.appointments.trash', compact('appointments'));
-     }
- 
-     public function restore($id = null) {
-         if($id != null) {
-             $appointments = Appointment::onlyTrashed()
-             ->where('id', $id)
-             ->restore();
-         } else {
-             $appointments = Appointment::onlyTrashed()->restore();
-         }
-         return redirect()->route('admin/appointments/trash')->with('success', 'Appointment Data Was Restore');
-     }
- 
-     public function destroy($id = null) {
-         if($id != null) {
-             $appointments = Appointment::onlyTrashed()
-             ->where('id', $id)
-             ->forceDelete();
-         } else {
-             $appointments = Appointment::onlyTrashed()->forceDelete();
-         }
-         return redirect()->route('admin/appointments/trash')->with('success', 'Appointment Data Was Delete Permanently');
-     }
+        return view('admin.appointments.trash', compact('appointments'));
+    }
+
+    public function restore($id = null)
+    {
+        if ($id != null) {
+            $appointments = Appointment::onlyTrashed()
+                ->where('id', $id)
+                ->restore();
+        } else {
+            $appointments = Appointment::onlyTrashed()->restore();
+        }
+        return redirect()->route('admin/appointments/trash')->with('success', 'Appointment Data Was Restore');
+    }
+
+    public function destroy($id = null)
+    {
+        if ($id != null) {
+            $appointments = Appointment::onlyTrashed()
+                ->where('id', $id)
+                ->forceDelete();
+        } else {
+            $appointments = Appointment::onlyTrashed()->forceDelete();
+        }
+        return redirect()->route('admin/appointments/trash')->with('success', 'Appointment Data Was Delete Permanently');
+    }
 }

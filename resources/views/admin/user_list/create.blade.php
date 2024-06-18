@@ -48,28 +48,36 @@
         <div class="card">
             <div class="col-md-12">
                 <div class="card-body">
-                    <form action="{{ route('admin/user_list/store') }}" method="POST">
+                    <form action="{{ route('admin/user_list/store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" name="name" class="form-control" required>
+                            <input type="text" name="name" value="{{ old('name') }}" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" name="email" class="form-control" required>
+                            <input type="email" name="email" value="{{ old('email') }}" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="usertype">User Type</label>
                             <select class="form-control" id="usertype" name="usertype" required>
-                                <option value="admin">Admin</option>
                                 <option value="user">User</option>
-                                <option value="doctor">Doctor</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Image</label>
-                            <input type="file" class="form-control  @error('image') is-invalid @enderror" name="image">
-                            @error('image')
+                            <input type="file" class="form-control  @error('profile_image') is-invalid @enderror"
+                                name="profile_image" onchange="loadFile(event)">
+                            @error('profile_image')
                                 <div class="alert alert-danger mt-2">
                                     {{ $message }}
                                 </div>
@@ -77,15 +85,16 @@
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone</label>
-                            <input type="text" name="phone" class="form-control" required>
+                            <input type="text" name="phone" value="{{ old('phone') }}" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="address">Address</label>
-                            <input type="text" name="address" class="form-control" required>
+                            <input type="text" name="address" value="{{ old('address') }}" class="form-control"
+                                required>
                         </div>
                         <div class="form-group">
                             <label for="birthdate">Birthdate</label>
-                            <input type="date" name="birthdate" class="form-control" required>
+                            <input type="date" name="date_of_birth" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="gender">Gender</label>
@@ -99,14 +108,6 @@
                                     {{ $message }}
                                 </div>
                             @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="specialization">Specialization</label>
-                            <input type="text" name="specialization" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="amount">Amount</label>
-                            <input type="number" name="amount" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>

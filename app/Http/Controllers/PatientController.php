@@ -15,10 +15,12 @@ class PatientController extends Controller
     public function index()
     {
         // Mengambil pasien dengan usertype 'user'
-        $patients = Patient::whereHas('user', function($query) {
-            $query->where('usertype', 'user');
-        })->get();
+        // $patients = Patient::whereHas('user', function ($query) {
+        //     $query->where('usertype', 'user');
+        // })->get();
 
+        $patients = Patient::all()
+        ;
         return view('admin.patients.index', compact('patients'));
     }
 
@@ -26,13 +28,13 @@ class PatientController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-{
-    // Ambil semua user yang memiliki usertype 'user'
-    $users = \App\Models\User::where('usertype', 'user')->get();
+    {
+        // Ambil semua user yang memiliki usertype 'user'
+        $users = User::where('usertype', 'user')->get();
 
-    // Kirim data users ke view create
-    return view('admin.patients.create', compact('users'));
-}
+        // Kirim data users ke view create
+        return view('admin.patients.create', compact('users'));
+    }
 
 
     /**
@@ -41,10 +43,10 @@ class PatientController extends Controller
     public function store(Request $request)
     {
         $validation = $request->validate([
-            'user_id' => 'required|string|exists:users,id',
+            'name' => 'required',
             'address' => 'required|min:2',
-            'phone' => 'required|min:5', 
-            'birthdate' => 'required|date',      
+            'phone' => 'required|min:5',
+            'birthdate' => 'required|date',
             'gender' => 'required',
             'description' => 'nullable|string',
         ]);
@@ -52,7 +54,8 @@ class PatientController extends Controller
         $user = User::find($request->user_id);
 
         $patient = new Patient();
-        $patient->user_id = $request->user_id;
+        // $patient->user_id = $request->user_id;
+        $patient->name = $request->name;
         $patient->address = $request->address;
         $patient->phone = $request->phone;
         $patient->birthdate = $request->birthdate;
@@ -133,27 +136,30 @@ class PatientController extends Controller
         }
     }
 
-    public function trash() {
+    public function trash()
+    {
         $patients = Patient::onlyTrashed()->get();
         return view('admin.patients.trash', compact('patients'));
     }
 
-    public function restore($id = null) {
+    public function restore($id = null)
+    {
         if ($id != null) {
             $patients = Patient::onlyTrashed()
-            ->where('id', $id)
-            ->restore();
+                ->where('id', $id)
+                ->restore();
         } else {
             $patients = Patient::onlyTrashed()->restore();
         }
         return redirect()->route('admin/patients/trash')->with('success', 'Patient Was Restore');
     }
 
-    public function destroy($id = null) {
+    public function destroy($id = null)
+    {
         if ($id != null) {
             $patients = Patient::onlyTrashed()
-            ->where('id', $id)
-            ->forceDelete();
+                ->where('id', $id)
+                ->forceDelete();
         } else {
             $patients = Patient::onlyTrashed()->forceDelete();
         }

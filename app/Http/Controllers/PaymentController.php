@@ -10,7 +10,6 @@ use App\Models\OnlineConsultation;
 use Illuminate\Http\Request;
 use Midtrans\Config;
 use Midtrans\Snap;
-use App\Models\User;
 
 
 class PaymentController extends Controller
@@ -87,39 +86,42 @@ class PaymentController extends Controller
     public function delete($id)
     {
         $payments = Payment::findOrFail($id)->delete();
-        if($payments) {
+        if ($payments) {
             return redirect()->route('admin/payments')->with('success', 'Queue Data Was Deleted');
         } else {
             return redirect()->route('admin/payments')->with('error', 'Queue Delete Fail');
         }
     }
 
-    public function trash() {
+    public function trash()
+    {
         $payments = Payment::onlyTrashed()->get();
-         return view('admin.payments.trash', compact('payments'));
-     }
+        return view('admin.payments.trash', compact('payments'));
+    }
 
-     public function restore($id = null) {
-         if($id != null) {
-             $payments = Payment::onlyTrashed()
-             ->where('id', $id)
-             ->restore();
-         } else {
-             $payments = Payment::onlyTrashed()->restore();
-         }
-         return redirect()->route('admin/payments/trash')->with('success', 'Payment Data Was Restore');
-     }
+    public function restore($id = null)
+    {
+        if ($id != null) {
+            $payments = Payment::onlyTrashed()
+                ->where('id', $id)
+                ->restore();
+        } else {
+            $payments = Payment::onlyTrashed()->restore();
+        }
+        return redirect()->route('admin/payments/trash')->with('success', 'Payment Data Was Restore');
+    }
 
-     public function destroy($id = null) {
-         if($id != null) {
-             $payments = Payment::onlyTrashed()
-             ->where('id', $id)
-             ->forceDelete();
-         } else {
-             $payments = Payment::onlyTrashed()->forceDelete();
-         }
-         return redirect()->route('admin/payments/trash')->with('success', 'Payment Data Was Delete Permanently');
-     }
+    public function destroy($id = null)
+    {
+        if ($id != null) {
+            $payments = Payment::onlyTrashed()
+                ->where('id', $id)
+                ->forceDelete();
+        } else {
+            $payments = Payment::onlyTrashed()->forceDelete();
+        }
+        return redirect()->route('admin/payments/trash')->with('success', 'Payment Data Was Delete Permanently');
+    }
 
     public function showPaymentForm(Request $request)
     {
@@ -170,7 +172,7 @@ class PaymentController extends Controller
             'doctor_id' => $request->doctor_id,
             'consultation_date' => now(),
             'consultation_mode' => 'Chat',
-            'notes' => $request->notes,
+            // 'notes' => $request->notes,
             // 'amount' => $request->amount,
             'notes' => 'Payment processed successfully.',
         ]);

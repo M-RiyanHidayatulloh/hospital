@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+{{-- <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Halaman Janji Temu Pasiennn</title>
@@ -14,7 +14,7 @@
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
+</head> --}}
 
 <body>
 
@@ -47,7 +47,7 @@
                                         <- Pilih ->
                                     </option>
                                     @foreach ($doctors as $item)
-                                        <option value="{{ $item->id }}">Nama : {{ $item->doctor_name }} | Ahli :
+                                        <option value="{{ $item->id }}">Nama : {{ $item->name }} | Ahli :
                                             {{ $item->specialization }}</option>
                                     @endforeach
                                 </select>
@@ -87,24 +87,24 @@
                 <div class="col">
                     <table class="table">
                         <thead>
-                          <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Nama Dokter</th>
-                            <th scope="col">Ruangan</th>
-                            <th scope="col">Tanggal Pertemuan</th>
-                          </tr>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nama Dokter</th>
+                                <th scope="col">Ruangan</th>
+                                <th scope="col">Tanggal Pertemuan</th>
+                            </tr>
                         </thead>
                         <tbody>
                             @foreach ($appointments as $item)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->doctor->doctor_name }}</td>
-                                <td>{{ $item->room->room_number }}</td>
-                                <td>{{ $item->date }}</td>
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->user->name }}</td>
+                                    <td>{{ $item->room->room_number }}</td>
+                                    <td>{{ $item->date }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
-                      </table>
+                    </table>
                 </div>
             </div>
         </div>

@@ -1,16 +1,9 @@
 @include('home.css')
 @include('home.header')
 
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" /> --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
     <style>
         h1 {
@@ -62,10 +55,19 @@
         }
 
         a {
-            color: #007bff;
+            color: #ffffff;
         }
 
         a:hover {
+            color: #0056b3;
+        }
+
+
+        h6 {
+            color: #000000;
+        }
+
+        h6:hover {
             color: #0056b3;
         }
 
@@ -141,8 +143,10 @@
                             <div class="col-sm-6">
                                 <ul class="list-unstyled mb-0">
                                     @foreach ($first_half as $item)
-                                        <li><a
-                                                href="{{ route('user.information.show', $item->id) }}">{{ $item->category }}</a>
+                                        <li>
+                                            <a href="{{ route('user.information.show', $item->id) }}">
+                                                <h6>{{ $item->category }}</h6>
+                                            </a>
                                         </li>
                                     @endforeach
                                 </ul>
@@ -150,8 +154,10 @@
                             <div class="col-sm-6">
                                 <ul class="list-unstyled mb-0">
                                     @foreach ($second_half as $item)
-                                        <li><a
-                                                href="{{ route('user.information.show', $item->id) }}">{{ $item->category }}</a>
+                                        <li>
+                                            <a href="{{ route('user.information.show', $item->id) }}">
+                                                <h6>{{ $item->category }}</h6>
+                                            </a>
                                         </li>
                                     @endforeach
                                 </ul>
@@ -165,7 +171,6 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
     <script>
         $(document).ready(function() {
             var healthInformations = @json($health_informations);

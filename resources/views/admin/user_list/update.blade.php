@@ -29,7 +29,6 @@
         }
     </script>
 @endsection
-
 @section('content')
     <div class="page-header">
         <div class="page-block">
@@ -47,40 +46,13 @@
         </div>
     </div>
     <div class="container mt-5">
-        <form action="{{ route('admin/users.update', $user->id) }}" method="POST">
+        <form action="{{ route('admin/user_list/edit', $user->id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}"
                     required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}"
-                    required>
-            </div>
-            <div class="form-group">
-                <label for="usertype">User Type</label>
-                <select class="form-control" id="usertype" name="usertype" required>
-                    <option value="admin" {{ $user->usertype == 'admin' ? 'selected' : '' }}>Admin</option>
-                    <option value="user" {{ $user->usertype == 'user' ? 'selected' : '' }}>User</option>
-                    <option value="doctor" {{ $user->usertype == 'doctor' ? 'selected' : '' }}>Doctor</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password">
-                <small class="form-text text-muted">Leave blank to keep current password.</small>
-            </div>
-            <div class="form-group">
-                <label for="password_confirmation">Confirm Password</label>
-                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
-            </div>
-            <div class="form-group">
-                <label for="profile_image">Profile Image</label>
-                <input type="text" class="form-control" id="profile_image" name="profile_image"
-                    value="{{ $user->profile_image }}">
             </div>
             <div class="form-group">
                 <label for="phone">Phone</label>
@@ -97,18 +69,20 @@
             </div>
             <div class="form-group">
                 <label for="gender">Gender</label>
-                <input type="text" class="form-control" id="gender" name="gender" value="{{ $user->gender }}">
-            </div>
-            <div class="form-group">
-                <label for="specialist">Specialist</label>
-                <input type="text" class="form-control" id="specialist" name="specialist"
-                    value="{{ $user->specialist }}">
-            </div>
-            <div class="form-group">
-                <label for="amount">Amount</label>
-                <input type="text" class="form-control" id="amount" name="amount" value="{{ $user->amount }}">
-            </div>
-            <button type="submit" class="btn btn-primary">Update</button>
+                <select name="gender" class="form-control @error('gender') is-invalid @enderror " required>
+                    <option value="{{ $user->gender }}">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+                <div class="form-group">
+                    <label>Current Doctor Image</label><br>
+                    <img src="{{ asset('storage/profile-image/' . $user->profile_image) }}" class="rounded"
+                        style="width: 100px"><br>
+                    <label>Update Doctor Image</label>
+                    <input type="file" name="profile_image" class="form-control" onchange="loadFile(event)">
+                    <img id="output" class="img-fluid mt-2 mb-4" width="100" />
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>
 @endsection

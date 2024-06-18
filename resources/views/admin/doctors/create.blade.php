@@ -1,90 +1,135 @@
 @extends('admin.includes.home')
+@section('csstable')
+    <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap4.min.css') }}">
+@endsection
+
+@section('jstable')
+    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
+    <script>
+        $(function() {
+            $('#data-table').DataTable();
+        })
+    </script>
+    <script src="{{ asset('js/sweetalert.min.js') }}"></script>
+    <script>
+        confirmDelete = function(button) {
+            var url = $(button).data('url');
+            swal({
+                'title': 'Konfirmasi Hapus',
+                'text': 'Apakah Kamu Yakin Ingin Menghapus Data Ini?',
+                'dangermode': true,
+                'buttons': true
+            }).then(function(value) {
+                if (value) {
+                    window.location = url;
+                }
+            })
+        }
+    </script>
+@endsection
 @section('content')
-<div class="page-header">
-    <div class="page-block">
-        <div class="row align-items-center">
-            <div class="col-md-12">
-                <div class="page-header-title">
-                    <h5 class="m-b-10">Dashboard Create</h5>
+    <div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-12">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Add New User</h5>
+                    </div>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                        <li class="breadcrumb-item"><a href="#!">Add New User</a></li>
+                    </ul>
                 </div>
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('admin/dashboard') }}"><i class="feather icon-home"></i></a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('admin/doctors') }}">Dashboard Doctor</a></li>
-                    <li class="breadcrumb-item"><a href="#!">Create</a></li>
-                </ul>
             </div>
         </div>
     </div>
-</div>
-<div class="container mt-5 mb-5">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="page-header-title">
-                <h2 class="m-b-10">Add New Doctor</h2>
-            </div>
-            <div class="card border-1 shadow-md rounded">
+    <div class="container mt-5">
+        <div class="card">
+            <div class="col-md-12">
                 <div class="card-body">
-                    @if (session()->has('error'))
-                    <div>
-                        {{ Session('error') }}
-                    </div>
-                    @endif
                     <form action="{{ route('admin/doctors/store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="form-group">
-                            <label for="user_id ">Doctor Name</label>
-                            <select name="user_id" id="user_id " class="form-control" required="required">
-                            <option value="">Select Doctor</option>
-                                @foreach ($users as $user)
-                                <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                @endforeach
+                            <label for="name">Name</label>
+                            <input type="text" name="name" value="{{ old('name') }}" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" value="{{ old('email') }}" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="usertype">User Type</label>
+                            <select class="form-control" id="usertype" name="usertype" required>
+                                <option value="doctor">Doctor</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Doctor Image</label>
-                            <input type="file" class="form-control @error('image') is-invalid @enderror" name="image">
-                            @error('image')
-                            <div class="alert alert-danger mt-2">
-                                {{ $message }}
-                            </div>
+                            <label>Image</label>
+                            <input type="file" class="form-control  @error('profile_image') is-invalid @enderror"
+                                name="profile_image" onchange="loadFile(event)">
+                            @error('profile_image')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="text" name="phone" value="{{ old('phone') }}" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" name="address" value="{{ old('address') }}" class="form-control"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="birthdate">Birthdate</label>
+                            <input type="date" name="date_of_birth" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select name="gender" class="form-control @error('gender') is-invalid @enderror" required>
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                            @error('gender')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label for="specialization">Specialization</label>
-                            <select name="specialization" id="specialization" class="form-control" required>
-                                <option value="">Select Specialization</option>
-                                @foreach ($users as $user)
-                                    @if (!is_null($user->specialization))
-                                        <option value="{{ $user->specialization }}">{{ $user->specialization }}</option>
-                                    @endif
-                                @endforeach
-                            </select>
+                            <input type="text" name="specialization" value="{{ old('specialization') }}"
+                                class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label>Phone</label>
-                            <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror" required>
-                            @error('phone')
-                            <div class="alert alert-danger mt-2">
-                                {{ $message }}
-                            </div>
-                            @enderror
+                            <label for="amount">Amount</label>
+                            <input type="number" name="amount" value="{{ old('amount') }}" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label>Available_times</label>
-                            <input type="text" name="available_times" class="form-control @error('available_times') is-invalid @enderror" required>
-                            @error('available_times')
-                            <div class="alert alert-danger mt-2">
-                                {{ $message }}
-                            </div>
-                            @enderror
+                            <label for="password">Password</label>
+                            <input type="password" name="password" class="form-control" required>
                         </div>
-                        <a href="{{ route('admin/doctors') }}" class="btn btn-danger mr-2 rounded-pill" role="button">Cancel</a>
-                        <button type="submit" class="btn btn-primary rounded-pill">Save</button>
+                        <div class="form-group">
+                            <label for="password_confirmation">Confirm Password</label>
+                            <input type="password" name="password_confirmation" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary rounded-pill">Submit</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 @endsection

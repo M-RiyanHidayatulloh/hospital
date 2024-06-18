@@ -88,14 +88,18 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('admin/schedules/destroy/{id?}', [DoctorScheduleController::class, 'destroy'])->name('admin/schedules/destroy');
 
         Route::get('/admin/doctors', [DoctorController::class, 'index'])->name('admin/doctors');
+        // Route::get('/admin/doctors/create', [DoctorController::class, 'create'])->name('admin/doctors/create');
         Route::get('/admin/doctors/create', [DoctorController::class, 'create'])->name('admin/doctors/create');
+        // Route::post('/admin/doctors/store', [DoctorController::class, 'store'])->name('admin/doctors/store');
         Route::post('/admin/doctors/store', [DoctorController::class, 'store'])->name('admin/doctors/store');
-        Route::get('admin/doctors/edit/{id}', [DoctorController::class, 'edit'])->name('admin/doctors/edit');
+        // Route::get('admin/doctors/edit/{id}', [DoctorController::class, 'edit'])->name('admin/doctors/edit');
+        Route::get('/admin/doctors/edit/{id}', [DoctorController::class, 'edit'])->name('admin/doctors/edit');
         Route::put('/admin/doctors/edit/{id}', [DoctorController::class, 'update'])->name('admin/doctors/update');
+        // Route::put('/admin/doctors/edit/{id}', [DoctorController::class, 'update'])->name('admin/doctors/update');
         Route::get('admin/doctors/delete/{id}', [DoctorController::class, 'delete'])->name('admin/doctors/delete');
         Route::get('admin/doctors/trash', [DoctorController::class, 'trash'])->name('admin/doctors/trash');
-        Route::get('admin/doctors/restore/{id?}', [DoctorController::class, 'restore'])->name('admin/doctors/restore');
-        Route::get('admin/doctors/destroy/{id?}', [DoctorController::class, 'destroy'])->name('admin/doctors/destroy');
+        // Route::get('admin/doctors/restore/{id?}', [DoctorController::class, 'restore'])->name('admin/doctors/restore');
+        // Route::get('admin/doctors/destroy/{id?}', [DoctorController::class, 'destroy'])->name('admin/doctors/destroy');
 
         Route::get('/admin/appointments', [AppointmentController::class, 'index'])->name('admin/appointments');
         Route::get('/admin/appointments/create', [AppointmentController::class, 'create'])->name('admin/appointments/create');
@@ -215,6 +219,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('reviews', ReviewController::class);
         Route::resource('user_list', UserController::class);
         Route::get('user/appointments', [UserAppointmentsController::class, 'index'])->name('user.appointments.index');
+        Route::get('/online', [UserOnlineConsultationController::class, 'index'])->name('user.OnlineConsultation.index');
+
 
 
 
@@ -236,7 +242,6 @@ Route::get('/about', [UserDashboardController::class, 'about'])->name('about2');
 Route::get('/contact', [UserDashboardController::class, 'contact'])->name('contact2');
 Route::get('/doctor_schedule', [UserScheduleController::class, 'index'])->name('doctor_schedule');
 Route::get('user/medicalrecord', [UserMedicalRecordController::class, 'index'])->name('user.medicalrecord.index');
-Route::get('/online', [UserOnlineConsultationController::class, 'index'])->name('user.OnlineConsultation.index');
 
 
 Route::get('/Information', [UserInformationController::class, 'index'])->name('user.Information.index');
