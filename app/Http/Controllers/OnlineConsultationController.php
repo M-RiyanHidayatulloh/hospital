@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\OnlineConsultation;
 use App\Models\Patient;
 use App\Models\Doctor;
@@ -28,8 +29,8 @@ class OnlineConsultationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'patient_user_id' => 'required|exists:users,id,usertype,user',
-            'doctor_user_id' => 'required|exists:users,id,usertype,doctor',
+            'patient_id' => 'required|exists:users,id,usertype,user',
+            'doctor_id' => 'required|exists:users,id,usertype,doctor',
             'consultation_date' => 'required|date',
             'consultation_mode' => 'required|in:Chat,Video,Audio',
             'notes' => 'required'
@@ -61,37 +62,40 @@ class OnlineConsultationController extends Controller
     public function delete($id)
     {
         $online_consultations = OnlineConsultation::findOrFail($id)->delete();
-        if($online_consultations) {
+        if ($online_consultations) {
             return redirect()->route('admin/online_consultations')->with('success', 'Online consultation Data Was Deleted');
         } else {
             return redirect()->route('admin/online_consultations')->with('error', 'Online consultation Delete Fail');
         }
     }
 
-    public function trash() {
+    public function trash()
+    {
         $online_consultations = OnlineConsultation::onlyTrashed()->get();
-         return view('admin.online_consultations.trash', compact('online_consultations'));
-     }
- 
-     public function restore($id = null) {
-         if($id != null) {
-             $online_consultations = OnlineConsultation::onlyTrashed()
-             ->where('id', $id)
-             ->restore();
-         } else {
-             $online_consultations = OnlineConsultation::onlyTrashed()->restore();
-         }
-         return redirect()->route('admin/online_consultations/trash')->with('success', 'Online Consultation Data Was Restore');
-     }
- 
-     public function destroy($id = null) {
-         if($id != null) {
-             $online_consultations = OnlineConsultation::onlyTrashed()
-             ->where('id', $id)
-             ->forceDelete();
-         } else {
-             $online_consultations = OnlineConsultation::onlyTrashed()->forceDelete();
-         }
-         return redirect()->route('admin/online_consultations/trash')->with('success', 'Online Consultation Data Was Delete Permanently');
-     }
+        return view('admin.online_consultations.trash', compact('online_consultations'));
+    }
+
+    public function restore($id = null)
+    {
+        if ($id != null) {
+            $online_consultations = OnlineConsultation::onlyTrashed()
+                ->where('id', $id)
+                ->restore();
+        } else {
+            $online_consultations = OnlineConsultation::onlyTrashed()->restore();
+        }
+        return redirect()->route('admin/online_consultations/trash')->with('success', 'Online Consultation Data Was Restore');
+    }
+
+    public function destroy($id = null)
+    {
+        if ($id != null) {
+            $online_consultations = OnlineConsultation::onlyTrashed()
+                ->where('id', $id)
+                ->forceDelete();
+        } else {
+            $online_consultations = OnlineConsultation::onlyTrashed()->forceDelete();
+        }
+        return redirect()->route('admin/online_consultations/trash')->with('success', 'Online Consultation Data Was Delete Permanently');
+    }
 }

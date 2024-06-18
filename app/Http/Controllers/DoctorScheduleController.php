@@ -12,7 +12,7 @@ class DoctorScheduleController extends Controller
 {
     public function index(): View
     {
-        $schedules = DoctorSchedule::whereHas('user', function($query) {
+        $schedules = DoctorSchedule::whereHas('user', function ($query) {
             $query->where('usertype', 'doctor');
         })->get();
         // $schedules = DoctorSchedule::latest()->paginate(5);
@@ -26,7 +26,9 @@ class DoctorScheduleController extends Controller
     public function create()
     {
         $users = User::where('usertype', 'doctor')->whereNotNull('specialization')->get();
-        return view('admin.schedules.create', compact('users'));
+        $doctor = User::where('usertype', 'user')->get();
+
+        return view('admin.schedules.create', compact('users', 'doctor'));
     }
 
     public function store(Request $request): RedirectResponse
@@ -66,12 +68,12 @@ class DoctorScheduleController extends Controller
     public function update(Request $request, $id)
     {
         $schedules = DoctorSchedule::findOrFail($id);
-        $user_id = $request->user_id ;
+        $user_id = $request->user_id;
         $day_of_week = $request->day_of_week;
         $start_time = $request->start_time;
         $end_time = $request->end_time;
 
-        $schedules->user_id  = $user_id ;
+        $schedules->user_id = $user_id;
         $schedules->day_of_week = $day_of_week;
         $schedules->start_time = $start_time;
         $schedules->end_time = $end_time;
@@ -93,30 +95,33 @@ class DoctorScheduleController extends Controller
         }
     }
 
-    public function trash() {
+    public function trash()
+    {
         $schedules = DoctorSchedule::onlyTrashed()->get();
-         return view('admin.schedules.trash', compact('schedules'));
-     }
- 
-     public function restore($id = null) {
-         if($id != null) {
-             $schedules = DoctorSchedule::onlyTrashed()
-             ->where('id', $id)
-             ->restore();
-         } else {
-             $schedules = DoctorSchedule::onlyTrashed()->restore();
-         }
-         return redirect()->route('admin/schedules/trash')->with('success', 'Doctor Schedule Was Restore');
-     }
- 
-     public function destroy($id = null) {
-         if($id != null) {
-             $schedules = DoctorSchedule::onlyTrashed()
-             ->where('id', $id)
-             ->forceDelete();
-         } else {
-             $schedules = DoctorSchedule::onlyTrashed()->forceDelete();
-         }
-         return redirect()->route('admin/schedules/trash')->with('success', 'Doctor Schedule Was Delete Permanently');
-     }
+        return view('admin.schedules.trash', compact('schedules'));
+    }
+
+    public function restore($id = null)
+    {
+        if ($id != null) {
+            $schedules = DoctorSchedule::onlyTrashed()
+                ->where('id', $id)
+                ->restore();
+        } else {
+            $schedules = DoctorSchedule::onlyTrashed()->restore();
+        }
+        return redirect()->route('admin/schedules/trash')->with('success', 'Doctor Schedule Was Restore');
+    }
+
+    public function destroy($id = null)
+    {
+        if ($id != null) {
+            $schedules = DoctorSchedule::onlyTrashed()
+                ->where('id', $id)
+                ->forceDelete();
+        } else {
+            $schedules = DoctorSchedule::onlyTrashed()->forceDelete();
+        }
+        return redirect()->route('admin/schedules/trash')->with('success', 'Doctor Schedule Was Delete Permanently');
+    }
 }

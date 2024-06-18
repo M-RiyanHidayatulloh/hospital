@@ -1,15 +1,8 @@
 @include('home.css')
 @include('home.header')
 
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Layout with Bootstrap</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Tambahkan CSS Slick -->
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
@@ -162,6 +155,12 @@
             color: #333;
         }
 
+        .article-content h2 {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
         .article p {
             margin-bottom: 0;
             color: #666;
@@ -207,6 +206,7 @@
             background-color: #55585c;
             color: #fff;
             font-size: 0.8rem;
+            margin-bottom: 10px;
         }
 
         h2 {
@@ -287,7 +287,7 @@
                         <img src="{{ asset('storage/informations/' . $health_information->image) }}"
                             alt="Article Image">
                         <div class="article-content">
-                            <h2>{{ $health_information->title }}</h2>
+                            <h3>{{ $health_information->title }}</h3>
                             <span class="category-label">{{ $health_information->category }}</span>
                             <p>{!! substr($health_information->content, 0, 50) !!} {!! strlen($health_information->content) > 50 ? '...' : '' !!}</p>
                         </div>
@@ -306,7 +306,7 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> --}}
     <script>
         $(document).ready(function() {
             $('#searchInput').on('input', function() {

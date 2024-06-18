@@ -18,10 +18,12 @@ class User extends Authenticatable
         'phone',
         'usertype',
         'address',
+        'image',
         'date_of_birth',
         'gender',
         'password',
         'specialist',
+        'specialization',
         'amount',
         'profile_image'
 

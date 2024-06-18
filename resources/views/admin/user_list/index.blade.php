@@ -63,35 +63,27 @@
                                 <tr>
                                     <th class="text-center">Id</th>
                                     <th class="text-center">Name</th>
-                                    <th class="text-center">Email</th>
-                                    <th class="text-center">Usertype</th>
                                     <th class="text-center">profile_image</th>
                                     <th class="text-center">Phone</th>
                                     <th class="text-center">Address</th>
                                     <th class="text-center">date_of_birth</th>
                                     <th class="text-center">Gender</th>
-                                    <th class="text-center">Specialization</th>
-                                    <th class="text-center">Amount</th>
-                                    <th class="text-center">Password</th>
                                     <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($users as $user)
                                     <tr>
-                                        <td class="text-center">{{ $user->id }}</td>
-                                        {{-- <td class="text-center">{{ $loop->iteration }}</td> --}}
+                                        <td class="text-center">{{ $loop->iteration }}</td>
                                         <td class="text-center">{{ $user->name }}</td>
-                                        <td class="text-center">{{ $user->email }}</td>
-                                        <td class="text-center">{{ $user->usertype }}</td>
-                                        <td class="text-center">{{ $user->profile_image }}</td>
+                                        <td class="text-center">
+                                            <img src="{{ asset('storage/profile-image/' . $user->profile_image) }}"
+                                                class="rounded" style="width: 50px">
+                                        </td>
                                         <td class="text-center">{{ $user->phone }}</td>
                                         <td class="text-center">{{ $user->address }}</td>
                                         <td class="text-center">{{ $user->date_of_birth }}</td>
                                         <td class="text-center">{{ $user->gender }}</td>
-                                        <td class="text-center">{{ $user->specialization }}</td>
-                                        <td class="text-center">{{ $user->amount }}</td>
-                                        <td class="text-center">{{ $user->password }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('admin/user_list/edit', ['id' => $user->id]) }}"
                                                 class="btn btn-warning rounded-pill">Edit</a>

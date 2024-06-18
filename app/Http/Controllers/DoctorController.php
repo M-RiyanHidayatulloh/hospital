@@ -13,78 +13,141 @@ class DoctorController extends Controller
 {
     public function index(): View
     {
-        $doctors = Doctor::whereHas('user', function($query) {
-            $query->where('usertype', 'doctor');
-        })->get();
+        // $doctors = Doctor::whereHas('user', function ($query) {
+        //     $query->where('usertype', 'doctor');
+        // })->get();
+
+        $doctors = User::where('usertype', 'doctor')->get();
         return view('admin.doctors.index', compact('doctors'));
     }
 
     public function create()
     {
-        $users = User::where('usertype', 'doctor')->whereNotNull('specialization')->get();
-        return view('admin.doctors.create', compact('users'));
+        $users = User::where('usertype', 'doctor')->get();
+        $doctor = User::where('usertype', 'user')->get();
+
+        return view('admin.doctors.create', compact('users', 'doctor'));
     }
-    
 
-    public function store(Request $request): RedirectResponse
+
+    // public function store(Request $request): RedirectResponse
+    // {
+    //     $validation = $request->validate([
+    //         'user_id' => 'required|exists:users,id',
+    //         'name' => 'required|string|max:255',
+    //         'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
+    //         'specialization' => 'required|min:5',
+    //         'phone' => 'required|string|min:5',
+    //         'available_times' => 'required|string|min:5',
+
+    //     ]);
+
+    //     $image = $request->file('image');
+    //     $image->storeAs('public/doctors', $image->hashName());
+
+    //     $doctor = Doctor::create([
+    //         'user_id' => $request->user_id,
+    //         'name' => $request->name,
+    //         'image' => $image->hashName(),
+    //         'phone' => $request->phone,
+    //         'available_times' => $request->available_times,
+    //     ]);
+
+    //     if ($doctor) {
+    //         return redirect()->route('admin/doctors')->with('success', 'Doctor Data Was Added');
+    //     } else {
+    //         return redirect()->route('admin/doctors/create')->with('error', 'Some Problem Occurred');
+    //     }
+    // }
+
+    public function store(Request $request)
     {
-        $validation = $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
-            'specialization' => 'required|min:5',
-            'phone' => 'required|string|min:5',
-            'available_times' => 'required|string|min:5',
-
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'usertype' => 'required|string|max:255',
+            'profile_image' => 'mimes:jpeg,png,jpg,gif,svg|max:1048',
+            'phone' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'date_of_birth' => 'required|string|max:255',
+            'gender' => 'required|string|max:255',
+            'specialization' => 'required|string|max:255',
+            'amount' => 'required|string|max:255',
+            'password' => 'required|string|min:8|confirmed',
         ]);
 
-        $image = $request->file('image');
-        $image->storeAs('public/doctors', $image->hashName());
+        $image = $request->file('profile_image');
+        $image->storeAs('public/profile-image', $image->hashName());
 
-        $doctor = Doctor::create([
-            'user_id' => $request->user_id,
-            'image' => $image->hashName(),
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'usertype' => $request->usertype,
+            'profile_image' => 'profile-image/' . $image->hashName(),
             'phone' => $request->phone,
-            'available_times' => $request->available_times,
+            'address' => $request->address,
+            'date_of_birth' => $request->date_of_birth,
+            'gender' => $request->gender,
+            'specialization' => $request->specialization,
+            'amount' => $request->amount,
+            'password' => bcrypt($request->password),
         ]);
 
-        if ($doctor) {
-            return redirect()->route('admin/doctors')->with('success', 'Doctor Data Was Added');
-        } else {
-            return redirect()->route('admin/doctors/create')->with('error', 'Some Problem Occurred');
-        }
+        return redirect()->route('admin/doctors')->with('success', 'Doctor created successfully.');
     }
 
     public function edit($id)
     {
-        $doctor = Doctor::findOrFail($id);
-        $users = User::where('usertype', 'doctor')->get();
-        return view('admin.doctors.update', compact('doctor', 'users'));
+        $doctor = User::find($id);
+        // dd($doctor);
+        return view('admin.doctors.update', compact('doctor'));
     }
 
     public function update(Request $request, $id)
     {
-        $doctor = Doctor::findOrFail($id);
-
+        $user = User::findOrFail($id);
         $request->validate([
-            'specialization' => 'required|min:2',
-            'phone' => 'required|string|min:5',
-            'available_times' => 'required|string|min:5',
-            'image' => 'nullable|image|mimes:jpeg,jpg,png|max:2048',
+            'name' => 'string|max:255',
+            'email' => 'string|email|max:255|unique:users',
+            'usertype' => 'string|max:255',
+            'profile_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'phone' => 'string|max:255',
+            'address' => 'string|max:255',
+            'date_of_birth' => 'string|max:255',
+            'gender' => 'string|max:255',
+            'specialization' => 'string|max:255',
+            'amount' => 'string|max:255',
+            'password' => 'string|min:8|confirmed',
         ]);
 
-        $doctor->update([
-            'specialization' => $request->specialization,
-            'phone' => $request->phone,
-            'available_times' => $request->available_times,
-        ]);
+        // $user->update($request->all());
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $image->storeAs('public/doctors', $image->hashName());
-            $doctor->update(['image' => $image->hashName()]);
+        if ($request->hasFile('profile_image')) {
+            $image = $request->file('profile_image');
+            $folderPath = 'profile-image';
+            $imagePath = $image->store($folderPath, 'public');
+            $user->profile_image = $imagePath;
         }
 
-        return redirect()->route('admin/doctors')->with('success', 'Doctor Data Was Changed');
+        // dd($imagePath);
+        // $image = $request->file('profile_image');
+        // // $image->storeAs('public/profile-image', $image->hashName());
+        // User::update([
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'usertype' => $request->usertype,
+        //     // 'profile_image' => $image->hashName(),
+        //     'phone' => $request->phone,
+        //     'address' => $request->address,
+        //     'date_of_birth' => $request->date_of_birth,
+        //     'gender' => $request->gender,
+        //     'specialization' => $request->specialization,
+        //     'amount' => $request->amount,
+        //     'password' => bcrypt($request->password),
+        // ]);
+        $user->update();
+
+        return redirect()->route('admin/doctors')->with('success', 'User updated successfully.');
     }
 
     public function show($id)
@@ -96,11 +159,12 @@ class DoctorController extends Controller
 
     public function delete($id)
     {
-        $doctor = Doctor::findOrFail($id)->delete();
-        if ($doctor) {
-            return redirect()->route('admin/doctors')->with('success', 'Doctor Was Deleted');
-        } else {
-            return redirect()->route('admin/doctors')->with('error', 'Delete Failed');
+        $doctor = User::find($id);
+        try {
+            $doctor->delete();
+            return redirect()->back()->with('success', 'Doctor Deleted Successfully');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Deleted Failed');
         }
     }
 
