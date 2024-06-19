@@ -31,7 +31,8 @@
                                         <td class="text-center">{{ $schedules->start_time }}</td>
                                         <td class="text-center">{{ $schedules->end_time }}</td>
                                         <td class="text-center">
-                                            <a href="#" class="btn btn-warning rounded-pill"><i class="fa fa-edit"
+                                            <a href="{{ route('change-my-schedule', ['id' => $schedules->id]) }}"
+                                                class="btn btn-warning rounded-pill"><i class="fa fa-edit"
                                                     aria-hidden="true"></i> Edit</a>
                                             {{-- <a onclick="confirmDelete(this)"
                                             data-url="{{ route('admin/schedules/delete', ['id' => $schedule->id]) }}"
