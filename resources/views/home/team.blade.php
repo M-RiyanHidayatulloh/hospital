@@ -11,11 +11,11 @@
                     <div class="item">
                         <div class="box">
                             <div class="img-box">
-                                <img src="{{ asset('storage/doctors/' . $doctors->image) }}" alt="" />
+                                <img src="{{ asset('/storage/' . $doctors->profile_image) }}" alt="" />
                             </div>
                             <div class="detail-box">
                                 <h5>
-                                    {{ $doctors->doctor_name }}
+                                    {{ $doctors->name }}
                                 </h5>
                                 <h6>
                                     {{ $doctors->specialization }}

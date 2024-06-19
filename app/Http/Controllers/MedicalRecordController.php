@@ -40,8 +40,8 @@ class MedicalRecordController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'patient_id' => 'required|exists:patients,id',
-            'doctor_id' => 'required|exists:doctors,id',
+            'patient_user_id' => 'required|exists:users,id',
+            'doctor_user_id' => 'required|exists:users,id',
             'room_id' => 'required|exists:rooms,id',
             'diagnosis' => 'required',
             'treatment' => 'required'
