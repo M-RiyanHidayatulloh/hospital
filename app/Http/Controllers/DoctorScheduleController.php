@@ -25,8 +25,8 @@ class DoctorScheduleController extends Controller
 
     public function create()
     {
-        $users = User::where('usertype', 'doctor')->whereNotNull('specialization')->get();
-        $doctor = User::where('usertype', 'user')->get();
+        $doctor = User::where('usertype', 'doctor')->whereNotNull('specialization')->get();
+        $users = User::where('usertype', 'user')->get();
 
         return view('admin.schedules.create', compact('users', 'doctor'));
     }

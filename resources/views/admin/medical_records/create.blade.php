@@ -34,6 +34,15 @@
                         @endif
                         <form action="{{ route('admin/medical_records/store') }}" method="POST">
                             @csrf
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <div class="form-group">
                                 <div class="form-group">
                                     <label for="room_id">Room Number *</label>
@@ -46,7 +55,7 @@
                                 <div class="form-group">
                                     <label for="patient_user_id">Patient Name *</label>
                                     <select name="patient_user_id" id="patient_user_id" class="form-control" required>
-                                        <option value="">Select Patient</option>
+                                        <option disabled>Select Patient</option>
                                         @foreach ($patients as $patient)
                                             <option value="{{ $patient->id }}">{{ $patient->name }}</option>
                                         @endforeach
@@ -55,7 +64,7 @@
                                 <div class="form-group">
                                     <label for="doctor_user_id">Doctor Name *</label>
                                     <select name="doctor_user_id" id="doctor_user_id" class="form-control" required>
-                                        <option value="">Select Doctor</option>
+                                        <option disabled>Select Doctor</option>
                                         @foreach ($doctors as $doctor)
                                             <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
                                         @endforeach

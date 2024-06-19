@@ -1,4 +1,4 @@
-<section class="client_section layout_padding">
+{{-- <section class="client_section layout_padding">
     <div class="container">
         <div class="heading_container">
             <h2>
@@ -16,7 +16,7 @@
                                 <div class="client_name">
                                     <h5>{{ $item->name }}</h5>
                                     {{-- <h6>{{ $item->judul }}</h6> --}}
-                {{-- </div>
+{{-- </div>
                                 <i class="fa fa-quote-left" aria-hidden="true"></i>
                             </div>
                             <p>
@@ -25,7 +25,7 @@
                         </div>
                     </div>
                 @endforeach --}} --
-            </div>
+{{-- </div>
             <div class="carousel_btn-box">
                 <a class="carousel-control-prev" href="#customCarousel2" role="button" data-slide="prev">
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -37,5 +37,5 @@
                 </a>
             </div>
         </div>
-    </div>
-</section>
+    </div> --}}
+{{-- </section>  --}}

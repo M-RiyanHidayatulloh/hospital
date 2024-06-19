@@ -1,4 +1,4 @@
-<section class="book_section layout_padding">
+{{-- <section class="book_section layout_padding">
     <div class="container">
         <div class="row">
             @auth
@@ -50,14 +50,14 @@
                 @endif
             @endauth
 
-        </div>
-        {{-- <div class="btn-box">
+        </div> --}}
+{{-- <div class="btn-box">
                                     <button type="submit" class="btn">Submit Now</button>
                                 </div> --}}
 
+{{-- </div>
     </div>
     </div>
     </div>
     </div>
-    </div>
-</section>
+</section> --}}

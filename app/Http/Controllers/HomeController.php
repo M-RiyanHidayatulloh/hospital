@@ -16,7 +16,7 @@ class HomeController extends Controller
 
     public function home()
     {
-        $doctor = Doctor::all();
+        $doctor = User::where('usertype', 'doctor')->get();
         $review = Review::all();
         return view('home.index', compact('doctor', 'review'));
     }

@@ -33,13 +33,22 @@
                         @endif
                         <form action="{{ route('admin/schedules/store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <div class="form-group">
                                 <label for="user_id ">Doctor Name *</label>
                                 <select name="user_id" id="user_id " class="form-control" required="required">
                                     <option value="">Select Doctor</option>
-                                    @foreach ($users as $user)
-                                        <option value="{{ $user->name }}">{{ $user->name }} |
-                                            {{ $user->specialization }}</option>
+                                    @foreach ($doctor as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }} |
+                                            {{ $item->specialization }}</option>
                                     @endforeach
                                 </select>
                             </div>
